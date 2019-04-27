@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1025.0
+margin_bottom = 602.0
+
+[node name="Button" type="Button" parent="Panel"]
+margin_left = 1.22772
+margin_top = 550.027
+margin_right = 197.228
+margin_bottom = 602.027
+text = "BACK"
+
+[node name="Button2" type="Button" parent="Panel"]
+margin_left = 823.812
+margin_top = 551.0
+margin_right = 1021.81
+margin_bottom = 602.0
+text = "NEXT"
+
