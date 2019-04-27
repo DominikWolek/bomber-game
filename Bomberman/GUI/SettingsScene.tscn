@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/BackButton.gd" type="Script" id=1]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,21 +17,17 @@ margin_right = 161.5
 margin_bottom = 602.0
 alignment = 1
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 269.0
+[node name="SoundButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 281.0
 margin_right = 322.0
-margin_bottom = 289.0
-text = "CONTROLS"
-
-[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 293.0
-margin_right = 322.0
-margin_bottom = 313.0
+margin_bottom = 301.0
 text = "SOUND"
 
-[node name="Button4" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 317.0
+[node name="BackButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 305.0
 margin_right = 322.0
-margin_bottom = 337.0
+margin_bottom = 325.0
 text = "BACK"
+script = ExtResource( 1 )
 
+[connection signal="pressed" from="Panel/VBoxContainer/BackButton" to="Panel/VBoxContainer/BackButton" method="_on_BackButton_pressed"]
