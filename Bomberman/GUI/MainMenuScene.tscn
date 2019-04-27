@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/SettingsButton.gd" type="Script" id=1]
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,27 +18,29 @@ margin_bottom = 601.0
 custom_constants/separation = 60
 alignment = 1
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 196.0
+[node name="StartButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 170.0
 margin_right = 309.0
-margin_bottom = 203.0
+margin_bottom = 190.0
 text = "START"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 263.0
+[node name="SettingsButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 250.0
 margin_right = 309.0
 margin_bottom = 270.0
 text = "OPTIONS"
+script = ExtResource( 1 )
 
-[node name="Button3" type="Button" parent="Panel/VBoxContainer"]
+[node name="HighscoreButton" type="Button" parent="Panel/VBoxContainer"]
 margin_top = 330.0
 margin_right = 309.0
-margin_bottom = 337.0
+margin_bottom = 350.0
 text = "HIGHSCORE"
 
-[node name="Button4" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 397.0
+[node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 410.0
 margin_right = 309.0
-margin_bottom = 404.0
+margin_bottom = 430.0
 text = "EXIT"
 
+[connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="Panel/VBoxContainer/SettingsButton" method="_on_SettingsButton_pressed"]
