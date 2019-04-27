@@ -1,21 +1,189 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=66 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Bomb.gd" type="Script" id=1]
+[ext_resource path="res://bomba.png" type="Texture" id=2]
+[ext_resource path="res://Player.gd" type="Script" id=3]
+[ext_resource path="res://sprites/rogue like idle_Animation 1_0.png" type="Texture" id=4]
+[ext_resource path="res://sprites/rogue like idle_Animation 1_2.png" type="Texture" id=5]
+[ext_resource path="res://sprites/rogue like idle_Animation 1_1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/rogue like run_Animation 1_0.png" type="Texture" id=7]
+[ext_resource path="res://sprites/rogue like run_Animation 1_1.png" type="Texture" id=8]
+[ext_resource path="res://sprites/rogue like run_Animation 1_2.png" type="Texture" id=9]
+[ext_resource path="res://sprites/rogue like run_Animation 1_3.png" type="Texture" id=10]
+[ext_resource path="res://sprites/rogue like run_Animation 1_4.png" type="Texture" id=11]
+[ext_resource path="res://sprites/rogue like run_Animation 1_5.png" type="Texture" id=12]
+[ext_resource path="res://sprites/roguelike run down_Animation 1_0.png" type="Texture" id=13]
+[ext_resource path="res://sprites/roguelike run down_Animation 1_1.png" type="Texture" id=14]
+[ext_resource path="res://sprites/roguelike run down_Animation 1_2.png" type="Texture" id=15]
+[ext_resource path="res://sprites/roguelike run down_Animation 1_3.png" type="Texture" id=16]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 0 immortal.png" type="Texture" id=17]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 1 immortal.png" type="Texture" id=18]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 2 immortal.png" type="Texture" id=19]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 3 immortal.png" type="Texture" id=20]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 4 immortal.png" type="Texture" id=21]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 5 immortal.png" type="Texture" id=22]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 6 immortal.png" type="Texture" id=23]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 7 immortal.png" type="Texture" id=24]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 8 immortal.png" type="Texture" id=25]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 9 immortal.png" type="Texture" id=26]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 10 immortal.png" type="Texture" id=27]
+[ext_resource path="res://sprites immortal/rogue like run_Animation 11 immortal.png" type="Texture" id=28]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 0 immortal.png" type="Texture" id=29]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 1 immortal.png" type="Texture" id=30]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 2 immortal.png" type="Texture" id=31]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 3 immortal.png" type="Texture" id=32]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 4 immortal.png" type="Texture" id=33]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 5 immortal.png" type="Texture" id=34]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 6 immortal.png" type="Texture" id=35]
+[ext_resource path="res://sprites immortal/roguelike run down_Animation 7 immortal.png" type="Texture" id=36]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 0 immortal.png" type="Texture" id=37]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 1 immortal.png" type="Texture" id=38]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 2 immortal.png" type="Texture" id=39]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 3 immortal.png" type="Texture" id=40]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 4 immortal.png" type="Texture" id=41]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 5 immortal.png" type="Texture" id=42]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 6 immortal.png" type="Texture" id=43]
+[ext_resource path="res://sprites immortal/rogue like run up_Animation 7 immortal.png" type="Texture" id=44]
+[ext_resource path="res://sprites immortal/rogue like idle_Animation 0 immortal.png" type="Texture" id=45]
+[ext_resource path="res://sprites immortal/rogue like idle_Animation 1 immortal.png" type="Texture" id=46]
+[ext_resource path="res://sprites immortal/rogue like idle_Animation 2 immortal.png" type="Texture" id=47]
+[ext_resource path="res://sprites immortal/rogue like idle_Animation 3 immortal.png" type="Texture" id=48]
+[ext_resource path="res://sprites immortal/rogue like idle_Animation 4 immortal.png" type="Texture" id=49]
+[ext_resource path="res://sprites immortal/rogue like idle_Animation 5 immortal.png" type="Texture" id=50]
+[ext_resource path="res://sprites/rogue like run up_Animation 1_0.png" type="Texture" id=51]
+[ext_resource path="res://sprites/rogue like run up_Animation 1_1.png" type="Texture" id=52]
+[ext_resource path="res://sprites/rogue like run up_Animation 1_2.png" type="Texture" id=53]
+[ext_resource path="res://sprites/rogue like run up_Animation 1_3.png" type="Texture" id=54]
+[ext_resource path="res://MoreBombs.gd" type="Script" id=55]
+[ext_resource path="res://speed.png" type="Texture" id=56]
+[ext_resource path="res://BetterBomb.gd" type="Script" id=57]
+[ext_resource path="res://morebobmex.png" type="Texture" id=58]
+[ext_resource path="res://SpeedUP.gd" type="Script" id=59]
+[ext_resource path="res://speedo.png" type="Texture" id=60]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "runDOWN",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "run_IMMORTAL",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ) ],
+"loop": true,
+"name": "runDOWN_IMMORTAL",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ) ],
+"loop": true,
+"name": "runUP_IMMORTAL",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ) ],
+"loop": true,
+"name": "idle_IMMORTAL",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ) ],
+"loop": true,
+"name": "runUP",
+"speed": 5.0
+} ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
-[node name="Player" type="KinematicBody2D"]
-position = Vector2( 96, 96 )
+[sub_resource type="CircleShape2D" id=3]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 25.0
+
+[node name="world" type="Node"]
+
+[node name="Bomb" type="StaticBody2D" parent="."]
+position = Vector2( -32, 32 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="Bomb"]
+scale = Vector2( 0.125, 0.125 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 32, 64 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="Player"]
+frames = SubResource( 6 )
+animation = "run"
+frame = 5
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource( 1 )
+
+[node name="MoreBombs" type="Area2D" parent="."]
+position = Vector2( 320, 64 )
+script = ExtResource( 55 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="MoreBombs"]
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 56 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoreBombs"]
+shape = SubResource( 3 )
+
+[node name="BetterBombs" type="Area2D" parent="."]
+position = Vector2( 128, 64 )
+script = ExtResource( 57 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="BetterBombs"]
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 58 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BetterBombs"]
+shape = SubResource( 4 )
+
+[node name="SpeedUP" type="Area2D" parent="."]
+position = Vector2( 224, 64 )
+script = ExtResource( 59 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="SpeedUP"]
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 60 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpeedUP"]
+shape = SubResource( 5 )
 
