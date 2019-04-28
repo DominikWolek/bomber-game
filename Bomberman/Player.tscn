@@ -61,7 +61,7 @@
 [ext_resource path="res://SpeedUP.gd" type="Script" id=59]
 [ext_resource path="res://speedo.png" type="Texture" id=60]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
@@ -104,7 +104,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 32.0
 
 [sub_resource type="CircleShape2D" id=3]
@@ -137,13 +137,13 @@ __meta__ = {
 }
 
 [node name="Sprite" type="AnimatedSprite" parent="Player"]
-frames = SubResource( 6 )
+frames = SubResource( 1 )
 animation = "run"
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="MoreBombs" type="Area2D" parent="."]
 position = Vector2( 320, 64 )
