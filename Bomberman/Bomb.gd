@@ -9,10 +9,11 @@ func explode(): #gdyby explode było zrobione na "shape"
 	for p in in_area: # dla area o wielkosci DMG
 		if (p.has_method("exploded")):
 			p.exploded(who_planted)
+	get_parent().get_parent().matrix[(position.x-32)/64][(position.y-32)/64] = false
 	end()
 
 func end():
-	print("b00m")
+	print(position)
 	queue_free()
 
 func ready():

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var Name = "nickname"
 var hp = 3
-var canPlant = 1
+var canPlant = 5
 var isImmortal = false
 var bombDMG = 1
 
@@ -25,14 +25,17 @@ func plant_bomb():
 		#if get_cellv(position,BOMB_NUMBER)==BOMB_NUMBER: #BOMB_NUMBER DO USTALENIA, jeśli na płytce jest postawiona bomba
 		#	return # nie można postawić bomby
 		#else: set_cellv(position,BOMB_NUMBER)
-		
+		var pos_to_plant = get_parent().get_parent().world_to_map(position)
+		if (get_parent().get_parent().matrix[pos_to_plant.x][pos_to_plant.y] == true):
+			return
+		get_parent().get_parent().matrix[pos_to_plant.x][pos_to_plant.y] = true
 		canPlant -= 1
 		var bomb = preload("res://Bomb.tscn").instance()
 		bomb.who_planted = Name
 		bomb.DMG = bombDMG
 		
-		bomb.position.x = position.x #wrzucenie odpowiedniej pozycji bomby
-		bomb.position.y = position.y #wrzucenie odpowiedniej pozycji bomby
+		bomb.position.x = pos_to_plant.x*64 + 32
+		bomb.position.y = pos_to_plant.y*64 + 32      #wrzucenie odpowiedniej pozycji bomby
 		get_parent().add_child(bomb)
 		var timer = Timer.new()
 		timer.set_one_shot(true)
@@ -117,5 +120,6 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	move_and_slide(velocity)
+	#print(get_parent().get_parent().world_to_map(position))
 	# animacje gracza
-	print(canPlant)
+	print(position)

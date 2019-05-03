@@ -15,6 +15,7 @@ func exploded(by_who):
 	timer.start()
 	
 func die():
+	randomize()
 	if (randi() % 100) < 50: #50% szans ze wypadnie powerup
 		var type = randi() % 3
 		if type == 0:
@@ -37,5 +38,6 @@ func _physics_process(delta):
 	if died == false:
 		var bodies = get_overlapping_bodies()
 		for body in bodies:
-			died = true
-			exploded(body.Name)
+			if body.has_method("exploded"):
+				died = true
+				exploded(body.Name)
