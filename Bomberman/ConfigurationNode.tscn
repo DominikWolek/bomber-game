@@ -3,19 +3,9 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	setNewMoveSet(PList)
+	UpdateMoveSet()
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 # player movement settings [playerID, up , down, left, right, placebomb ]
 var P1 = ['P1',KEY_W,KEY_S,KEY_A,KEY_D,KEY_SPACE]
 var P2 = ['P2',KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_ENTER]
@@ -23,9 +13,13 @@ var P3 = ['P3',KEY_T,KEY_G,KEY_F,KEY_H,KEY_Y]
 var P4 = ['P4',KEY_I,KEY_K,KEY_J,KEY_L,KEY_O]
 var PList = [P1,P2,P3,P4]
 
-
 func setNewMoveSet( plist ):
-	for x in plist :
+	PList = plist
+	UpdateMoveSet()
+
+func UpdateMoveSet( ):
+	
+	for x in PList :
 		InputMap.action_erase_events( x[0] + '_ui_left' );
 		InputMap.action_erase_events( x[0] + '_ui_right' );
 		InputMap.action_erase_events( x[0] + '_ui_up' );
@@ -53,7 +47,6 @@ func setNewMoveSet( plist ):
 		BOMBevent.set_scancode( x[5] )
 		InputMap.action_add_event( x[0]+'_ui_select',BOMBevent)
 		
-	
 		"
 
 [node name="Node2D" type="Node2D"]
