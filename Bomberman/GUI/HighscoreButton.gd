@@ -13,4 +13,8 @@ func _ready():
 #	pass
 
 func _on_HighscoreButton_pressed():
-	get_tree().change_scene( "res://GUI/HighscoreScene.tscn");
+	var error = get_tree().change_scene( "res://GUI/HighscoreScene.tscn");
+	if error == OK:
+		pass
+	else:
+		print(error);

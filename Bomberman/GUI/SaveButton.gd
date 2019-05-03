@@ -12,9 +12,12 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _on_StartButton_pressed():
-	var error = get_tree().change_scene( "res://GUI/FirstStartScene.tscn");
+
+func _on_SaveButton_pressed():
+	var error = get_tree().change_scene( "res://GUI/SettingsScene.tscn");
 	if error == OK:
 		pass
 	else:
 		print(error);
+
+
