@@ -17,5 +17,7 @@ func get_input():
     velocity = velocity.normalized() * speed
 
 func _physics_process(delta):
-    get_input()
-    move_and_slide(velocity)
+	get_input()
+	move_and_slide(velocity)
+	if(Input.is_action_just_pressed("ui_select")):
+		get_parent().bumv(position, "xd", 2)

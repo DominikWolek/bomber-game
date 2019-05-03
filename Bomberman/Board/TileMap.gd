@@ -12,7 +12,7 @@ func bumv(initialPos, player, radius):
 	var pos
 	var step
 	sparks = _sparks.instance()
-	sparks.position = initialPos
+	sparks.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 	add_child(sparks) 
 	sparks.set_one_shot(true)
 	sparks.set_emitting(true)
@@ -32,7 +32,7 @@ func bumv(initialPos, player, radius):
 		pos += step
 		while get_cellv(world_to_map(pos)) != 0 and leng !=0   :
 			sparks = _sparks.instance()
-			sparks.position = pos
+			sparks.position = map_to_world(world_to_map(pos)) + Vector2(32, 32)
 			add_child(sparks) 
 			sparks.set_one_shot(true)
 			sparks.set_emitting(true)
@@ -58,5 +58,4 @@ var bombs = create_2d_array(15, 11, false)
 
 	
 func _process(delta):
-	if(Input.is_action_just_pressed("ui_right")):
-		bumv(Vector2(32+2*64, 32+3*64), "elo", 2) 
+	pass
