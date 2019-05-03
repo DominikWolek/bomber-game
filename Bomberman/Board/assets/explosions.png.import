@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_cave_bg_crystal.png-a4e647552fe2f623ea8f928642ada86f.stex"
+path="res://.import/explosions.png-27aaba998386230776c75bff7c11ddb5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Board/assets/tile_cave_bg_crystal.png"
-dest_files=[ "res://.import/tile_cave_bg_crystal.png-a4e647552fe2f623ea8f928642ada86f.stex" ]
+source_file="res://Board/assets/explosions.png"
+dest_files=[ "res://.import/explosions.png-27aaba998386230776c75bff7c11ddb5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
