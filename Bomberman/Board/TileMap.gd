@@ -22,6 +22,6 @@ func _process(delta):
 	
 
 # Somewhere in the input handler then:
-	if(Input.is_action_just_pressed("ui_right")):
-		bumv(Vector2(500, 500), "dupa")
-#	pass
+	#if(Input.is_action_just_pressed("ui_right")):
+		#bumv(Vector2(500, 500), "dupa")
+	pass
