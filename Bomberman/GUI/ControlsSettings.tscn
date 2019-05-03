@@ -1,7 +1,49 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GUI/BackButtonToSettings.gd" type="Script" id=1]
 [ext_resource path="res://GUI/SaveButton.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends VBoxContainer
+
+
+var P1Controls
+func _ready():
+	var conf = get_node(\"/root/ConfigurationNode\");
+	P1Controls = conf.Plist[0]
+	
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends VBoxContainer
+
+var P2Controls;
+func _ready():
+	var conf = get_node(\"/root/ConfigurationNode\");
+	P2Controls = conf.Plist[1]
+	
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends VBoxContainer
+
+var P3Controls;
+func _ready():
+	var conf = get_node(\"/root/ConfigurationNode\");
+	P3Controls = conf.Plist[2]
+	
+
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends VBoxContainer
+
+var P4Controls
+func _ready():
+	var conf = get_node(\"/root/ConfigurationNode\");
+	P4Controls = conf.Plist[3]
+	
+"
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,69 +58,138 @@ margin_right = 1024.0
 margin_bottom = 601.0
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+[node name="P1Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
 editor/display_folded = true
 margin_left = 405.0
 margin_right = 456.0
 margin_bottom = 548.0
+script = SubResource( 1 )
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P1Container"]
 margin_right = 51.0
 margin_bottom = 14.0
 text = "Player 1"
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/VBoxContainer"]
+[node name="UP" type="Button" parent="Panel/HBoxContainer/P1Container"]
 margin_top = 18.0
 margin_right = 51.0
 margin_bottom = 38.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HBoxContainer"]
+[node name="DOWN" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+
+[node name="LEFT" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+
+[node name="RIGHT" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
+
+[node name="BOMB" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 114.0
+margin_right = 51.0
+margin_bottom = 134.0
+
+[node name="P2Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
 editor/display_folded = true
 margin_left = 460.0
 margin_right = 511.0
 margin_bottom = 548.0
+script = SubResource( 2 )
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P2Container"]
 margin_right = 51.0
 margin_bottom = 14.0
 text = "Player 2"
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/VBoxContainer2"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/P2Container"]
 margin_top = 18.0
 margin_right = 51.0
 margin_bottom = 38.0
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/HBoxContainer"]
+[node name="Button2" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+
+[node name="Button3" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+
+[node name="Button4" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
+
+[node name="P3Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
 editor/display_folded = true
 margin_left = 515.0
 margin_right = 566.0
 margin_bottom = 548.0
+script = SubResource( 3 )
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P3Container"]
 margin_right = 51.0
 margin_bottom = 14.0
 text = "Player 3"
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/VBoxContainer3"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/P3Container"]
 margin_top = 18.0
 margin_right = 51.0
 margin_bottom = 38.0
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/HBoxContainer"]
+[node name="Button2" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+
+[node name="Button3" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+
+[node name="Button4" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
+
+[node name="P4Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
 editor/display_folded = true
 margin_left = 570.0
 margin_right = 621.0
 margin_bottom = 548.0
+script = SubResource( 4 )
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer4"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P4Container"]
 margin_right = 51.0
 margin_bottom = 14.0
 text = "Player 4"
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/VBoxContainer4"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/P4Container"]
 margin_top = 18.0
 margin_right = 51.0
 margin_bottom = 38.0
+
+[node name="Button2" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+
+[node name="Button3" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+
+[node name="Button4" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
 
 [node name="BackButton" type="Button" parent="Panel"]
 margin_left = 1.07645
