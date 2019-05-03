@@ -6,14 +6,39 @@ var _sparks = load("res://Board/explosionParticle.scn")
 func _ready():
 	pass # Replace with function body.
 
-func bumv(_position, player):
-		var sparks = _sparks.instance()
-		sparks.position = _position
-		add_child(sparks) # They have a very high Z position, so being buried would not be a problem
-		sparks.set_one_shot(true)
-		sparks.set_emitting(true)
+func bumv(initialPos, player, radius):
+	var sparks
+	var leng
+	var pos
+	var step
+	sparks = _sparks.instance()
+	sparks.position = initialPos
+	add_child(sparks) 
+	sparks.set_one_shot(true)
+	sparks.set_emitting(true)
 	
-
+	
+	for i in range(4):
+		leng = radius	
+		pos = initialPos
+		if (i == 0):
+			step = Vector2(-64, 0)
+		if (i == 1):
+			step = Vector2(0, 64)
+		if (i == 2):
+			step = Vector2(64, 0)
+		if (i == 3):
+			step = Vector2(0, -64)
+		pos += step
+		while get_cellv(world_to_map(pos)) != 0 and leng !=0   :
+			sparks = _sparks.instance()
+			sparks.position = pos
+			add_child(sparks) 
+			sparks.set_one_shot(true)
+			sparks.set_emitting(true)
+			leng -= 1
+			pos += step
+		
 
 func create_2d_array(width, height, value):
     var a = []
@@ -29,7 +54,9 @@ func create_2d_array(width, height, value):
 
 var bombs = create_2d_array(15, 11, false)
 
+
+
 	
 func _process(delta):
-	
-	pass
+	if(Input.is_action_just_pressed("ui_right")):
+		bumv(Vector2(32+2*64, 32+3*64), "elo", 2) 
