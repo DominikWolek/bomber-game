@@ -1,8 +1,5 @@
 extends TileMap
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var _sparks = load("res://Board/explosionParticle.scn")
 
 # Called when the node enters the scene tree for the first time.
@@ -17,11 +14,22 @@ func bumv(_position, player):
 		sparks.set_emitting(true)
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func create_2d_array(width, height, value):
+    var a = []
+
+    for y in range(height):
+        a.append([])
+        a[y].resize(width)
+
+        for x in range(width):
+            a[y][x] = value
+
+    return a
+
+var bombs = create_2d_array(15, 11, false)
+
+	
 func _process(delta):
 	
-
-# Somewhere in the input handler then:
-	#if(Input.is_action_just_pressed("ui_right")):
-		#bumv(Vector2(500, 500), "dupa")
 	pass
