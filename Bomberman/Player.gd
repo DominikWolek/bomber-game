@@ -5,7 +5,7 @@ var hp = 3
 var canPlant = 1
 var isImmortal = false
 var bombDMG = 1
-var playerID = "P2"
+var playerID = "P1"
 
 export (int) var speed = 200
 
