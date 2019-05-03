@@ -17,6 +17,9 @@ func setNewMoveSet( plist ):
 	PList = plist
 	UpdateMoveSet()
 
+
+
+
 func UpdateMoveSet( ):
 	
 	for x in PList :
