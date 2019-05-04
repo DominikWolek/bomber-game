@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=66 format=2]
 
-[ext_resource path="res://Board/Tiles/DirtAutoTile.png" type="Texture" id=1]
+[ext_resource path="res://Board/assets/DirtAutoTile.png" type="Texture" id=1]
 [ext_resource path="res://Board/assets/bg_cave.png" type="Texture" id=2]
 
 [sub_resource type="OccluderPolygon2D" id=1]

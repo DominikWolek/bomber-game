@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explosion3.png-e2e6f37844c7523d93ce10458028c4f4.stex"
+path="res://.import/DirtAutoTile.png-0090764cc98a2a266af056083126820e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Board/assets/explosion3.png"
-dest_files=[ "res://.import/explosion3.png-e2e6f37844c7523d93ce10458028c4f4.stex" ]
+source_file="res://Board/assets/DirtAutoTile.png"
+dest_files=[ "res://.import/DirtAutoTile.png-0090764cc98a2a266af056083126820e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
