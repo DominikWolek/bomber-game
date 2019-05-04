@@ -2,9 +2,10 @@ extends TileMap
 
 var _sparks = load("res://Board/explosionParticle.scn")
 var _bomb = load("res://Board/bomb.tscn")
+var _light = load("res://Board/Light2D.tscn")
 
 var bomb
-var bombList = Array()
+var light
 func _ready():
 	
 	pass # Replace with function body.
@@ -14,6 +15,11 @@ func bumv(initialPos, player, radius):
 	var leng
 	var pos
 	var step
+	
+	light = _light.instance()
+	light.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
+	add_child(light)
+	
 	sparks = _sparks.instance()
 	sparks.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 	add_child(sparks) 
@@ -49,6 +55,7 @@ func place_bomb(initialPos, bombType):
 		bomb = _bomb.instance()
 		bomb.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 		add_child(bomb)
+		
 		
 func create_2d_array(width, height, value):
     var a = []

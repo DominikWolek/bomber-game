@@ -1,8 +1,6 @@
 extends RigidBody2D
-var _light = load("res://Board/Light2D.tscn")
 var time
 var time2
-var light
 var colour = get_modulate()
 var change = true
 var change_time = 1.15
