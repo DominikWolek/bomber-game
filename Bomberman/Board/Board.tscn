@@ -1,13 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Board/tilesets/dirt.tres" type="TileSet" id=1]
 [ext_resource path="res://Board/TileMap.gd" type="Script" id=2]
 [ext_resource path="res://Board/KinematicBody2D.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
-[ext_resource path="res://Board/assets/2DLight.png" type="Texture" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31, 31 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 31.0
 
 [node name="World" type="Node2D"]
 
@@ -29,9 +28,3 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Board/KinematicBody2D"]
 texture = ExtResource( 4 )
-
-[node name="Light2D" type="Light2D" parent="Board/KinematicBody2D"]
-show_behind_parent = true
-texture = ExtResource( 5 )
-energy = 0.75
-shadow_enabled = true

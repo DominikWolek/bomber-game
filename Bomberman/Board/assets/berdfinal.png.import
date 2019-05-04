@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/berd.png-f9b377fb671ff16164557b1e7b39e99b.stex"
+path="res://.import/berdfinal.png-fdf19a765b0c74c1abf4ab6b7a320aa4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Board/assets/berd.png"
-dest_files=[ "res://.import/berd.png-f9b377fb671ff16164557b1e7b39e99b.stex" ]
+source_file="res://Board/assets/berdfinal.png"
+dest_files=[ "res://.import/berdfinal.png-fdf19a765b0c74c1abf4ab6b7a320aa4.stex" ]
 
 [params]
 

@@ -1,9 +1,12 @@
 extends TileMap
 
 var _sparks = load("res://Board/explosionParticle.scn")
+var _bomb = load("res://Board/bomb.tscn")
 
-# Called when the node enters the scene tree for the first time.
+var bomb
+var bombList = Array()
 func _ready():
+	
 	pass # Replace with function body.
 
 func bumv(initialPos, player, radius):
@@ -40,7 +43,13 @@ func bumv(initialPos, player, radius):
 			sparks.set_emitting(true)
 			leng -= 1
 			pos += step
-	
+
+
+func place_bomb(initialPos, bombType):
+		bomb = _bomb.instance()
+		bomb.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
+		add_child(bomb)
+		
 func create_2d_array(width, height, value):
     var a = []
 
