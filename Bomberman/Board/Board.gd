@@ -17,6 +17,23 @@ var once
 signal explosion( dangerList)
 
 
+func spawnPowerUP(pos):
+	randomize()
+	if (randi() % 100) < 50: #50% szans ze wypadnie powerup
+		var type = randi() % 3
+		if type == 0:
+			var powerup = preload("res://Player//MoreBombs.tscn").instance()
+			powerup.position = pos
+			get_parent().add_child(powerup)
+		elif type == 1:
+			var powerup = preload("res://Player//BetterBombs.tscn").instance()
+			powerup.position = pos
+			get_parent().add_child(powerup)
+		elif type == 2:
+			var powerup = preload("res://Player//SpeedUP.tscn").instance()
+			powerup.position = pos
+			get_parent().add_child(powerup)
+
 func bumv(initialPos, player, radius):
 	bombsCount -= 1
 	var sparks
@@ -37,6 +54,7 @@ func bumv(initialPos, player, radius):
 	sparks.set_emitting(true)
 	
 	
+	
 	for i in range(4):
 		leng = radius	
 		pos = initialPos
@@ -53,6 +71,7 @@ func bumv(initialPos, player, radius):
 			if(get_cellv(world_to_map(pos)) == 2):
 				set_cellv(world_to_map(pos), 1)
 				leng = 1
+				spawnPowerUP(pos)
 			sparks = _sparks.instance()
 			sparks.position = map_to_world(world_to_map(pos)) + Vector2(32, 32)
 			dangerList.append(world_to_map(pos))
