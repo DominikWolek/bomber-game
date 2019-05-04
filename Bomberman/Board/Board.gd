@@ -46,6 +46,7 @@ func bumv(initialPos, player, radius):
 		while get_cellv(world_to_map(pos)) != 0 and leng !=0   :
 			if(get_cellv(world_to_map(pos)) == 2):
 				set_cellv(world_to_map(pos), 1)
+				leng = 1
 			sparks = _sparks.instance()
 			sparks.position = map_to_world(world_to_map(pos)) + Vector2(32, 32)
 			dangerList.append(world_to_map(pos))
@@ -57,8 +58,9 @@ func bumv(initialPos, player, radius):
 	
 	emit_signal("explosion", dangerList)
 
-func place_bomb(initialPos, player,  bombType):
+func place_bomb(initialPos, player,  radius):
 		bomb = _bomb.instance()
+		bomb.radius = radius
 		bomb.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 		add_child(bomb)
 		

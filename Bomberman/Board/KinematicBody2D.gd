@@ -28,4 +28,4 @@ func _physics_process(delta):
 	get_input()
 	move_and_slide(velocity)
 	if(Input.is_action_just_pressed("ui_select")):
-		get_parent().place_bomb(position, "test","normal")
+		get_parent().place_bomb(position, "test",2)
