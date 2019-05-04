@@ -6,15 +6,18 @@ var _light = load("res://Board/Light2D.tscn")
 
 var bomb
 var light
-func _ready():
-	
-	pass # Replace with function body.
+var dangerList
+
+
+signal explosion( dangerList)
+
 
 func bumv(initialPos, player, radius):
 	var sparks
 	var leng
 	var pos
 	var step
+	dangerList = Array()
 	
 	light = _light.instance()
 	light.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
@@ -22,6 +25,7 @@ func bumv(initialPos, player, radius):
 	
 	sparks = _sparks.instance()
 	sparks.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
+	dangerList.append(world_to_map(initialPos))
 	add_child(sparks) 
 	sparks.set_one_shot(true)
 	sparks.set_emitting(true)
@@ -44,14 +48,16 @@ func bumv(initialPos, player, radius):
 				set_cellv(world_to_map(pos), 1)
 			sparks = _sparks.instance()
 			sparks.position = map_to_world(world_to_map(pos)) + Vector2(32, 32)
+			dangerList.append(world_to_map(pos))
 			add_child(sparks) 
 			sparks.set_one_shot(true)
 			sparks.set_emitting(true)
 			leng -= 1
 			pos += step
+	
+	emit_signal("explosion", dangerList)
 
-
-func place_bomb(initialPos, bombType):
+func place_bomb(initialPos, player,  bombType):
 		bomb = _bomb.instance()
 		bomb.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 		add_child(bomb)
