@@ -16,14 +16,25 @@ _global_script_class_icons={
 [application]
 
 config/name="Bomberman"
+<<<<<<< HEAD
 run/main_scene="res://test.tscn"
+=======
+run/main_scene="res://Board/Board.tscn"
+>>>>>>> origin/board
 boot_splash/image="res://undermoon.png"
 config/icon="res://icon.png"
 
 [display]
 
+<<<<<<< HEAD
+=======
+window/size/width=960
+window/size/height=704
+>>>>>>> origin/board
 window/stretch/mode="2d"
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"
