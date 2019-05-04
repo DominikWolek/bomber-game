@@ -1,6 +1,6 @@
 extends TileMap
 
-var _sparks = load("res://Board/explosionParticle.scn")
+var _sparks = load("res://Board/explosionParticle.tscn")
 var _bomb = load("res://Board/bomb.tscn")
 var _light = load("res://Board/Light2D.tscn")
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Board/tilesets/dirt.tres" type="TileSet" id=1]
-[ext_resource path="res://Board/TileMap.gd" type="Script" id=2]
+[ext_resource path="res://Board/Board.gd" type="Script" id=2]
 [ext_resource path="res://Board/KinematicBody2D.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 
