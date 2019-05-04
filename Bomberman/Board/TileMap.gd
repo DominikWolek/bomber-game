@@ -23,14 +23,16 @@ func bumv(initialPos, player, radius):
 		pos = initialPos
 		if (i == 0):
 			step = Vector2(-64, 0)
-		if (i == 1):
+		elif (i == 1):
 			step = Vector2(0, 64)
-		if (i == 2):
+		elif (i == 2):
 			step = Vector2(64, 0)
-		if (i == 3):
+		elif (i == 3):
 			step = Vector2(0, -64)
 		pos += step
 		while get_cellv(world_to_map(pos)) != 0 and leng !=0   :
+			if(get_cellv(world_to_map(pos)) == 2):
+				set_cellv(world_to_map(pos), 1)
 			sparks = _sparks.instance()
 			sparks.position = map_to_world(world_to_map(pos)) + Vector2(32, 32)
 			add_child(sparks) 
@@ -38,8 +40,7 @@ func bumv(initialPos, player, radius):
 			sparks.set_emitting(true)
 			leng -= 1
 			pos += step
-		
-
+	
 func create_2d_array(width, height, value):
     var a = []
 
