@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/BackButton.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1026.0
+margin_bottom = 601.0
+
+[node name="ResetButton" type="Button" parent="Panel"]
+margin_left = 851.0
+margin_top = 2.0
+margin_right = 1027.0
+margin_bottom = 78.0
+text = "RESET"
+
+[node name="BackButton" type="Button" parent="Panel"]
+margin_left = 855.0
+margin_top = 519.0
+margin_right = 1026.0
+margin_bottom = 602.0
+text = "BACK"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="Panel/BackButton" to="Panel/BackButton" method="_on_BackButton_pressed"]
