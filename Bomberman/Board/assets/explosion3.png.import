@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/JungleDirtTileSet.png-c3d0a695e8be2c65c14d43b03575a43a.stex"
+path="res://.import/explosion3.png-e2e6f37844c7523d93ce10458028c4f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Board/Tiles/JungleDirtTileSet.png"
-dest_files=[ "res://.import/JungleDirtTileSet.png-c3d0a695e8be2c65c14d43b03575a43a.stex" ]
+source_file="res://Board/assets/explosion3.png"
+dest_files=[ "res://.import/explosion3.png-e2e6f37844c7523d93ce10458028c4f4.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

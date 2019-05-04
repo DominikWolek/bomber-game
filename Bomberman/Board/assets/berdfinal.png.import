@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_jungle_bottom_brown.png-9c61a6e9aa48ce5bbeddb7bbd9f8809d.stex"
+path="res://.import/berdfinal.png-fdf19a765b0c74c1abf4ab6b7a320aa4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Board/assets/tile_jungle_bottom_brown.png"
-dest_files=[ "res://.import/tile_jungle_bottom_brown.png-9c61a6e9aa48ce5bbeddb7bbd9f8809d.stex" ]
+source_file="res://Board/assets/berdfinal.png"
+dest_files=[ "res://.import/berdfinal.png-fdf19a765b0c74c1abf4ab6b7a320aa4.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

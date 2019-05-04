@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_cave_bg_objects.png-52dedfbf656d69f3b6fe6030bc323286.stex"
+path="res://.import/explosions.png-27aaba998386230776c75bff7c11ddb5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Board/assets/tile_cave_bg_objects.png"
-dest_files=[ "res://.import/tile_cave_bg_objects.png-52dedfbf656d69f3b6fe6030bc323286.stex" ]
+source_file="res://Board/assets/explosions.png"
+dest_files=[ "res://.import/explosions.png-27aaba998386230776c75bff7c11ddb5.stex" ]
 
 [params]
 
