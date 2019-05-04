@@ -3,16 +3,22 @@ extends TileMap
 var _sparks = load("res://Board/explosionParticle.tscn")
 var _bomb = load("res://Board/bomb.tscn")
 var _light = load("res://Board/Light2D.tscn")
+var _hitmark = load("res://Sounds/HITMARKER.wav")
 
+
+var hitmark
 var bomb
 var light
 var dangerList
+var bombsCount
+var once
 
 
 signal explosion( dangerList)
 
 
 func bumv(initialPos, player, radius):
+	bombsCount -= 1
 	var sparks
 	var leng
 	var pos
@@ -59,28 +65,25 @@ func bumv(initialPos, player, radius):
 	emit_signal("explosion", dangerList)
 
 func place_bomb(initialPos, player,  radius):
-		bomb = _bomb.instance()
-		bomb.radius = radius
-		bomb.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
-		add_child(bomb)
+	var properPos = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
+	bombsCount += 1
+	if(bombsCount == 3 and once):
+		get_node("triple").position= properPos
+		get_node("triple").play()
+		get_node("La calahorra").stop()
+		get_node("tripleMelody").position = Vector2(480, 352)
+		get_node("tripleMelody").play()
+	get_node("hitmark").position = properPos
+	get_node("hitmark").play()
+	bomb = _bomb.instance()
+	bomb.radius = radius
+	bomb.position = properPos
+	add_child(bomb)
 		
 		
-func create_2d_array(width, height, value):
-    var a = []
-
-    for y in range(height):
-        a.append([])
-        a[y].resize(width)
-
-        for x in range(width):
-            a[y][x] = value
-
-    return a
-
-var bombs = create_2d_array(15, 11, false)
-
-
-
+func _ready():
+	bombsCount = 0
+	once = true
 	
 func _process(delta):
 	pass

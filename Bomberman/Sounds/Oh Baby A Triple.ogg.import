@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Oh Baby A Triple.ogg-9f4bc03238e624ad80865a1556d6fb0d.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Oh Baby A Triple.ogg"
+dest_files=[ "res://.import/Oh Baby A Triple.ogg-9f4bc03238e624ad80865a1556d6fb0d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
