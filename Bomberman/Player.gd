@@ -118,4 +118,4 @@ func _physics_process(delta):
 	get_input()
 	move_and_slide(velocity)
 	# animacje gracza
-	print(canPlant)
+	# print(canPlant)
