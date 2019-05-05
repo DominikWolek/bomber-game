@@ -13,8 +13,7 @@ var dangerList
 var bombsCount
 var once
 
-
-signal explosion( dangerList)
+signal explosion( dangerList, Player)
 
 
 func spawnPowerUP(pos):
@@ -81,7 +80,7 @@ func bumv(initialPos, player, radius):
 			leng -= 1
 			pos += step
 	
-	emit_signal("explosion", dangerList)
+	emit_signal("explosion", dangerList, player)
 
 func place_bomb(initialPos, player,  radius):
 	var properPos = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
