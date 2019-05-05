@@ -9,4 +9,6 @@ position = Vector2( 310.82, 129.508 )
 texture = ExtResource( 1 )
 energy = 0.75
 shadow_enabled = true
+shadow_filter = 1
 script = ExtResource( 2 )
+

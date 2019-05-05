@@ -19,4 +19,4 @@ func _on_Timer_timeout():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	energy *= 1.85
+	energy *= 1.1
