@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.156425, 0.290503, 0.586592, 1 )
@@ -45,14 +45,6 @@ color_ramp = SubResource( 2 )
 hue_variation = 0.01
 hue_variation_random = 0.17
 
-[sub_resource type="Environment" id=8]
-background_mode = 4
-glow_enabled = true
-glow_intensity = 1.06
-glow_strength = 0.55
-glow_bloom = 0.6
-glow_blend_mode = 0
-
 [node name="Particles2D" type="Particles2D"]
 position = Vector2( 704, 256 )
 amount = 250
@@ -60,7 +52,4 @@ lifetime = 0.3
 explosiveness = 1.0
 randomness = 0.71
 process_material = SubResource( 7 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 8 )
 
