@@ -3,8 +3,17 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
+var gameInfo={}
+
+
 func _ready():
+	gameInfo.map = 0
+	gameInfo.P1 = {Name = \"P1\" , isBot=false}
+	gameInfo.P2 = {Name = \"P2\" , isBot=false}
+	gameInfo.P3 = {Name = \"P3\" , isBot=false}
+	gameInfo.P4 = {Name = \"P4\" , isBot=false}
 	UpdateMoveSet()
+	
 	
 # player movement settings [playerID, up , down, left, right, placebomb ]
 var P1 = ['P1',KEY_W,KEY_S,KEY_A,KEY_D,KEY_SPACE]
@@ -22,13 +31,6 @@ func setNewMoveSet( plist ):
 
 func UpdateMoveSet( ):
 	
-	for x in PList :
-		InputMap.action_erase_events( x[0] + '_ui_left' );
-		InputMap.action_erase_events( x[0] + '_ui_right' );
-		InputMap.action_erase_events( x[0] + '_ui_up' );
-		InputMap.action_erase_events( x[0] + '_ui_down' );
-		InputMap.action_erase_events( x[0] + '_ui_select' );
-		
 	for x in PList:
 		var UPevent = InputEventKey.new()
 		UPevent.set_scancode( x[1] )
@@ -50,7 +52,8 @@ func UpdateMoveSet( ):
 		BOMBevent.set_scancode( x[5] )
 		InputMap.action_add_event( x[0]+'_ui_select',BOMBevent)
 		
-		"
+		
+"
 
 [node name="Node2D" type="Node2D"]
 script = SubResource( 1 )

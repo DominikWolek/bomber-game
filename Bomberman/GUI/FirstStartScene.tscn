@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://GUI/Panel.gd" type="Script" id=1]
 [ext_resource path="res://GUI/BackButton.gd" type="Script" id=2]
@@ -20,7 +20,7 @@ func _ready():
 
 
 func _on_incMapButton_pressed():
-	get_parent().gameInfo.map = (get_parent().gameInfo.map + 1 ) % 3
+	get_parent().incMap()
 "
 
 [sub_resource type="GDScript" id=2]
@@ -40,8 +40,65 @@ func _ready():
 
 
 func _on_decMapButton_pressed():
-	get_parent().gameInfo.map = (get_parent().gameInfo.map -1 ) % 3
+	get_parent().decMap()
 "
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends VBoxContainer
+
+func _on_Name_text_changed(new_text):
+	pass
+
+
+func _on_Name_text_entered(new_text):
+	get_parent().changePlayerName(\"P1\",new_text)
+
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().setBot(\"P1\",button_pressed)
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends VBoxContainer
+
+func _on_Name_text_changed(new_text):
+	pass
+
+
+func _on_Name_text_entered(new_text):
+	get_parent().changePlayerName(\"P2\",new_text)
+
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().setBot(\"P2\",button_pressed)"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends VBoxContainer
+
+func _on_Name_text_changed(new_text):
+	pass
+
+
+func _on_Name_text_entered(new_text):
+	get_parent().changePlayerName(\"P3\",new_text)
+
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().setBot(\"P3\",button_pressed)"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends VBoxContainer
+
+
+func _on_Name_text_changed(new_text):
+	pass
+
+
+func _on_Name_text_entered(new_text):
+	get_parent().changePlayerName(\"P4\",new_text)
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().setBot(\"P4\",button_pressed)"
 
 [node name="Node2D" type="Node2D"]
 
@@ -66,19 +123,6 @@ margin_bottom = 702.675
 text = "NEXT"
 script = ExtResource( 2 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-margin_left = 52.0
-margin_top = 50.0
-margin_right = 877.0
-margin_bottom = 355.0
-
-[node name="CenterContainer" type="CenterContainer" parent="Panel/HBoxContainer"]
-margin_bottom = 305.0
-
-[node name="TextEdit" type="TextEdit" parent="Panel/HBoxContainer/CenterContainer"]
-margin_top = 152.0
-margin_bottom = 152.0
-
 [node name="incMapButton" type="Button" parent="Panel"]
 margin_left = 132.596
 margin_top = 52.7927
@@ -101,6 +145,78 @@ margin_top = 63.3664
 margin_right = 128.594
 margin_bottom = 93.3664
 
+[node name="P1Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 200.0
+margin_bottom = 200.0
+script = SubResource( 3 )
+
+[node name="Name" type="LineEdit" parent="Panel/P1Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P1Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+
+[node name="P2Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 295.407
+margin_top = 200.628
+margin_right = 371.407
+margin_bottom = 268.628
+script = SubResource( 4 )
+
+[node name="Name" type="LineEdit" parent="Panel/P2Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P2Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+
+[node name="P3Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 393.626
+margin_top = 200.718
+margin_right = 469.626
+margin_bottom = 268.718
+script = SubResource( 5 )
+
+[node name="Name" type="LineEdit" parent="Panel/P3Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P3Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+
+[node name="P4Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 486.483
+margin_top = 200.149
+margin_right = 562.483
+margin_bottom = 268.149
+script = SubResource( 6 )
+
+[node name="Name" type="LineEdit" parent="Panel/P4Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P4Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+
 [connection signal="pressed" from="Panel/BackButton" to="Panel/BackButton" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="Panel/incMapButton" to="Panel/incMapButton" method="_on_incMapButton_pressed"]
 [connection signal="pressed" from="Panel/decMapButton" to="Panel/decMapButton" method="_on_decMapButton_pressed"]
+[connection signal="text_changed" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_text_changed"]
+[connection signal="toggled" from="Panel/P1Settings/isBot" to="Panel/P1Settings" method="_on_isBot_toggled"]
+[connection signal="text_changed" from="Panel/P2Settings/Name" to="Panel/P2Settings" method="_on_Name_text_changed"]
+[connection signal="toggled" from="Panel/P2Settings/isBot" to="Panel/P2Settings" method="_on_isBot_toggled"]
+[connection signal="text_changed" from="Panel/P3Settings/Name" to="Panel/P3Settings" method="_on_Name_text_changed"]
+[connection signal="pressed" from="Panel/P3Settings/isBot" to="Panel/P3Settings" method="_on_isBot_pressed"]
+[connection signal="text_changed" from="Panel/P4Settings/Name" to="Panel/P4Settings" method="_on_Name_text_changed"]
+[connection signal="pressed" from="Panel/P4Settings/isBot" to="Panel/P4Settings" method="_on_isBot_pressed"]
