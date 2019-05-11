@@ -1,26 +1,105 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://GUI/BackButton.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Panel.gd" type="Script" id=1]
+[ext_resource path="res://GUI/BackButton.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_incMapButton_pressed():
+	get_parent().gameInfo.map = (get_parent().gameInfo.map + 1 ) % 3
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Button
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_decMapButton_pressed():
+	get_parent().gameInfo.map = (get_parent().gameInfo.map -1 ) % 3
+"
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Panel" type="Panel" parent="."]
-margin_right = 1025.0
-margin_bottom = 602.0
-
-[node name="BackButton" type="Button" parent="Panel"]
-margin_left = 1.22772
-margin_top = 550.027
-margin_right = 197.228
-margin_bottom = 602.027
-text = "BACK"
+margin_right = 960.0
+margin_bottom = 703.0
 script = ExtResource( 1 )
 
+[node name="BackButton" type="Button" parent="Panel"]
+margin_left = -2.14577e-006
+margin_top = 651.929
+margin_right = 196.0
+margin_bottom = 703.929
+text = "BACK"
+script = ExtResource( 2 )
+
 [node name="NextButton" type="Button" parent="Panel"]
-margin_left = 823.812
-margin_top = 551.0
-margin_right = 1021.81
-margin_bottom = 602.0
+margin_left = 763.653
+margin_top = 651.675
+margin_right = 961.651
+margin_bottom = 702.675
 text = "NEXT"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+margin_left = 52.0
+margin_top = 50.0
+margin_right = 877.0
+margin_bottom = 355.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HBoxContainer"]
+margin_bottom = 305.0
+
+[node name="TextEdit" type="TextEdit" parent="Panel/HBoxContainer/CenterContainer"]
+margin_top = 152.0
+margin_bottom = 152.0
+
+[node name="incMapButton" type="Button" parent="Panel"]
+margin_left = 132.596
+margin_top = 52.7927
+margin_right = 166.596
+margin_bottom = 88.7927
+text = "+"
+script = SubResource( 1 )
+
+[node name="decMapButton" type="Button" parent="Panel"]
+margin_left = 41.7431
+margin_top = 52.7927
+margin_right = 75.7431
+margin_bottom = 88.7927
+text = "-"
+script = SubResource( 2 )
+
+[node name="mapLabel" type="Label" parent="Panel"]
+margin_left = 98.5942
+margin_top = 63.3664
+margin_right = 128.594
+margin_bottom = 93.3664
+
 [connection signal="pressed" from="Panel/BackButton" to="Panel/BackButton" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Panel/incMapButton" to="Panel/incMapButton" method="_on_incMapButton_pressed"]
+[connection signal="pressed" from="Panel/decMapButton" to="Panel/decMapButton" method="_on_decMapButton_pressed"]

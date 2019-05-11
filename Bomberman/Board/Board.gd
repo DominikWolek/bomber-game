@@ -56,7 +56,7 @@ func bumv(initialPos, player, radius):
 	
 	
 	for i in range(4):
-		leng = radius	
+		leng = radius
 		pos = initialPos
 		if (i == 0):
 			step = Vector2(-64, 0)
