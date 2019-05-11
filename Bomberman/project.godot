@@ -17,7 +17,6 @@ _global_script_class_icons={
 
 config/name="Bomberman"
 run/main_scene="res://GUI/MainMenuScene.tscn"
-boot_splash/image="res://undermoon.png"
 config/icon="res://icon.png"
 
 [autoload]
