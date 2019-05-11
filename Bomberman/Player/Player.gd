@@ -91,7 +91,7 @@ func get_input():
 	
 	
 	velocity = velocity.normalized() * speed
-	if Input.is_action_pressed('ui_select'): # spacja (bomba)
+	if Input.is_action_just_pressed('ui_select'): # spacja (bomba)
 		plant_bomb()
 
 

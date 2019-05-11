@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Board/tilesets/dirt.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/TileSets/dirt.tres" type="TileSet" id=1]
 [ext_resource path="res://Board/Board.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/La calahorra.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/HITMARKER.wav" type="AudioStream" id=4]
