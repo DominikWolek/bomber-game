@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/TileSets/dirt.tres" type="TileSet" id=1]
 [ext_resource path="res://Board/Board.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/La calahorra.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/HITMARKER.wav" type="AudioStream" id=4]
-[ext_resource path="res://Sounds/Oh Baby A Triple.wav" type="AudioStream" id=5]
-[ext_resource path="res://Sounds/MLG Sound Effect Smoke Weed Everyday.wav" type="AudioStream" id=6]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Node2D"]
 
@@ -19,17 +16,7 @@ script = ExtResource( 2 )
 [node name="La calahorra" type="AudioStreamPlayer2D" parent="Board"]
 position = Vector2( 480, 352 )
 stream = ExtResource( 3 )
-autoplay = true
 
-[node name="hitmark" type="AudioStreamPlayer2D" parent="Board"]
-stream = ExtResource( 4 )
-
-[node name="triple" type="AudioStreamPlayer2D" parent="Board"]
-stream = ExtResource( 5 )
-
-[node name="tripleMelody" type="AudioStreamPlayer2D" parent="Board"]
-stream = ExtResource( 6 )
-
-[node name="Player" parent="Board" instance=ExtResource( 7 )]
+[node name="Player" parent="Board" instance=ExtResource( 4 )]
 position = Vector2( 96, 96 )
 
