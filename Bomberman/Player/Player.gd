@@ -6,6 +6,9 @@ var canPlant = 1
 var isImmortal = false
 var bombDMG = 2
 
+var dangerList = Array()
+var player = int()
+
 export (int) var speed = 200
 
 var velocity = Vector2()
@@ -67,40 +70,38 @@ func get_input():
 		velocity.y += 1
 	if Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
-		
-	if isImmortal==false:
-		if Input.is_action_pressed('ui_right') and !Input.is_action_pressed('ui_left'):
-			$Sprite.flip_h = false
-			$Sprite.play("run")
-		elif !Input.is_action_pressed('ui_right') and Input.is_action_pressed('ui_left'):
-			$Sprite.flip_h = true
-			$Sprite.play("run")
-		elif Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
-			$Sprite.play("idle")
-		elif Input.is_action_pressed('ui_down') and !Input.is_action_pressed('ui_up'):
-			$Sprite.play("runDOWN")
-		elif !Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
-			$Sprite.play("runUP")
-		else: $Sprite.play("idle")
-	elif isImmortal==true:
-		if Input.is_action_pressed('ui_right') and !Input.is_action_pressed('ui_left'):
-			$Sprite.flip_h = false
-			$Sprite.play("run_IMMORTAL")
-		elif !Input.is_action_pressed('ui_right') and Input.is_action_pressed('ui_left'):
-			$Sprite.flip_h = true
-			$Sprite.play("run_IMMORTAL")
-		elif Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
-			$Sprite.play("idle_IMMORTAL")
-		elif Input.is_action_pressed('ui_down') and !Input.is_action_pressed('ui_up'):
-			$Sprite.play("runDOWN_IMMORTAL")
-		elif !Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
-			$Sprite.play("runUP_IMMORTAL")
-		else: $Sprite.play("idle_IMMORTAL")
+	
+	var temp = ""	
+	if (isImmortal):
+		temp = "_IMMORTAL"
+	if Input.is_action_pressed('ui_right') and !Input.is_action_pressed('ui_left'):
+		$Sprite.flip_h = false
+		$Sprite.play("run"+temp)
+	elif !Input.is_action_pressed('ui_right') and Input.is_action_pressed('ui_left'):
+		$Sprite.flip_h = true
+		$Sprite.play("run"+temp)
+	elif Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
+		$Sprite.play("idle"+temp)
+	elif Input.is_action_pressed('ui_down') and !Input.is_action_pressed('ui_up'):
+		$Sprite.play("runDOWN"+temp)
+	elif !Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
+		$Sprite.play("runUP"+temp)
+	else: $Sprite.play("idle"+temp)
+	
 	
 	
 	velocity = velocity.normalized() * speed
-	if Input.is_action_pressed('ui_select'): # spacja (bomba)
+	if Input.is_action_just_pressed('ui_select'): # spacja (bomba)
 		plant_bomb()
+
+
+func _ready():
+	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
+
+func _on_Bomb_explosion(dangerList, player):
+	for i in dangerList:
+		if ( i == get_parent().world_to_map(position)):
+			exploded(player)
 
 func _physics_process(delta):
 	get_input()

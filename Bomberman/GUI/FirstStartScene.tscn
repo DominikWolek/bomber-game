@@ -64,6 +64,7 @@ margin_top = 651.675
 margin_right = 961.651
 margin_bottom = 702.675
 text = "NEXT"
+script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 margin_left = 52.0
@@ -101,5 +102,9 @@ margin_right = 128.594
 margin_bottom = 93.3664
 
 [connection signal="pressed" from="Panel/BackButton" to="Panel/BackButton" method="_on_BackButton_pressed"]
+<<<<<<< HEAD
 [connection signal="pressed" from="Panel/incMapButton" to="Panel/incMapButton" method="_on_incMapButton_pressed"]
 [connection signal="pressed" from="Panel/decMapButton" to="Panel/decMapButton" method="_on_decMapButton_pressed"]
+=======
+[connection signal="pressed" from="Panel/NextButton" to="Panel/NextButton" method="_on_NextButton_pressed"]
+>>>>>>> fc9a15c0822c4b1eb6ddbbaf5307e6bee1d1eb6b

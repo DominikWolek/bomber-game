@@ -10,11 +10,12 @@ var hitmark
 var bomb
 var light
 var dangerList
+<<<<<<< HEAD
+=======
 var bombsCount
-var once
+>>>>>>> 36a6284f1169c2899036638af5495269120ae162
 
-
-signal explosion( dangerList)
+signal explosion( dangerList, Player)
 
 
 func spawnPowerUP(pos):
@@ -35,7 +36,6 @@ func spawnPowerUP(pos):
 			get_parent().add_child(powerup)
 
 func bumv(initialPos, player, radius):
-	bombsCount -= 1
 	var sparks
 	var leng
 	var pos
@@ -81,19 +81,10 @@ func bumv(initialPos, player, radius):
 			leng -= 1
 			pos += step
 	
-	emit_signal("explosion", dangerList)
+	emit_signal("explosion", dangerList, player)
 
 func place_bomb(initialPos, player,  radius):
 	var properPos = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
-	bombsCount += 1
-	if(bombsCount == 3 and once):
-		get_node("triple").position= properPos
-		get_node("triple").play()
-		get_node("La calahorra").stop()
-		get_node("tripleMelody").position = Vector2(480, 352)
-		get_node("tripleMelody").play()
-	get_node("hitmark").position = properPos
-	get_node("hitmark").play()
 	bomb = _bomb.instance()
 	bomb.radius = radius
 	bomb.position = properPos
@@ -101,8 +92,7 @@ func place_bomb(initialPos, player,  radius):
 		
 		
 func _ready():
-	bombsCount = 0
-	once = true
+	pass
 	
 func _process(delta):
 	pass
