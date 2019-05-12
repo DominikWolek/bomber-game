@@ -7,6 +7,7 @@ var _light = load("res://Board/Light2D.tscn")
 var bomb
 var light
 var dangerList
+
 var resizeCount
 var resizeTime
 
@@ -51,7 +52,7 @@ func bumv(initialPos, player, radius):
 	
 	
 	for i in range(4):
-		leng = radius	
+		leng = radius
 		pos = initialPos
 		if (i == 0):
 			step = Vector2(-64, 0)

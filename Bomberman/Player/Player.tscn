@@ -1,6 +1,7 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
+
 [ext_resource path="res://Assets/Characters/sprites/rogue like idle_Animation 1_0.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Characters/sprites/rogue like idle_Animation 1_2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Characters/sprites/rogue like idle_Animation 1_1.png" type="Texture" id=4]
@@ -97,9 +98,14 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
+
+[ext_resource path="res://Assets/Characters/Sprite.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
 radius = 31.0
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -17.0722, -25.0883, 19.9812, -25.0883, 19.9812, 17.6136, -20.4613, 17.6136 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -108,6 +114,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 z_index = 1
@@ -123,4 +130,13 @@ shape = SubResource( 2 )
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
 occluder = SubResource( 3 )
+
+[node name="Sprite" parent="." instance=ExtResource( 2 )]
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
 
