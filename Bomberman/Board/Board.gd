@@ -3,7 +3,6 @@ extends TileMap
 var _sparks = load("res://Board/explosionParticle.tscn")
 var _bomb = load("res://Board/bomb.tscn")
 var _light = load("res://Board/Light2D.tscn")
-var _hitmark = load("res://Sounds/HITMARKER.wav")
 
 
 var hitmark
