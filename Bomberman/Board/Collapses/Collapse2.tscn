@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Board/Collapses/Collapse.gd" type="Script" id=1]
+
+[node name="Collapse2" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 192, 192, 192, 512, 768, 512, 768, 192, 256, 192, 256, 128, 832, 128, 832, 576, 128, 576, 128, 128, 256, 128, 256, 192 )
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 160, 160, 224, 160, 288, 160, 352, 160, 416, 160, 480, 160, 544, 160, 608, 160, 672, 160, 736, 160, 800, 160, 800, 224, 800, 288, 800, 352, 800, 416, 800, 480, 800, 544, 736, 544, 672, 544, 608, 544, 544, 544, 480, 544, 416, 544, 352, 544, 288, 544, 224, 544, 160, 544, 160, 480, 160, 416, 160, 352, 160, 288, 160, 224 )
+texture_mode = 0
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 960, 0, 960, 704, 0, 704, 0, 0 )
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
