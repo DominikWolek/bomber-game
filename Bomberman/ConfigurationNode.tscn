@@ -7,6 +7,26 @@ var gameInfo={}
 
 
 func _ready():
+	InputMap.add_action(\"P1_ui_up\")
+	InputMap.add_action(\"P2_ui_up\")
+	InputMap.add_action(\"P3_ui_up\")
+	InputMap.add_action(\"P4_ui_up\")
+	InputMap.add_action(\"P1_ui_down\")
+	InputMap.add_action(\"P2_ui_down\")
+	InputMap.add_action(\"P3_ui_down\")
+	InputMap.add_action(\"P4_ui_down\")
+	InputMap.add_action(\"P1_ui_left\")
+	InputMap.add_action(\"P2_ui_left\")
+	InputMap.add_action(\"P3_ui_left\")
+	InputMap.add_action(\"P4_ui_left\")
+	InputMap.add_action(\"P1_ui_right\")
+	InputMap.add_action(\"P2_ui_right\")
+	InputMap.add_action(\"P3_ui_right\")
+	InputMap.add_action(\"P4_ui_right\")
+	InputMap.add_action(\"P1_ui_select\")
+	InputMap.add_action(\"P2_ui_select\")
+	InputMap.add_action(\"P3_ui_select\")
+	InputMap.add_action(\"P4_ui_select\")
 	gameInfo.map = 0
 	gameInfo.P1 = {Name = \"P1\" , isBot=false, color = 0,isPlaying = true}
 	gameInfo.P2 = {Name = \"P2\" , isBot=true,  color = 0,isPlaying = true}
