@@ -95,7 +95,6 @@ func place_bomb(initialPos, player,  radius):
 func resize():
 	if(resizeCount <=5):
 		var _collapse = load("res://Board/Collapses/Collapse"+str(resizeCount)+".tscn")
-		print(str(resizeCount))
 		var collapse = _collapse.instance()
 		add_child(collapse)
 		resizeCount += 1
