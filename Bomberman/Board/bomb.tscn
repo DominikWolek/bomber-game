@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Board/bomb.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Bomb/BerdBomb.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 31 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -9.29897, -14.9396, 7.26336, -14.7556, 25.1139, -19.5403, 20.3292, -14.3875, 7.99946, -9.0508, 9.47167, -6.10638, 15.7285, -2.24184, 22.5375, 5.8553, 4.13492, 19.8413, 0.270374, 13.0323, -18.6843, 11.5601, -24.5731, 1.62271, -19.6044, -10.523 )
 
 [node name="bomb" type="RigidBody2D"]
 collision_layer = 0
@@ -21,4 +24,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
 

@@ -25,7 +25,7 @@ func speedUP():
 func plant_bomb():
 	if canPlant > 0: # jeśli jest jakas bomba do podłożenia
 		canPlant -= 1
-		get_parent().place_bomb(position, Name, bombDMG)
+		get_parent().place_bomb(position, Name)
 		var timer = Timer.new()
 		timer.set_one_shot(true)
 		timer.set_wait_time(3) # po 3 sekundach wybucha bomba
@@ -106,6 +106,7 @@ func _on_Bomb_explosion(dangerList, player):
 			exploded(player)
 
 func _physics_process(delta):
+	get_parent().damageList[Name] = bombDMG
 	get_input()
 	move_and_slide(velocity)
 	# animacje gracza
