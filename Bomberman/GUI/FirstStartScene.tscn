@@ -190,6 +190,7 @@ margin_bottom = 24.0
 margin_top = 28.0
 margin_right = 76.0
 margin_bottom = 68.0
+disabled = true
 
 [node name="Color" type="Label" parent="Panel/P1Settings"]
 margin_top = 72.0
