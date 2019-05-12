@@ -27,7 +27,7 @@ func speedUP():
 func plant_bomb():
 	if canPlant > 0: # jeśli jest jakas bomba do podłożenia
 		canPlant -= 1
-		get_parent().place_bomb(position, Name)
+		get_parent().place_bomb(position, playerID)
 		var timer = Timer.new()
 		timer.set_one_shot(true)
 		timer.set_wait_time(3) # po 3 sekundach wybucha bomba
@@ -198,7 +198,7 @@ func get_input():
 		else: $Sprite.play("idle"+temp)
 
 func _physics_process(delta):
-	get_parent().damageList[Name] = bombDMG
+	get_parent().damageList[playerID] = bombDMG
 	get_input()
 	move_and_slide(velocity)
 	if (direction == 0):

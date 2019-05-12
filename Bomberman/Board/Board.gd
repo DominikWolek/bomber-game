@@ -38,7 +38,7 @@ func spawnPowerUP(pos):
 			powerup.position = pos
 			get_parent().add_child(powerup)
 
-func bumv(initialPos, player, radius):
+func bumv(initialPos, player):
 	var sparks
 	var leng
 	var pos
@@ -59,7 +59,8 @@ func bumv(initialPos, player, radius):
 	
 	
 	for i in range(4):
-		leng = radius
+		leng = damageList[player]
+		print(damageList[player])
 		pos = initialPos
 		if (i == 0):
 			step = Vector2(-64, 0)
