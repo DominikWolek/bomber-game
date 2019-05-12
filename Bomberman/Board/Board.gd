@@ -6,6 +6,8 @@ var _light = load("res://Board/Light2D.tscn")
 var _collapse1 = load("res://Board/Collapses/Collapse1.tscn")
 var _collapse2 = load("res://Board/Collapses/Collapse2.tscn")
 var _collapse3 = load("res://Board/Collapses/Collapse3.tscn")
+var _collapse4 = load("res://Board/Collapses/Collapse4.tscn")
+var _collapse5 = load("res://Board/Collapses/Collapse5.tscn")
 
 var bomb
 var light
@@ -93,8 +95,12 @@ func resize():
 		collapse = _collapse1.instance()
 	elif(resizeCount == 2):
 		collapse = _collapse2.instance()
-	else:
+	elif(resizeCount == 3):
 		collapse = _collapse3.instance()
+	elif(resizeCount == 4):
+		collapse = _collapse4.instance()
+	else:
+		collapse = _collapse5.instance()
 	add_child(collapse)
 	resizeCount += 1
 
