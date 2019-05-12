@@ -10,10 +10,9 @@ var hitmark
 var bomb
 var light
 var dangerList
-<<<<<<< HEAD
-=======
+
 var bombsCount
->>>>>>> 36a6284f1169c2899036638af5495269120ae162
+
 
 signal explosion( dangerList, Player)
 

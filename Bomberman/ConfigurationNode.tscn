@@ -8,10 +8,10 @@ var gameInfo={}
 
 func _ready():
 	gameInfo.map = 0
-	gameInfo.P1 = {Name = \"P1\" , isBot=false}
-	gameInfo.P2 = {Name = \"P2\" , isBot=false}
-	gameInfo.P3 = {Name = \"P3\" , isBot=false}
-	gameInfo.P4 = {Name = \"P4\" , isBot=false}
+	gameInfo.P1 = {Name = \"P1\" , isBot=false, color = 0,isPlaying = true}
+	gameInfo.P2 = {Name = \"P2\" , isBot=true,  color = 0,isPlaying = true}
+	gameInfo.P3 = {Name = \"P3\" , isBot=false, color = 0,isPlaying = false}
+	gameInfo.P4 = {Name = \"P4\" , isBot=false, color = 0,isPlaying = false}
 	UpdateMoveSet()
 	
 	
