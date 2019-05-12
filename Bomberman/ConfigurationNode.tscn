@@ -4,7 +4,26 @@
 script/source = "extends Node2D
 
 var gameInfo={}
+var _settings = {}
+var _config_file
 
+func _load_configuration():
+	_config_file.load(\"res://config.cfg\")
+	for section in _settings.keys():
+		for key in _settings[section]:
+			_settings[section][key] = _config_file.get_value(section,key,null)
+
+func _change_settings(section,key,value):
+	_settings[section][key] = value
+
+func _commit_changes():
+	for section in _settings.keys():
+		for key in _settings[section]:
+			_config_file.set_value(section,key,_settings[section][key])
+	_config_file.save(\"res://config.cfg\")
+
+func _get_value(section,key):
+	return _settings[section][key]
 
 func _ready():
 	InputMap.add_action(\"P1_ui_up\")
@@ -27,6 +46,61 @@ func _ready():
 	InputMap.add_action(\"P2_ui_select\")
 	InputMap.add_action(\"P3_ui_select\")
 	InputMap.add_action(\"P4_ui_select\")
+	
+	_config_file = ConfigFile.new()
+	_settings = {
+		\"map\": {
+			\"map_type\": null
+		},
+		\"P1\": {
+			\"name\": null,
+			\"right\": null,
+			\"left\": null,
+			\"up\": null,
+			\"down\": null,
+			\"bomb\": null,
+			\"colour\": null,
+			\"is_bot\": null,
+			\"is_playing\": null
+		},
+		\"P2\": {
+			\"name\": null,
+			\"right\": null,
+			\"left\": null,
+			\"up\": null,
+			\"down\": null,
+			\"bomb\": null,
+			\"colour\": null,
+			\"is_bot\": null,
+			\"is_playing\": null
+		},
+		\"P3\": {
+			\"name\": null,
+			\"right\": null,
+			\"left\": null,
+			\"up\": null,
+			\"down\": null,
+			\"bomb\": null,
+			\"colour\": null,
+			\"is_bot\": null,
+			\"is_playing\": null
+		},
+		\"P4\": {
+			\"name\": null,
+			\"right\": null,
+			\"left\": null,
+			\"up\": null,
+			\"down\": null,
+			\"bomb\": null,
+			\"colour\": null,
+			\"is_bot\": null,
+			\"is_playing\": null
+		}
+	}
+	
+	_load_configuration()
+	#_commit_changes()
+	
 	gameInfo.map = 0
 	gameInfo.P1 = {Name = \"P1\" , isBot=false, color = 0,isPlaying = true}
 	gameInfo.P2 = {Name = \"P2\" , isBot=true,  color = 0,isPlaying = true}
