@@ -20,6 +20,7 @@ stream = ExtResource( 3 )
 
 [node name="Player" parent="Board" instance=ExtResource( 4 )]
 position = Vector2( 864, 96 )
+color = Color( 0.0784314, 0.0901961, 0.901961, 1 )
 
 [node name="Player" parent="Board" instance=ExtResource( 4 )]
 position = Vector2( 96, 96 )

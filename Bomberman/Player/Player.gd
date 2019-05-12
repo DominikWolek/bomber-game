@@ -8,7 +8,7 @@ var bombDMG = 2
 var playerID = "P1"
 var dangerList = Array()
 var player = int()
-
+export var color = Color(0, 0, 0)
 export (int) var speed = 200
 
 var velocity = Vector2()
@@ -96,6 +96,8 @@ func get_input():
 
 
 func _ready():
+	if(color != Color(0, 0, 0)):
+		modulate = color
 	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
 
 func _on_Bomb_explosion(dangerList, player):
