@@ -98,8 +98,71 @@ func resize():
 		var collapse = _collapse.instance()
 		add_child(collapse)
 		resizeCount += 1
+		
 
+
+func shuffleList(list):
+	var shuffledList = []
+	randomize()
+	var indexList = range(list.size())
+	for i in range(list.size()):
+		var x = randi()%indexList.size()
+		shuffledList.append(list[indexList[x]])
+		indexList.remove(x)
+	return shuffledList
+	
+	
 func _ready():
+	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
+	
+	var _pos1 = Vector2( 64+32, 64+32 ) 
+	var _pos2 = Vector2( 64*13+32, 64 )
+	var _pos3 = Vector2( 64+32 , 10*64 - 32 )
+	var _pos4 = Vector2( 64*13 +32 ,10*64-32 )
+	
+	
+	
+	var _positions = [_pos1,_pos2,_pos3,_pos4]
+	_positions = shuffleList(_positions)
+	
+	var _p1
+	var _p2
+	var _p3
+	var _p4
+	
+	
+	_p1 = load("res://Player/Player.tscn").instance()
+	
+	if _gameInfo.P2.isPlaying :
+		if _gameInfo.P2.isBot :
+			_p2 = load("res://Bot/Bot.tscn").instance()
+		else:
+			_p2 = load("res://Player/Player.tscn").instance()
+	
+	if _gameInfo.P3.isPlaying :
+		if _gameInfo.P3.isBot :
+			_p3 = load("res://Bot/Bot.tscn").instance()
+		else:
+			_p3 = load("res://Player/Player.tscn").instance()
+			
+	if _gameInfo.P4.isPlaying :
+		if _gameInfo.P4.isBot :
+			_p4 = load("res://Bot/Bot.tscn").instance()
+		else:
+			_p4 = load("res://Player/Player.tscn").instance()
+	
+	var _players=[_p1,_p2,_p3,_p4]
+	
+	var j = 0
+	for i in _players :
+			if i:
+				add_child(i)
+				i.playerID= "P"+str(j+1)
+				i.position=_positions[j]
+			j+=1
+	
+	
+	
 	resizeCount = 1
 	resizeTime = Timer.new()
 	resizeTime.start(6)

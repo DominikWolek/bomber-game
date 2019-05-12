@@ -6,6 +6,7 @@ var canPlant = 5
 var isImmortal = false
 var bombDMG = 3
 export var color = Color(0, 0, 0)
+var playerID = "P5"
 
 var dangerList = Array()
 var player = int()
