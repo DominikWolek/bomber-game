@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Bot/Bot.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Characters/Sprite.tscn" type="PackedScene" id=2]
+
+[node name="Bot" type="KinematicBody2D"]
+position = Vector2( 32, 40 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" parent="." instance=ExtResource( 2 )]
+frame = 3
+
