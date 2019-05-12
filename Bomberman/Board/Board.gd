@@ -8,6 +8,7 @@ var bomb
 var light
 var dangerList
 var resizeCount
+var resizeTime
 
 signal explosion( dangerList, Player)
 
@@ -92,7 +93,14 @@ func resize():
 
 func _ready():
 	resizeCount = 1
+	resizeTime = Timer.new()
+	resizeTime.start(240)
+	add_child(resizeTime)
+	resizeTime.connect("timeout", self, "_on_resizeTime_timeout")
 
+
+func _on_resizeTime_timeout():
+	resize()
 
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_select")):
