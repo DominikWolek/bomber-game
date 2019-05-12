@@ -4,6 +4,7 @@ var colour = get_modulate()
 var change = true
 var change_time = 1.15
 var radius
+var placedBy
 
 func _ready():
 	time = Timer.new()
@@ -13,7 +14,7 @@ func _ready():
 
 
 func _on_Timer_timeout():
-	get_parent().bumv(position, "test", radius)
+	get_parent().bumv(position, placedBy, get_parent().damageList[placedBy])
 	queue_free()
 
 func _process(delta):

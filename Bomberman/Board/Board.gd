@@ -16,6 +16,8 @@ var bombsCount
 var resizeCount
 var resizeTime
 
+var damageList: Dictionary
+
 signal explosion( dangerList, Player)
 
 
@@ -84,11 +86,10 @@ func bumv(initialPos, player, radius):
 	
 	emit_signal("explosion", dangerList, player)
 
-func place_bomb(initialPos, player,  radius):
-	var properPos = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
+func place_bomb(initialPos, player):
 	bomb = _bomb.instance()
-	bomb.radius = radius
-	bomb.position = properPos
+	bomb.placedBy = player
+	bomb.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 	add_child(bomb)
 		
 		
@@ -165,7 +166,7 @@ func _ready():
 	
 	resizeCount = 1
 	resizeTime = Timer.new()
-	resizeTime.start(6)
+	resizeTime.start(30)
 	add_child(resizeTime)
 	resizeTime.connect("timeout", self, "_on_resizeTime_timeout")
 
