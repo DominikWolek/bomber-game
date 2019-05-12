@@ -13,6 +13,8 @@ var dangerList
 
 var bombsCount
 
+var resizeCount
+var resizeTime
 
 signal explosion( dangerList, Player)
 
@@ -90,8 +92,24 @@ func place_bomb(initialPos, player,  radius):
 	add_child(bomb)
 		
 		
+func resize():
+	if(resizeCount <=5):
+		var _collapse = load("res://Board/Collapses/Collapse"+str(resizeCount)+".tscn")
+		print(str(resizeCount))
+		var collapse = _collapse.instance()
+		add_child(collapse)
+		resizeCount += 1
+
 func _ready():
-	pass
+	resizeCount = 1
+	resizeTime = Timer.new()
+	resizeTime.start(6)
+	add_child(resizeTime)
+	resizeTime.connect("timeout", self, "_on_resizeTime_timeout")
+
+
+func _on_resizeTime_timeout():
+	resize()
 	
 func _process(delta):
 	pass

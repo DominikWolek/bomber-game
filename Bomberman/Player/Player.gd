@@ -5,7 +5,7 @@ var hp = 3
 var canPlant = 1
 var isImmortal = false
 var bombDMG = 2
-
+var playerID = "P1"
 var dangerList = Array()
 var player = int()
 
@@ -62,36 +62,36 @@ func get_input():
 	velocity = Vector2()
 	
 	
-	if Input.is_action_pressed('ui_right'):
+	if Input.is_action_pressed(playerID+'_ui_right'):
 		velocity.x += 1
-	if Input.is_action_pressed('ui_left'):
+	if Input.is_action_pressed(playerID+'_ui_left'):
 		velocity.x -= 1
-	if Input.is_action_pressed('ui_down'):
+	if Input.is_action_pressed(playerID+'_ui_down'):
 		velocity.y += 1
-	if Input.is_action_pressed('ui_up'):
+	if Input.is_action_pressed(playerID+'_ui_up'):
 		velocity.y -= 1
 	
 	var temp = ""	
 	if (isImmortal):
 		temp = "_IMMORTAL"
-	if Input.is_action_pressed('ui_right') and !Input.is_action_pressed('ui_left'):
+	if Input.is_action_pressed(playerID+'_ui_right') and !Input.is_action_pressed(playerID+'_ui_left'):
 		$Sprite.flip_h = false
 		$Sprite.play("run"+temp)
-	elif !Input.is_action_pressed('ui_right') and Input.is_action_pressed('ui_left'):
+	elif !Input.is_action_pressed(playerID+'_ui_right') and Input.is_action_pressed(playerID+'_ui_left'):
 		$Sprite.flip_h = true
 		$Sprite.play("run"+temp)
-	elif Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
+	elif Input.is_action_pressed(playerID+'_ui_down') and Input.is_action_pressed(playerID+'_ui_up'):
 		$Sprite.play("idle"+temp)
-	elif Input.is_action_pressed('ui_down') and !Input.is_action_pressed('ui_up'):
+	elif Input.is_action_pressed(playerID+'_ui_down') and !Input.is_action_pressed(playerID+'_ui_up'):
 		$Sprite.play("runDOWN"+temp)
-	elif !Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
+	elif !Input.is_action_pressed(playerID+'_ui_down') and Input.is_action_pressed(playerID+'_ui_up'):
 		$Sprite.play("runUP"+temp)
 	else: $Sprite.play("idle"+temp)
 	
 	
 	
 	velocity = velocity.normalized() * speed
-	if Input.is_action_just_pressed('ui_select'): # spacja (bomba)
+	if Input.is_action_just_pressed(playerID+'_ui_select'): # spacja (bomba)
 		plant_bomb()
 
 
