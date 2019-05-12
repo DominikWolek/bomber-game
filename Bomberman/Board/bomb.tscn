@@ -3,8 +3,6 @@
 [ext_resource path="res://Board/bomb.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Bomb/BerdBomb.png" type="Texture" id=2]
 
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 31 )
 
@@ -22,3 +20,4 @@ disabled = true
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
+
