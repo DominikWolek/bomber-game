@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 var Name = "nickname"
 var hp = 3
-var canPlant = 5
+var canPlant = 1
 var isImmortal = false
-var bombDMG = 3
+var bombDMG = 1
 export var color = Color(0, 0, 0)
 var playerID = "P5"
 
@@ -160,7 +160,9 @@ func get_input():
 				direction = 0
 			elif (direction == 2):
 				direction = 3
-			else: direction = 2
+			elif (direction == 3): 
+				direction = 2
+			else: direction = _direction(position, direction)
 		else: 
 			direction = _direction(position, direction)
 		moving = true
