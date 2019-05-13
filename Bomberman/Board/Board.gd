@@ -59,7 +59,6 @@ func bumv(initialPos, player):
 	
 	for i in range(4):
 		leng = damageList[player]
-		print(damageList[player])
 		pos = initialPos
 		if (i == 0):
 			step = Vector2(-64, 0)
