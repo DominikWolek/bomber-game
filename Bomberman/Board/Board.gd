@@ -47,6 +47,8 @@ func bumv(initialPos, player):
 	light = _light.instance()
 	light.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 	add_child(light)
+	Sounds.get_node("Explosion").position = initialPos
+	Sounds.get_node("Explosion").play()
 	
 	sparks = _sparks.instance()
 	sparks.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
