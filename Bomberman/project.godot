@@ -21,6 +21,7 @@ run/main_scene="res://GUI/MainMenuScene.tscn"
 [autoload]
 
 ConfigurationNode="*res://ConfigurationNode.tscn"
+Sounds="*res://Sounds/Sounds.tscn"
 
 [display]
 
