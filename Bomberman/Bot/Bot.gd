@@ -40,6 +40,7 @@ func notImmortal():
 
 func immediateDeath(): # przy zmniejszaniu sie mapy
 	hp = 0
+	Sounds.get_node("/root/Sounds/Death").play()
 	queue_free()
 
 func exploded(by_who):

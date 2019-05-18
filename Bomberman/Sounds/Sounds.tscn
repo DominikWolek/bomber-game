@@ -9,16 +9,13 @@
 
 [node name="MainMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-autoplay = true
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
 [node name="La Calahorra" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-autoplay = true
 
 [node name="The Pirate And The Dancer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-autoplay = true
 
