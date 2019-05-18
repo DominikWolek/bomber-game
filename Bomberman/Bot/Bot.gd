@@ -50,8 +50,7 @@ func exploded(by_who):
 		# ewentualny zapis statystyk dla gracza by_who
 		hp -= 1
 		if hp == 0:
-			# ewentualny zapis statystyk (jakichs)
-			queue_free()
+			immediateDeath()
 		else:
 			var timer = Timer.new()
 			timer.set_one_shot(true)
