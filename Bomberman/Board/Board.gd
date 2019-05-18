@@ -113,6 +113,9 @@ func shuffleList(list):
 	
 	
 func _ready():
+	Sounds.get_node("MainMenu").stop()
+	Sounds.get_node("The Pirate And The Dancer").play()
+	
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
 	
 	var _pos1 = Vector2( 64+32, 64+32 ) 
