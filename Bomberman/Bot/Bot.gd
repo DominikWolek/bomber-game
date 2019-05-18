@@ -40,6 +40,8 @@ func notImmortal():
 
 func immediateDeath(): # przy zmniejszaniu sie mapy
 	hp = 0
+	Sounds.get_node("Death").position = position
+	Sounds.get_node("Death").play()
 	queue_free()
 
 func exploded(by_who):
@@ -47,11 +49,12 @@ func exploded(by_who):
 		return
 	else:
 		isImmortal = true
+		Sounds.get_node("Damage").position = position
+		Sounds.get_node("Damage").play()
 		# ewentualny zapis statystyk dla gracza by_who
 		hp -= 1
 		if hp == 0:
-			# ewentualny zapis statystyk (jakichs)
-			queue_free()
+			immediateDeath()
 		else:
 			var timer = Timer.new()
 			timer.set_one_shot(true)

@@ -19,7 +19,9 @@ func _ready():
 
 func _on_Timer_timeout():
 	for i in get_overlapping_bodies():
-		if(i.name != "Board"):
+		if(i.has_method("immediateDeath")):
+			i.immediateDeath()
+		elif(i.name != "Board"):
 			i.queue_free()
 	
 	for i in get_overlapping_areas():

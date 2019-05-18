@@ -5,6 +5,9 @@ var change_time
 var placedBy
 
 func _ready():
+	Sounds.get_node("BombSet").position = position
+	Sounds.get_node("BombSet").play()
+	
 	time = Timer.new()
 	time.start(3)
 	add_child(time)

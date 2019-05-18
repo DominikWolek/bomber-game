@@ -3,7 +3,8 @@ extends TileMap
 var _sparks = load("res://Board/explosionParticle.tscn")
 var _bomb = load("res://Board/bomb.tscn")
 var _light = load("res://Board/Light2D.tscn")
-
+var _dirt = load("res://Assets/TileSets/dirt.tres")
+var _wood = load("res://Assets/TileSets/wood.tres")
 
 var hitmark
 var bomb
@@ -47,6 +48,8 @@ func bumv(initialPos, player):
 	light = _light.instance()
 	light.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
 	add_child(light)
+	Sounds.get_node("Explosion").position = initialPos
+	Sounds.get_node("Explosion").play()
 	
 	sparks = _sparks.instance()
 	sparks.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
@@ -113,7 +116,15 @@ func shuffleList(list):
 	
 	
 func _ready():
+	Sounds.get_node("MainMenu").stop()
+	Sounds.get_node("The Pirate And The Dancer").play()
+	
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
+	
+	if(_gameInfo.map == 0):
+		set_tileset(load("res://Assets/TileSets/dirt.tres"))
+	elif(_gameInfo.map == 1):
+		set_tileset(load("res://Assets/TileSets/wood.tres"))
 	
 	var _pos1 = Vector2( 64+32, 64+32 ) 
 	var _pos2 = Vector2( 64*13+32, 64 )
