@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/Button.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 1.0
+margin_top = -3.05176e-005
+margin_right = 962.0
+margin_bottom = 706.0
+
+[node name="CenterContainer" type="VBoxContainer" parent="Panel"]
+margin_left = 248.728
+margin_top = 93.1599
+margin_right = 662.728
+margin_bottom = 169.16
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/CenterContainer"]
+margin_right = 414.0
+margin_bottom = 14.0
+text = "Music"
+align = 1
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="Panel/CenterContainer"]
+margin_top = 18.0
+margin_right = 414.0
+margin_bottom = 58.0
+
+[node name="HSlider" type="HSlider" parent="Panel/CenterContainer"]
+margin_top = 62.0
+margin_right = 414.0
+margin_bottom = 78.0
+ticks_on_borders = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+margin_left = 253.024
+margin_top = 271.415
+margin_right = 673.024
+margin_bottom = 325.415
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+margin_right = 420.0
+margin_bottom = 14.0
+text = "Sounds"
+align = 1
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 420.0
+margin_bottom = 58.0
+
+[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer"]
+margin_top = 62.0
+margin_right = 420.0
+margin_bottom = 78.0
+ticks_on_borders = true
+
+[node name="Button" type="Button" parent="Panel"]
+margin_left = 0.25293
+margin_top = 609.334
+margin_right = 218.253
+margin_bottom = 705.334
+text = "Back"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_BackButton_pressed"]

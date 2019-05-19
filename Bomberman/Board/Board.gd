@@ -120,17 +120,18 @@ func _ready():
 	
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
 	
-	if(_gameInfo.map == 0):
+	if(_gameInfo["map"]["map_type"] == 1):
 		set_tileset(load("res://Assets/TileSets/Dirt.tres"))
-	elif(_gameInfo.map == 1):
+	elif(_gameInfo["map"]["map_type"] == 2):
 		set_tileset(load("res://Assets/TileSets/Wood.tres"))
-	elif(_gameInfo.map == 2):
+	elif(_gameInfo["map"]["map_type"] == 3):
 		set_tileset(load("res://Assets/TileSets/Water.tres"))
-	elif(_gameInfo.map == 3):
+	elif(_gameInfo["map"]["map_type"] == 4):
 		set_tileset(load("res://Assets/TileSets/Desert.tres"))
+	else: set_tileset(load("res://Assets/TileSets/Dirt.tres"))
 	
 	var _pos1 = Vector2( 64+32, 64+32 ) 
-	var _pos2 = Vector2( 64*13+32, 64 )
+	var _pos2 = Vector2( 64*13+32, 64+32 )
 	var _pos3 = Vector2( 64+32 , 10*64 - 32 )
 	var _pos4 = Vector2( 64*13 +32 ,10*64-32 )
 	
@@ -147,20 +148,20 @@ func _ready():
 	
 	_p1 = load("res://Player/Player.tscn").instance()
 	
-	if _gameInfo.P2.isPlaying :
-		if _gameInfo.P2.isBot :
+	if _gameInfo["P2"]["is_playing"] :
+		if _gameInfo["P2"]["is_bot"] :
 			_p2 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p2 = load("res://Player/Player.tscn").instance()
 	
-	if _gameInfo.P3.isPlaying :
-		if _gameInfo.P3.isBot :
+	if _gameInfo["P3"]["is_playing"] :
+		if _gameInfo["P3"]["is_bot"] :
 			_p3 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p3 = load("res://Player/Player.tscn").instance()
 			
-	if _gameInfo.P4.isPlaying :
-		if _gameInfo.P4.isBot :
+	if _gameInfo["P4"]["is_playing"] :
+		if _gameInfo["P4"]["is_bot"] :
 			_p4 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p4 = load("res://Player/Player.tscn").instance()
