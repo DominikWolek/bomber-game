@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/TileSets/wood.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/TileSets/Dirt.tres" type="TileSet" id=1]
 [ext_resource path="res://Board/Board.gd" type="Script" id=2]
 
 [node name="World" type="Node2D"]

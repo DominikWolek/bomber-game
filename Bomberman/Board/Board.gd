@@ -121,12 +121,13 @@ func _ready():
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
 	
 	if(_gameInfo.map == 0):
-		set_tileset(load("res://Assets/TileSets/dirt.tres"))
+		set_tileset(load("res://Assets/TileSets/Dirt.tres"))
 	elif(_gameInfo.map == 1):
-		set_tileset(load("res://Assets/TileSets/wood.tres"))
+		set_tileset(load("res://Assets/TileSets/Wood.tres"))
 	elif(_gameInfo.map == 2):
 		set_tileset(load("res://Assets/TileSets/Water.tres"))
-		
+	elif(_gameInfo.map == 3):
+		set_tileset(load("res://Assets/TileSets/Desert.tres"))
 	
 	var _pos1 = Vector2( 64+32, 64+32 ) 
 	var _pos2 = Vector2( 64*13+32, 64 )

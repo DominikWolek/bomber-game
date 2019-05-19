@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Stone_Tiles_08012015_320x192_.png-662992d292535978dbd11b66ba364580.stex"
+path="res://.import/Desert.png-5ee263ce0191763397cf343cdb563443.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSets/Stone_Tiles_08012015_320x192_.png"
-dest_files=[ "res://.import/Stone_Tiles_08012015_320x192_.png-662992d292535978dbd11b66ba364580.stex" ]
+source_file="res://Assets/TileSets/Desert.png"
+dest_files=[ "res://.import/Desert.png-5ee263ce0191763397cf343cdb563443.stex" ]
 
 [params]
 
