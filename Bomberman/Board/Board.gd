@@ -17,8 +17,10 @@ var resizeTime
 
 var damageList: Dictionary
 
-signal explosion( dangerList, Player)
+var activePlayers
 
+signal explosion( dangerList, Player)
+signal winnerWinnerChickenDinner()
 
 func spawnPowerUP(pos):
 	randomize()
@@ -115,8 +117,9 @@ func shuffleList(list):
 	
 	
 func _ready():
+	
 	Sounds.get_node("MainMenu").stop()
-	Sounds.get_node("The Pirate And The Dancer").play()
+	Sounds.get_node("GamePlay").play()
 	
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
 	
@@ -170,6 +173,7 @@ func _ready():
 	
 	var j = 0
 	for i in _players :
+
 		if i:
 			add_child(i)
 			i.playerID = "P"+str(j+1)
@@ -191,19 +195,25 @@ func _ready():
 			elif colour == 6:
 				i.colour = Color( 1, 0.41, 0.71, 1 )
 			i._check_colour()
+      i.score = 15
 		j+=1
 	
+	activePlayers = _players.size()
 	
 	
 	resizeCount = 1
 	resizeTime = Timer.new()
-	resizeTime.start(30)
+	resizeTime.start(45)
 	add_child(resizeTime)
 	resizeTime.connect("timeout", self, "_on_resizeTime_timeout")
 
-
+func winnerWinnerChickenDinner():
+	emit_signal("winnerWinnerChickenDinner")
+	#maybe some other things
+	
 func _on_resizeTime_timeout():
 	resize()
 	
 func _process(delta):
 	pass
+		

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sounds/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/Intro Screen.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/La calahorra.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/The Pirate And The Dancer.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/MUSIC Game Over.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/Game Play music.ogg" type="AudioStream" id=6]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -40,4 +41,7 @@ stream = ExtResource( 5 )
 [node name="BombSet" type="AudioStreamPlayer2D" parent="." groups=[
 "SFX",
 ]]
+
+[node name="GamePlay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 

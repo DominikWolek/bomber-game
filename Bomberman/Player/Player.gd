@@ -8,7 +8,11 @@ var bombDMG = 1
 var playerID = "P1"
 var dangerList = Array()
 var player = int()
-export var colour = Color(0, 0, 0)
+
+var score
+var dead
+export var color = Color(0, 0, 0)
+
 export (int) var speed = 200
 
 var velocity = Vector2()
@@ -38,8 +42,11 @@ func notImmortal():
 
 func immediateDeath(): # przy zmniejszaniu sie mapy
 	hp = 0
+	dead = true
 	Sounds.get_node("Death").position = position
 	Sounds.get_node("Death").play()
+	get_parent().activePlayers -= 1
+	get_parent().winnerWinnerChickenDinner()
 	queue_free()
 
 func exploded(by_who):
@@ -103,7 +110,15 @@ func _check_colour():
 		modulate = colour
 
 func _ready():
+	dead = false
+	score = 0
 	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
+	get_parent().connect("winnerWinnerChickenDinner", self, "winner")
+
+
+func winner():
+	if(!dead):
+		Highscore.tryToAdd(name, score)
 
 func _on_Bomb_explosion(dangerList, player):
 	for i in dangerList:
