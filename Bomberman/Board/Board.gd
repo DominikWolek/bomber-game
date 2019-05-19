@@ -3,8 +3,7 @@ extends TileMap
 var _sparks = load("res://Board/explosionParticle.tscn")
 var _bomb = load("res://Board/bomb.tscn")
 var _light = load("res://Board/Light2D.tscn")
-var _dirt = load("res://Assets/TileSets/dirt.tres")
-var _wood = load("res://Assets/TileSets/wood.tres")
+
 
 var hitmark
 var bomb
@@ -125,6 +124,9 @@ func _ready():
 		set_tileset(load("res://Assets/TileSets/dirt.tres"))
 	elif(_gameInfo.map == 1):
 		set_tileset(load("res://Assets/TileSets/wood.tres"))
+	elif(_gameInfo.map == 2):
+		set_tileset(load("res://Assets/TileSets/Water.tres"))
+		
 	
 	var _pos1 = Vector2( 64+32, 64+32 ) 
 	var _pos2 = Vector2( 64*13+32, 64 )
