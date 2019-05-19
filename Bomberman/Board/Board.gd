@@ -119,7 +119,7 @@ func shuffleList(list):
 func _ready():
 	
 	Sounds.get_node("MainMenu").stop()
-	Sounds.get_node("The Pirate And The Dancer").play()
+	Sounds.get_node("GamePlay").play()
 	
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
 	
