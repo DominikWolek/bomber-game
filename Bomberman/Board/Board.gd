@@ -195,7 +195,7 @@ func _ready():
 			elif colour == 6:
 				i.colour = Color( 1, 0.41, 0.71, 1 )
 			i._check_colour()
-      i.score = 15
+			i.score = 15
 		j+=1
 	
 	activePlayers = _players.size()

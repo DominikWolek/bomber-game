@@ -7,7 +7,7 @@ var isImmortal = false
 var bombDMG = 1
 
 var score
-export var color = Color(0, 0, 0)
+export var colour = Color(0, 0, 0)
 
 var playerID = "P5"
 var dead

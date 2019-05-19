@@ -11,7 +11,7 @@ var player = int()
 
 var score
 var dead
-export var color = Color(0, 0, 0)
+export var colour = Color(0, 0, 0)
 
 export (int) var speed = 200
 
