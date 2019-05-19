@@ -5,7 +5,7 @@ var hp = 3
 var canPlant = 1
 var isImmortal = false
 var bombDMG = 1
-export var color = Color(0, 0, 0)
+export var colour = Color(0, 0, 0)
 var playerID = "P5"
 
 var dangerList = Array()
@@ -63,10 +63,11 @@ func exploded(by_who):
 			add_child(timer)
 			timer.start()
 
+func _check_colour():
+	if(colour != Color(0, 0, 0, 1)):
+		modulate = colour
 
 func _ready():
-	if(color != Color(0, 0, 0)):
-		modulate = color
 	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
 	randomize()
 

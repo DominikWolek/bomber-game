@@ -170,11 +170,28 @@ func _ready():
 	
 	var j = 0
 	for i in _players :
-			if i:
-				add_child(i)
-				i.playerID= "P"+str(j+1)
-				i.position=_positions[j]
-			j+=1
+		if i:
+			add_child(i)
+			i.playerID = "P"+str(j+1)
+			i.Name = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"name")
+			i.position=_positions[j]
+			var colour = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"colour")
+			if colour == 0:
+				i.colour = Color(0,0,0,1)
+			elif colour == 1:
+				i.colour = Color( 0.8, 0.36, 0.36, 1 )
+			elif colour == 2:
+				i.colour = Color( 0.69, 0.88, 0.9, 1 )
+			elif colour == 3:
+				i.colour = Color( 0.6, 0.98, 0.6, 1 )
+			elif colour == 4:
+				i.colour = Color( 1, 1, 0, 1 )
+			elif colour == 5:
+				i.colour = Color( 0.55, 0.55, 0.55, 1 )
+			elif colour == 6:
+				i.colour = Color( 1, 0.41, 0.71, 1 )
+			i._check_colour()
+		j+=1
 	
 	
 	

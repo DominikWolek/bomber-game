@@ -6,7 +6,7 @@ var colours = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gameInfo = get_node("/root/ConfigurationNode").gameInfo
-	colours = ["white","black","blue","red","yellow","green","purple","pink","brown","orange"]
+	colours = ["Basic","Red","Blue","Green","Yellow","Grey","Pink"]
 	_PlayerChanged("P1")
 	_PlayerChanged("P2")
 	_PlayerChanged("P3")
@@ -35,7 +35,7 @@ func changePlayerName(player,name):
 	_PlayerChanged(player)
 
 func changePlayerColor(player,colour):
-	get_node("/root/ConfigurationNode")._change_and_commit(player,"colour",(colour+1) % 10)
+	get_node("/root/ConfigurationNode")._change_and_commit(player,"colour",(colour+1) % 7)
 	_PlayerChanged(player)
 
 func _process(delta):
