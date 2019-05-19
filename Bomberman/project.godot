@@ -22,6 +22,7 @@ run/main_scene="res://GUI/MainMenuScene.tscn"
 
 ConfigurationNode="*res://ConfigurationNode.tscn"
 Sounds="*res://Sounds/Sounds.tscn"
+Highscore="*res://Highscore/Highscore.tscn"
 
 [display]
 
