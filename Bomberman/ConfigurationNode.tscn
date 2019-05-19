@@ -99,7 +99,13 @@ func _ready():
 			\"colour\": null,
 			\"is_bot\": null,
 			\"is_playing\": null
-		}
+		},
+		\"Sounds\": {
+			\"sound\" : 0,
+			\"soundSwitch\": false,
+			\"sfx\" : 0,
+			\"sfxSwitch\": false
+		},
 	}
 	
 	_load_configuration()
