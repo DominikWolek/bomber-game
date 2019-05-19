@@ -5,8 +5,10 @@ var hp = 3
 var canPlant = 1
 var isImmortal = false
 var bombDMG = 1
+var score
 export var color = Color(0, 0, 0)
 var playerID = "P5"
+var dead
 
 var dangerList = Array()
 var player = int()
@@ -40,8 +42,11 @@ func notImmortal():
 
 func immediateDeath(): # przy zmniejszaniu sie mapy
 	hp = 0
+	dead = true
 	Sounds.get_node("Death").position = position
 	Sounds.get_node("Death").play()
+	get_parent().activePlayers -= 1
+	get_parent().winnerWinnerChickenDinner()
 	queue_free()
 
 func exploded(by_who):
@@ -65,10 +70,18 @@ func exploded(by_who):
 
 
 func _ready():
+	dead = false
+	score  = 0
 	if(color != Color(0, 0, 0)):
 		modulate = color
 	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
 	randomize()
+	get_parent().connect("winnerWinnerChickenDinner", self, "winner")
+
+
+func winner():
+	if(!dead):
+		Highscore.tryToAdd(name, score)
 
 func _on_Bomb_explosion(dangerList, player):
 	for i in dangerList:
