@@ -1,4 +1,4 @@
-extends Panel
+extends Button
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -6,9 +6,16 @@ extends Panel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if(Sounds.get_node("MainMenu").is_playing() == false ):
-		Sounds.get_node("MainMenu").play()	
+	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_NextButton_pressed():
+	var error = get_tree().change_scene( "res://GUI/FirstStartScene.tscn");
+	if error == OK:
+		pass
+	else:
+		print(error);

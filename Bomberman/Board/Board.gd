@@ -123,17 +123,18 @@ func _ready():
 	
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
 	
-	if(_gameInfo.map == 0):
+	if(_gameInfo["map"]["map_type"] == 1):
 		set_tileset(load("res://Assets/TileSets/Dirt.tres"))
-	elif(_gameInfo.map == 1):
+	elif(_gameInfo["map"]["map_type"] == 2):
 		set_tileset(load("res://Assets/TileSets/Wood.tres"))
-	elif(_gameInfo.map == 2):
+	elif(_gameInfo["map"]["map_type"] == 3):
 		set_tileset(load("res://Assets/TileSets/Water.tres"))
-	elif(_gameInfo.map == 3):
+	elif(_gameInfo["map"]["map_type"] == 4):
 		set_tileset(load("res://Assets/TileSets/Desert.tres"))
+	else: set_tileset(load("res://Assets/TileSets/Dirt.tres"))
 	
 	var _pos1 = Vector2( 64+32, 64+32 ) 
-	var _pos2 = Vector2( 64*13+32, 64 )
+	var _pos2 = Vector2( 64*13+32, 64+32 )
 	var _pos3 = Vector2( 64+32 , 10*64 - 32 )
 	var _pos4 = Vector2( 64*13 +32 ,10*64-32 )
 	
@@ -150,20 +151,20 @@ func _ready():
 	
 	_p1 = load("res://Player/Player.tscn").instance()
 	
-	if _gameInfo.P2.isPlaying :
-		if _gameInfo.P2.isBot :
+	if _gameInfo["P2"]["is_playing"] :
+		if _gameInfo["P2"]["is_bot"] :
 			_p2 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p2 = load("res://Player/Player.tscn").instance()
 	
-	if _gameInfo.P3.isPlaying :
-		if _gameInfo.P3.isBot :
+	if _gameInfo["P3"]["is_playing"] :
+		if _gameInfo["P3"]["is_bot"] :
 			_p3 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p3 = load("res://Player/Player.tscn").instance()
 			
-	if _gameInfo.P4.isPlaying :
-		if _gameInfo.P4.isBot :
+	if _gameInfo["P4"]["is_playing"] :
+		if _gameInfo["P4"]["is_bot"] :
 			_p4 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p4 = load("res://Player/Player.tscn").instance()
@@ -172,13 +173,30 @@ func _ready():
 	
 	var j = 0
 	for i in _players :
-			if i:
-				add_child(i)
-				i.playerID= "P"+str(j+1)
-				i.position=_positions[j]
-				i.setNickname("testing")
-				i.score = 15
-			j+=1
+
+		if i:
+			add_child(i)
+			i.playerID = "P"+str(j+1)
+			i.Name = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"name")
+			i.position=_positions[j]
+			var colour = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"colour")
+			if colour == 0:
+				i.colour = Color(0,0,0,1)
+			elif colour == 1:
+				i.colour = Color( 0.8, 0.36, 0.36, 1 )
+			elif colour == 2:
+				i.colour = Color( 0.69, 0.88, 0.9, 1 )
+			elif colour == 3:
+				i.colour = Color( 0.6, 0.98, 0.6, 1 )
+			elif colour == 4:
+				i.colour = Color( 1, 1, 0, 1 )
+			elif colour == 5:
+				i.colour = Color( 0.55, 0.55, 0.55, 1 )
+			elif colour == 6:
+				i.colour = Color( 1, 0.41, 0.71, 1 )
+			i._check_colour()
+      i.score = 15
+		j+=1
 	
 	activePlayers = _players.size()
 	

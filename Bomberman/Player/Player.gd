@@ -4,13 +4,15 @@ var Name = "nickname"
 var hp = 3
 var canPlant = 1
 var isImmortal = false
-var bombDMG = 2
+var bombDMG = 1
 var playerID = "P1"
 var dangerList = Array()
 var player = int()
+
 var score
 var dead
 export var color = Color(0, 0, 0)
+
 export (int) var speed = 200
 
 var velocity = Vector2()
@@ -103,11 +105,13 @@ func get_input():
 		plant_bomb()
 
 
+func _check_colour():
+	if(colour != Color(0, 0, 0, 1)):
+		modulate = colour
+
 func _ready():
 	dead = false
 	score = 0
-	if(color != Color(0, 0, 0)):
-		modulate = color
 	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
 	get_parent().connect("winnerWinnerChickenDinner", self, "winner")
 

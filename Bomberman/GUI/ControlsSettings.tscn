@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://GUI/UP.gd" type="Script" id=1]
 [ext_resource path="res://GUI/DOWN.gd" type="Script" id=2]
@@ -6,75 +6,73 @@
 [ext_resource path="res://GUI/RIGHT.gd" type="Script" id=4]
 [ext_resource path="res://GUI/BOMB.gd" type="Script" id=5]
 [ext_resource path="res://GUI/BackButtonToSettings.gd" type="Script" id=6]
-[ext_resource path="res://GUI/SaveButton.gd" type="Script" id=7]
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=1]
 script/source = "extends VBoxContainer
 
 var playerID = 'P1'
-var Controls
+var gameInfo
+
 func _ready():
-	var conf = get_node(\"/root/ConfigurationNode\");
-	Controls = [] + conf.PList[0]
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
-	
+	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
+
 func _process(delta):
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
 	
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=2]
 script/source = "extends VBoxContainer
 
 var playerID = 'P2'
-var Controls
+var gameInfo
+
 func _ready():
-	var conf = get_node(\"/root/ConfigurationNode\");
-	Controls = []+conf.PList[1]
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
-	
+	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
+
 func _process(delta):
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
 	
 "
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=3]
 script/source = "extends VBoxContainer
 
 var playerID = 'P3'
-var Controls;
+var gameInfo
+
 func _ready():
-	var conf = get_node(\"/root/ConfigurationNode\");
-	Controls = []+conf.PList[2]
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
-	
+	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
 
 func _process(delta):
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
 	
 "
 
@@ -82,23 +80,22 @@ func _process(delta):
 script/source = "extends VBoxContainer
 
 var playerID = 'P4'
-var Controls
+var gameInfo
+
 func _ready():
-	var conf = get_node(\"/root/ConfigurationNode\");
-	Controls = []+conf.PList[3]
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
-	
+	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
 
 func _process(delta):
-	get_child(1).text = str(Controls[1])
-	get_child(2).text = str(Controls[2])
-	get_child(3).text = str(Controls[3])
-	get_child(4).text = str(Controls[4])
-	get_child(5).text = str(Controls[5])
+	get_child(1).text = str(gameInfo[playerID][\"up\"])
+	get_child(2).text = str(gameInfo[playerID][\"down\"])
+	get_child(3).text = str(gameInfo[playerID][\"left\"])
+	get_child(4).text = str(gameInfo[playerID][\"right\"])
+	get_child(5).text = str(gameInfo[playerID][\"bomb\"])
 	
 "
 
@@ -116,11 +113,10 @@ margin_bottom = 612.0
 alignment = 1
 
 [node name="P1Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
-editor/display_folded = true
 margin_left = 373.0
 margin_right = 424.0
 margin_bottom = 559.0
-script = SubResource( 5 )
+script = SubResource( 1 )
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/P1Container"]
 margin_right = 51.0
@@ -158,11 +154,10 @@ margin_bottom = 134.0
 script = ExtResource( 5 )
 
 [node name="P2Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
-editor/display_folded = true
 margin_left = 428.0
 margin_right = 479.0
 margin_bottom = 559.0
-script = SubResource( 6 )
+script = SubResource( 2 )
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/P2Container"]
 margin_right = 51.0
@@ -200,11 +195,10 @@ margin_bottom = 134.0
 script = ExtResource( 5 )
 
 [node name="P3Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
-editor/display_folded = true
 margin_left = 483.0
 margin_right = 534.0
 margin_bottom = 559.0
-script = SubResource( 7 )
+script = SubResource( 3 )
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/P3Container"]
 margin_right = 51.0
@@ -291,14 +285,6 @@ margin_bottom = 702.499
 text = "Back"
 script = ExtResource( 6 )
 
-[node name="SaveButton" type="Button" parent="Panel"]
-margin_left = 762.66
-margin_top = 645.298
-margin_right = 960.664
-margin_bottom = 705.298
-text = "Save"
-script = ExtResource( 7 )
-
 [connection signal="pressed" from="Panel/HBoxContainer/P1Container/UP" to="Panel/HBoxContainer/P1Container/UP" method="_on_UP_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/P1Container/DOWN" to="Panel/HBoxContainer/P1Container/DOWN" method="_on_DOWN_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/P1Container/LEFT" to="Panel/HBoxContainer/P1Container/LEFT" method="_on_LEFT_pressed"]
@@ -320,4 +306,3 @@ script = ExtResource( 7 )
 [connection signal="pressed" from="Panel/HBoxContainer/P4Container/RIGHT" to="Panel/HBoxContainer/P4Container/RIGHT" method="_on_RIGHT_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/P4Container/BOMB" to="Panel/HBoxContainer/P4Container/BOMB" method="_on_BOMB_pressed"]
 [connection signal="pressed" from="Panel/BackButton" to="Panel/BackButton" method="_on_BackButton_pressed"]
-[connection signal="pressed" from="Panel/SaveButton" to="Panel/SaveButton" method="_on_SaveButton_pressed"]

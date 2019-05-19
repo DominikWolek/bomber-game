@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Button.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Button2.gd" type="Script" id=2]
+[ext_resource path="res://GUI/TextureRect.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Button3.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Button4.gd" type="Script" id=5]
+
+[sub_resource type="ImageTexture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 960.0
+margin_bottom = 704.0
+
+[node name="Button" type="Button" parent="Panel"]
+margin_top = 608.0
+margin_right = 192.0
+margin_bottom = 704.0
+text = "Back"
+script = ExtResource( 1 )
+
+[node name="Button2" type="Button" parent="Panel"]
+margin_left = 768.0
+margin_top = 608.0
+margin_right = 960.0
+margin_bottom = 704.0
+text = "Next"
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+margin_left = 256.0
+margin_top = 128.0
+margin_right = 704.0
+margin_bottom = 448.0
+texture = SubResource( 1 )
+expand = true
+script = ExtResource( 3 )
+
+[node name="Button3" type="Button" parent="Panel/TextureRect"]
+margin_left = -160.0
+margin_top = 128.0
+margin_right = -32.0
+margin_bottom = 192.0
+text = "Prev"
+script = ExtResource( 4 )
+
+[node name="Button4" type="Button" parent="Panel/TextureRect"]
+margin_left = 480.0
+margin_top = 128.0
+margin_right = 608.0
+margin_bottom = 192.0
+text = "Next"
+script = ExtResource( 5 )
+
+[connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Panel/Button2" to="Panel/Button2" method="_on_NextButton_pressed"]
+[connection signal="pressed" from="Panel/TextureRect/Button3" to="Panel/TextureRect/Button3" method="_on_PrevButton_pressed"]
+[connection signal="pressed" from="Panel/TextureRect/Button4" to="Panel/TextureRect/Button4" method="_on_NextButton_pressed"]
