@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends VBoxContainer
 
-func _on_Name_text_changed(new_text):
+func _on_Name_text_entered(new_text):
 	get_parent().changePlayerName(\"P1\",new_text)
 
 func _on_isBot_toggled(button_pressed):
@@ -22,7 +22,7 @@ func _on_NextColor_pressed():
 [sub_resource type="GDScript" id=2]
 script/source = "extends VBoxContainer
 
-func _on_Name_text_changed(new_text):
+func _on_Name_text_entered(new_text):
 	get_parent().changePlayerName(\"P2\",new_text)
 
 func _on_isBot_toggled(button_pressed):
@@ -36,7 +36,7 @@ func _on_NextColor_pressed():
 script/source = "extends VBoxContainer
 
 
-func _on_Name_text_changed(new_text):
+func _on_Name_text_entered(new_text):
 	get_parent().changePlayerName(\"P3\",new_text)
 
 func _on_isBot_toggled(button_pressed):
@@ -54,7 +54,7 @@ func _on_isPlaying_toggled(button_pressed):
 script/source = "extends VBoxContainer
 
 
-func _on_Name_text_changed(new_text):
+func _on_Name_text_entered(new_text):
 	get_parent().changePlayerName(\"P4\",new_text)
 
 func _on_isBot_toggled(button_pressed):
@@ -223,17 +223,17 @@ text = "Back"
 script = SubResource( 5 )
 
 [connection signal="pressed" from="Panel/NextButton" to="Panel/NextButton" method="_on_NextButton_pressed"]
-[connection signal="text_changed" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_text_changed"]
+[connection signal="text_entered" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P1Settings/isBot" to="Panel/P1Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P1Settings/NextColor" to="Panel/P1Settings" method="_on_NextColor_pressed"]
-[connection signal="text_changed" from="Panel/P2Settings/Name" to="Panel/P2Settings" method="_on_Name_text_changed"]
+[connection signal="text_entered" from="Panel/P2Settings/Name" to="Panel/P2Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P2Settings/isBot" to="Panel/P2Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P2Settings/NextColor" to="Panel/P2Settings" method="_on_NextColor_pressed"]
-[connection signal="text_changed" from="Panel/P3Settings/Name" to="Panel/P3Settings" method="_on_Name_text_changed"]
+[connection signal="text_entered" from="Panel/P3Settings/Name" to="Panel/P3Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P3Settings/isBot" to="Panel/P3Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P3Settings/NextColor" to="Panel/P3Settings" method="_on_NextColor_pressed"]
 [connection signal="toggled" from="Panel/P3Settings/isPlaying" to="Panel/P3Settings" method="_on_isPlaying_toggled"]
-[connection signal="text_changed" from="Panel/P4Settings/Name" to="Panel/P4Settings" method="_on_Name_text_changed"]
+[connection signal="text_entered" from="Panel/P4Settings/Name" to="Panel/P4Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P4Settings/isBot" to="Panel/P4Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P4Settings/NextColor" to="Panel/P4Settings" method="_on_NextColor_pressed"]
 [connection signal="toggled" from="Panel/P4Settings/isPlaying" to="Panel/P4Settings" method="_on_isPlaying_toggled"]
