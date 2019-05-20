@@ -180,9 +180,11 @@ func _ready():
 	var _players=[_p1,_p2,_p3,_p4]
 	
 	var j = 0
+	var playerCount = 0
 	for i in _players :
 
 		if i:
+			playerCount  += 1
 			add_child(i)
 			i.playerID = "P"+str(j+1)
 			scores[i.playerID] = 0
@@ -208,8 +210,7 @@ func _ready():
 			i.score = 0
 		j+=1
 	
-	activePlayers = _players.size()
-	
+	activePlayers = playerCount
 	resizeCount = 1
 	resizeTime = Timer.new()
 	resizeTime.start(45)
