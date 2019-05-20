@@ -17,9 +17,8 @@ func _PlayerChanged(player):
 	play.get_node("Name").text = gameInfo[player]["name"]
 	play.get_node("Color").text = colours[gameInfo[player]["colour"]]
 	play.get_node("isBot").pressed = gameInfo[player]["is_bot"]
-	var z = play.get_node("isPlaying") 
-	if z :
-		z.pressed = gameInfo[player]["is_playing"]
+	if play.has_node("isPlaying"):
+		play.get_node("isPlaying").pressed = gameInfo[player]["is_playing"]
 
 func setBot(player,info):
 	get_node("/root/ConfigurationNode")._change_and_commit(player,"is_bot",info)
