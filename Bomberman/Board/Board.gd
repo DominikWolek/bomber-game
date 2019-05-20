@@ -137,6 +137,8 @@ func _ready():
 		set_tileset(load("res://Assets/TileSets/Water.tres"))
 	elif(_gameInfo["map"]["map_type"] == 4):
 		set_tileset(load("res://Assets/TileSets/Desert.tres"))
+	elif(_gameInfo["map"]["map_type"] == 5):
+		set_tileset(load("res://Assets/TileSets/Grass.tres"))
 	else: set_tileset(load("res://Assets/TileSets/Dirt.tres"))
 	
 	var _pos1 = Vector2( 64+32, 64+32 ) 
