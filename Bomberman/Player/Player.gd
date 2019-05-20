@@ -46,7 +46,8 @@ func immediateDeath(): # przy zmniejszaniu sie mapy
 	Sounds.get_node("Death").position = position
 	Sounds.get_node("Death").play()
 	get_parent().activePlayers -= 1
-	get_parent().winnerWinnerChickenDinner()
+	if(get_parent().activePlayers == 1):
+		get_parent().winnerWinnerChickenDinner()
 	queue_free()
 
 func exploded(by_who):

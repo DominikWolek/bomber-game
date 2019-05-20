@@ -118,22 +118,27 @@ func _ready():
 func UpdateMoveSet(PlayerID):
 	var UPevent = InputEventKey.new()
 	UPevent.set_scancode( gameInfo[PlayerID][\"up\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_up') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_up',UPevent)
 	
 	var DOWNevent = InputEventKey.new()
 	DOWNevent.set_scancode( gameInfo[PlayerID][\"down\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_down') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_down',DOWNevent)
 	
 	var LEFTevent = InputEventKey.new()
 	LEFTevent.set_scancode( gameInfo[PlayerID][\"left\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_left') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_left',LEFTevent)
 	
 	var RIGHTevent = InputEventKey.new()
 	RIGHTevent.set_scancode( gameInfo[PlayerID][\"right\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_right') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_right',RIGHTevent)
 	
 	var BOMBevent = InputEventKey.new()
 	BOMBevent.set_scancode( gameInfo[PlayerID][\"bomb\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_select') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_select',BOMBevent)
 	
 	#gameInfo.map = 0

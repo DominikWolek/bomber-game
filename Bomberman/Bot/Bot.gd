@@ -48,7 +48,8 @@ func immediateDeath(): # przy zmniejszaniu sie mapy
 	Sounds.get_node("Death").position = position
 	Sounds.get_node("Death").play()
 	get_parent().activePlayers -= 1
-	get_parent().winnerWinnerChickenDinner()
+	if(get_parent().activePlayers == 1):
+		get_parent().winnerWinnerChickenDinner()
 	queue_free()
 
 func exploded(by_who):
@@ -84,7 +85,7 @@ func _ready():
 
 func winner():
 	if(!dead):
-		Highscore.tryToAdd(name, score)
+		Highscore.tryToAdd(Name, score)
 
 func _on_Bomb_explosion(dangerList, player):
 	for i in dangerList:

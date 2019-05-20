@@ -200,7 +200,6 @@ func _ready():
 	
 	activePlayers = _players.size()
 	
-	
 	resizeCount = 1
 	resizeTime = Timer.new()
 	resizeTime.start(45)
@@ -209,6 +208,8 @@ func _ready():
 
 func winnerWinnerChickenDinner():
 	emit_signal("winnerWinnerChickenDinner")
+	Sounds.get_node("GamePlay").stop()
+	get_tree().change_scene( "res://GUI/MainMenuScene.tscn");
 	#maybe some other things
 	
 func _on_resizeTime_timeout():
