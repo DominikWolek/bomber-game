@@ -60,8 +60,12 @@ func exploded(by_who):
 		Sounds.get_node("Damage").position = position
 		Sounds.get_node("Damage").play()
 		# ewentualny zapis statystyk dla gracza by_who
+		if(by_who != playerID):
+			get_parent().scores[by_who] += 10
 		hp -= 1
 		if hp == 0:
+			if(by_who != playerID):
+				get_parent().scores[by_who] += 10
 			immediateDeath()
 		else:
 			var timer = Timer.new()

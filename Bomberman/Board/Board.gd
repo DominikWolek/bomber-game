@@ -18,6 +18,8 @@ var resizeTime
 var damageList: Dictionary
 
 var activePlayers
+var scores : Dictionary
+var playerNames: Dictionary
 
 signal explosion( dangerList, Player)
 signal winnerWinnerChickenDinner()
@@ -75,6 +77,7 @@ func bumv(initialPos, player):
 		pos += step
 		while get_cellv(world_to_map(pos)) != 0 and leng !=0   :
 			if(get_cellv(world_to_map(pos)) == 2):
+				scores[player] += 1
 				set_cellv(world_to_map(pos), 1)
 				leng = 1
 				spawnPowerUP(pos)
@@ -117,9 +120,12 @@ func shuffleList(list):
 	
 	
 func _ready():
+
+	
 	
 	Sounds.get_node("MainMenu").stop()
-	Sounds.get_node("GamePlay").play()
+	if (ConfigurationNode._get_value("Sounds", "soundSwitch")):
+		Sounds.get_node("GamePlay").play()
 	
 	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
 	
@@ -177,7 +183,9 @@ func _ready():
 		if i:
 			add_child(i)
 			i.playerID = "P"+str(j+1)
+			scores[i.playerID] = 0
 			i.Name = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"name")
+			playerNames[i.playerID] = i.Name
 			i.position=_positions[j]
 			var colour = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"colour")
 			if colour == 0:
@@ -195,7 +203,7 @@ func _ready():
 			elif colour == 6:
 				i.colour = Color( 1, 0.41, 0.71, 1 )
 			i._check_colour()
-			i.score = 15
+			i.score = 0
 		j+=1
 	
 	activePlayers = _players.size()
@@ -207,9 +215,33 @@ func _ready():
 	resizeTime.connect("timeout", self, "_on_resizeTime_timeout")
 
 func winnerWinnerChickenDinner():
-	emit_signal("winnerWinnerChickenDinner")
-	Sounds.get_node("GamePlay").stop()
-	get_tree().change_scene( "res://GUI/MainMenuScene.tscn");
+	var _ScorePair = load("res://Highscore/ScorePair.gd")
+	var ScorePair
+	var scoresArr: Array
+	for i in scores.keys():
+		ScorePair = _ScorePair.new()
+		ScorePair.nickname = i
+		ScorePair.score = scores[i]
+		scoresArr.append(ScorePair)
+	
+	
+
+	var endMessage : String
+	if(scoresArr[0].score != scoresArr[1].score): #if two players have the same score
+	#we don't save it
+		endMessage = "Congratulations " + playerNames[scoresArr[0].nickname] + "!\r\nYou've scored "+str(scoresArr[0].score) + " points, " 
+		if(Highscore.tryToAdd(playerNames[scoresArr[0].nickname], scoresArr[0].score)):
+			endMessage += "and you've managed to get into the highscore list!"
+		else:
+			endMessage += "but you didn't make it into the highscore list!"
+	else:
+		endMessage = "We have a tie!\r\n" + playerNames[scoresArr[0].nickname] + " and " + playerNames[scoresArr[1].nickname] + " both have " +str(scoresArr[0].score) + " points." 
+	var _endLabel = load("res://Board/Endgame.tscn")
+	var endLabel = _endLabel.instance()
+	endLabel.add(endMessage)
+	add_child(endLabel)
+	
+	#Sounds.get_node("GamePlay").stop()
 	#maybe some other things
 	
 func _on_resizeTime_timeout():
