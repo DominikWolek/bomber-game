@@ -119,9 +119,8 @@ margin_bottom = 559.0
 script = SubResource( 1 )
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/P1Container"]
-margin_top = 2.0
 margin_right = 51.0
-margin_bottom = 16.0
+margin_bottom = 14.0
 text = "Player 1"
 
 [node name="UP" type="Button" parent="Panel/HBoxContainer/P1Container"]

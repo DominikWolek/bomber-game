@@ -1,6 +1,6 @@
 extends Node2D
 
-var file_name = "user://high.score"
+var file_name = "res://high.score"
 export var max_size = 10
 var table = []
 var _ScorePair = load("res://Highscore/ScorePair.gd")

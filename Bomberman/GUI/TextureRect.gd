@@ -8,7 +8,7 @@ func _ready():
 		map = 1
 		get_node("/root/ConfigurationNode")._change_and_commit("map","map_type",map)
 	image = Image.new()
-	image.load("res://GUI/"+String(map)+".PNG")
+	image.load("res://Assets/"+String(map)+".PNG")
 	tex = ImageTexture.new()
 	tex.create_from_image(image)
 	texture = tex
@@ -18,7 +18,7 @@ func next_map():
 	if (map == 0):
 		map = 5
 	image = Image.new()
-	image.load("res://GUI/"+String(map)+".PNG")
+	image.load("res://Assets/"+String(map)+".PNG")
 	tex = ImageTexture.new()
 	tex.create_from_image(image)
 	texture = tex
@@ -29,7 +29,7 @@ func prev_map():
 	if (map == 0):
 		map = 5
 	image = Image.new()
-	image.load("res://GUI/"+String(map)+".PNG")
+	image.load("res://Assets/"+String(map)+".PNG")
 	tex = ImageTexture.new()
 	tex.create_from_image(image)
 	texture = tex
