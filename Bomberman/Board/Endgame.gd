@@ -15,4 +15,5 @@ func _ready():
 	time.connect("timeout", self, "_on_Timer_timeout")
 	
 func _on_Timer_timeout():
+	Sounds.get_node("GamePlay").stop()
 	get_tree().change_scene( "res://GUI/MainMenuScene.tscn");
