@@ -2,7 +2,7 @@ extends RigidBody2D
 var time
 var colour = get_modulate()
 var change_time
-var placedBy
+var placed_by
 
 func _ready():
 	Sounds.get_node("BombSet").position = position
@@ -24,5 +24,5 @@ func _on_change_time_timeout():
 		modulate = colour
 
 func _on_Timer_timeout():
-	get_parent().bumv(position, placedBy)
+	get_parent().explodev(position, placed_by)
 	queue_free()
