@@ -1,16 +1,16 @@
 extends Button
 
-var playerID
+var player_id
 var code
 
 func _ready():
-	playerID = get_parent().playerID
+	player_id = get_parent().player_id
 func _on_LEFT_pressed():
 	set_process_input(true)
 	add_user_signal("AnyKeyClicked")
 	yield(self,"AnyKeyClicked")
-	get_node("/root/ConfigurationNode")._change_and_commit(playerID,"left",code)
-	get_node("/root/ConfigurationNode").UpdateMoveSet(playerID)
+	get_node("/root/ConfigurationNode")._change_and_commit(player_id,"left",code)
+	get_node("/root/ConfigurationNode").UpdateMoveSet(player_id)
 	
 	
 func _input(event):

@@ -63,7 +63,7 @@ func _ready():
 			\"up\": null,
 			\"down\": null,
 			\"bomb\": null,
-			\"colour\": null,
+			\"color\": null,
 			\"is_bot\": null,
 			\"is_playing\": null
 		},
@@ -74,7 +74,7 @@ func _ready():
 			\"up\": null,
 			\"down\": null,
 			\"bomb\": null,
-			\"colour\": null,
+			\"color\": null,
 			\"is_bot\": null,
 			\"is_playing\": null
 		},
@@ -85,7 +85,7 @@ func _ready():
 			\"up\": null,
 			\"down\": null,
 			\"bomb\": null,
-			\"colour\": null,
+			\"color\": null,
 			\"is_bot\": null,
 			\"is_playing\": null
 		},
@@ -96,7 +96,7 @@ func _ready():
 			\"up\": null,
 			\"down\": null,
 			\"bomb\": null,
-			\"colour\": null,
+			\"color\": null,
 			\"is_bot\": null,
 			\"is_playing\": null
 		},

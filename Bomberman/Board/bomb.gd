@@ -1,6 +1,6 @@
 extends RigidBody2D
 var time
-var colour = get_modulate()
+var color = get_modulate()
 var change_time
 var placedBy
 
@@ -18,10 +18,10 @@ func _ready():
 	change_time.connect("timeout", self, "_on_change_time_timeout")
 	
 func _on_change_time_timeout():
-	if(modulate == colour):
+	if(modulate == color):
 		modulate = Color(1, 0, 0)
 	else:
-		modulate = colour
+		modulate = color
 
 func _on_Timer_timeout():
 	get_parent().bumv(position, placedBy)

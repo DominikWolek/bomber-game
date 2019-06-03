@@ -15,13 +15,13 @@ func get_input():
         velocity.y -= 1
     velocity = velocity.normalized() * speed
 
-var dangerList = Array()
+var danger_list = Array()
 
 func _ready():
-	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList)
+	get_parent().connect("explosion", self, "_on_Bomb_explosion", danger_list)
 	
-func _on_Bomb_explosion(dangerList):
-	for i in dangerList:
+func _on_Bomb_explosion(danger_list):
+	for i in danger_list:
 		print(i)
 	
 func _physics_process(delta):

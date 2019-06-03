@@ -8,7 +8,7 @@ var _light = load("res://Board/Light2D.tscn")
 var hitmark
 var bomb
 var light
-var dangerList
+var danger_list
 
 var bombsCount
 
@@ -21,7 +21,7 @@ var activePlayers
 var scores : Dictionary
 var playerNames: Dictionary
 
-signal explosion( dangerList, Player)
+signal explosion( danger_list, Player)
 signal winnerWinnerChickenDinner()
 
 func spawnPowerUP(pos):
@@ -46,7 +46,7 @@ func bumv(initialPos, player):
 	var leng
 	var pos
 	var step
-	dangerList = Array()
+	danger_list = Array()
 	
 	light = _light.instance()
 	light.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
@@ -56,7 +56,7 @@ func bumv(initialPos, player):
 	
 	sparks = _sparks.instance()
 	sparks.position = map_to_world(world_to_map(initialPos)) + Vector2(32, 32)
-	dangerList.append(world_to_map(initialPos))
+	danger_list.append(world_to_map(initialPos))
 	add_child(sparks) 
 	sparks.set_one_shot(true)
 	sparks.set_emitting(true)
@@ -83,14 +83,14 @@ func bumv(initialPos, player):
 				spawnPowerUP(pos)
 			sparks = _sparks.instance()
 			sparks.position = map_to_world(world_to_map(pos)) + Vector2(32, 32)
-			dangerList.append(world_to_map(pos))
+			danger_list.append(world_to_map(pos))
 			add_child(sparks) 
 			sparks.set_one_shot(true)
 			sparks.set_emitting(true)
 			leng -= 1
 			pos += step
 	
-	emit_signal("explosion", dangerList, player)
+	emit_signal("explosion", danger_list, player)
 
 func place_bomb(initialPos, player):
 	bomb = _bomb.instance()
@@ -186,27 +186,27 @@ func _ready():
 		if i:
 			playerCount  += 1
 			add_child(i)
-			i.playerID = "P"+str(j+1)
-			scores[i.playerID] = 0
-			i.Name = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"name")
-			playerNames[i.playerID] = i.Name
+			i.player_id = "P"+str(j+1)
+			scores[i.player_id] = 0
+			i.name = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"name")
+			playerNames[i.player_id] = i.name
 			i.position=_positions[j]
-			var colour = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"colour")
-			if colour == 0:
-				i.colour = Color(0,0,0,1)
-			elif colour == 1:
-				i.colour = Color( 0.8, 0.36, 0.36, 1 )
-			elif colour == 2:
-				i.colour = Color( 0.69, 0.88, 0.9, 1 )
-			elif colour == 3:
-				i.colour = Color( 0.6, 0.98, 0.6, 1 )
-			elif colour == 4:
-				i.colour = Color( 1, 1, 0, 1 )
-			elif colour == 5:
-				i.colour = Color( 0.55, 0.55, 0.55, 1 )
-			elif colour == 6:
-				i.colour = Color( 1, 0.41, 0.71, 1 )
-			i._check_colour()
+			var color = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"color")
+			if color == 0:
+				i.color = Color(0,0,0,1)
+			elif color == 1:
+				i.color = Color( 0.8, 0.36, 0.36, 1 )
+			elif color == 2:
+				i.color = Color( 0.69, 0.88, 0.9, 1 )
+			elif color == 3:
+				i.color = Color( 0.6, 0.98, 0.6, 1 )
+			elif color == 4:
+				i.color = Color( 1, 1, 0, 1 )
+			elif color == 5:
+				i.color = Color( 0.55, 0.55, 0.55, 1 )
+			elif color == 6:
+				i.color = Color( 1, 0.41, 0.71, 1 )
+			i._check_color()
 			i.score = 0
 		j+=1
 	

@@ -26,7 +26,7 @@ func die():
 			powerup.position = position
 			get_parent().add_child(powerup)
 		elif type == 2:
-			var powerup = preload("res://Player//SpeedUP.tscn").instance()
+			var powerup = preload("res://Player//speed_up.tscn").instance()
 			powerup.position = position
 			get_parent().add_child(powerup)
 	queue_free()
@@ -38,4 +38,4 @@ func _physics_process(delta):
 		var bodies = get_overlapping_bodies()
 		for body in bodies:
 			died = true
-			exploded(body.Name)
+			exploded(body.name)

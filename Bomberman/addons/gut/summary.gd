@@ -89,7 +89,7 @@ func add_pending(test_name, reason = ''):
 func get_test_text(test_name):
 	return test_name + "\n" + get_current_script().get_test_obj(test_name).to_s()
 
-# Gets the count of unique script names minus the .<Inner Class Name> at the
+# Gets the count of unique script names minus the .<Inner Class name> at the
 # end.  Used for displaying the number of scripts without including all the
 # Inner Classes.
 func get_non_inner_class_script_count():

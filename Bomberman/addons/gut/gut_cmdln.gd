@@ -165,7 +165,7 @@ func setup_options():
 	                          'was loaded using -gtest or -gdir that contains the specified ' +
 	                          'string will be executed.  You may run others by interacting ' +
                               'with the GUI.'))
-	opts.add('-gunit_test_name', '', ('Name of a test to run.  Any test that contains the specified ' +
+	opts.add('-gunit_test_name', '', ('name of a test to run.  Any test that contains the specified ' +
                                  'text will be run, all others will be skipped.'))
 	opts.add('-gh', false, 'Print this help, then quit')
 	opts.add('-gconfig', 'res://.gutconfig.json', 'A config file that contains configuration information.  Default is res://.gutconfig.json')

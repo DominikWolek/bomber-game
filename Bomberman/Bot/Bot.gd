@@ -1,48 +1,45 @@
 extends KinematicBody2D
 
-var Name = "nickname"
 var hp = 3
-var canPlant = 1
-var isImmortal = false
-var bombDMG = 1
+var can_plant = 1
+var is_immortal = false
+var bomb_dmg = 1
+var player_id
+var danger_list = Array()
+var player = int()
 
 var score
-export var colour = Color(0, 0, 0)
-
-var playerID = "P5"
 var dead
-
-var dangerList = Array()
-var player = int()
+export var color = Color(0, 0, 0)
 
 export (int) var speed = 200
 
 var velocity = Vector2()
 
-func setNickname(nickname):
-	Name = nickname
-func addBomb():
-	canPlant += 1
-func increaseDMG():
-	bombDMG += 1
-func speedUP():
+func set_nickname(nickname):
+	name = nickname
+func add_bomb():
+	can_plant += 1
+func increase_dmg():
+	bomb_dmg += 1
+func speed_up():
 	speed += 70
 
 func plant_bomb():
-	if canPlant > 0: # jeśli jest jakas bomba do podłożenia
-		canPlant -= 1
-		get_parent().place_bomb(position, playerID)
+	if can_plant > 0: # jeśli jest jakas bomba do podłożenia
+		can_plant -= 1
+		get_parent().place_bomb(position, player_id)
 		var timer = Timer.new()
 		timer.set_one_shot(true)
 		timer.set_wait_time(3) # po 3 sekundach wybucha bomba
-		timer.connect("timeout",self,"addBomb")
+		timer.connect("timeout",self,"add_bomb")
 		add_child(timer)
 		timer.start()
 
-func notImmortal():
-	isImmortal = false
+func not_immortal():
+	is_immortal = false
 
-func immediateDeath(): # przy zmniejszaniu sie mapy
+func immediate_death(): # przy zmniejszaniu sie mapy
 	hp = 0
 	dead = true
 	Sounds.get_node("Death").position = position
@@ -53,48 +50,52 @@ func immediateDeath(): # przy zmniejszaniu sie mapy
 	queue_free()
 
 func exploded(by_who):
-	if isImmortal:
+	if is_immortal:
 		return
 	else:
-		isImmortal = true
+		is_immortal = true
 		Sounds.get_node("Damage").position = position
 		Sounds.get_node("Damage").play()
-		# ewentualny zapis statystyk dla gracza by_who
-		if(by_who != playerID):
+		if(by_who != player_id):
 			get_parent().scores[by_who] += 10
 		hp -= 1
 		if hp == 0:
-			if(by_who != playerID):
+			if(by_who != player_id):
 				get_parent().scores[by_who] += 10
-			immediateDeath()
+			immediate_death()
 		else:
 			var timer = Timer.new()
 			timer.set_one_shot(true)
 			timer.set_wait_time(2) #2 sekundowa niesmiertelnosc
-			timer.connect("timeout",self,"notImmortal")
+			timer.connect("timeout",self,"not_immortal")
 			add_child(timer)
 			timer.start()
 
-func _check_colour():
-	if(colour != Color(0, 0, 0, 1)):
-		modulate = colour
+func _check_color():
+	if(color != Color(0, 0, 0, 1)):
+		modulate = color
 
 func _ready():
 	dead = false
-	score  = 0
-	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
-	randomize()
+	score = 0
+	get_parent().connect("explosion", self, "_on_bomb_explosion", danger_list, player)
 	get_parent().connect("winnerWinnerChickenDinner", self, "winner")
-
 
 func winner():
 	if(!dead):
-		Highscore.tryToAdd(Name, score)
+		Highscore.tryToAdd(name, score)
 
-func _on_Bomb_explosion(dangerList, player):
-	for i in dangerList:
+func _on_bomb_explosion(danger_list, player):
+	for i in danger_list:
 		if ( i == get_parent().world_to_map(position)):
 			exploded(player)
+
+
+
+
+# do zmiany
+
+
 
 var position_to_achieve = position
 var moving = false
@@ -146,27 +147,27 @@ func _direction(position, prev_dir):
 		return 3
 
 func possiblePlant(position):
-	if canPlant>0:
+	if can_plant>0:
 		var index
-		for i in range(bombDMG):
+		for i in range(bomb_dmg):
 			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(64,0)))
 			if (index == 2):
 				return true
 			elif (index == 0):
 				break
-		for i in range(bombDMG):
+		for i in range(bomb_dmg):
 			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(-64,0)))
 			if (index == 2):
 				return true
 			elif (index == 0):
 				break
-		for i in range(bombDMG):
+		for i in range(bomb_dmg):
 			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(0,-64)))
 			if (index == 2):
 				return true
 			elif (index == 0):
 				break
-		for i in range(bombDMG):
+		for i in range(bomb_dmg):
 			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(0,64)))
 			if (index == 2):
 				return true
@@ -205,7 +206,7 @@ func get_input():
 		velocity = velocity.normalized() * speed
 		
 		var temp = ""	
-		if (isImmortal):
+		if (is_immortal):
 			temp = "_IMMORTAL"
 		if direction == 0:
 			$Sprite.flip_h = false
@@ -222,7 +223,7 @@ func get_input():
 		else: $Sprite.play("idle"+temp)
 
 func _physics_process(delta):
-	get_parent().damageList[playerID] = bombDMG
+	get_parent().damageList[player_id] = bomb_dmg
 	get_input()
 	move_and_slide(velocity)
 	if (direction == 0):

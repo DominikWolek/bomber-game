@@ -29,20 +29,20 @@ class TestBot:
 
 	func test_setNickname():
 		bot = _bot.instance()
-		assert_eq(bot.Name, INITIAL_NAME)
+		assert_eq(bot.name, INITIAL_NAME)
 		var names = ['A', 1, 'bbbxcb', '23123', 'ASkdj123][FFFFFFF;/aFSDsd']
 		for name in names:
-			bot.setNickname(name)
-			assert_eq(bot.Name, name)
+			bot.set_nickname(name)
+			assert_eq(bot.name, name)
 
 	func test_addBomb():
 		bot = _bot.instance()
-		assert_eq(bot.canPlant, INITIAL_NUMBER_OF_BOMBS)
+		assert_eq(bot.can_plant, INITIAL_NUMBER_OF_BOMBS)
 		for i in range(LIMIT):
 			bot = _bot.instance()
 			for j in range(i):
-				bot.addBomb()
-			assert_eq(bot.canPlant, INITIAL_NUMBER_OF_BOMBS + i)
+				bot.add_bomb()
+			assert_eq(bot.can_plant, INITIAL_NUMBER_OF_BOMBS + i)
 
 	func test_speedUP():
 		bot = _bot.instance()
@@ -50,30 +50,30 @@ class TestBot:
 		for i in range(LIMIT):
 			bot = _bot.instance()
 			for j in range(i):
-				bot.speedUP()
+				bot.speed_up()
 			assert_eq(bot.speed, INITIAL_SPEED + i * SPEED_CHANGE)
 
 	func test_increaseDMG():
 		bot = _bot.instance()
-		assert_eq(bot.bombDMG, INITIAL_BOMB_DMG)
+		assert_eq(bot.bomb_dmg, INITIAL_BOMB_DMG)
 		for i in range(LIMIT):
 			bot = _bot.instance()
 			for j in range(i):
-				bot.increaseDMG()
-			assert_eq(bot.bombDMG, INITIAL_BOMB_DMG + i)
+				bot.increase_dmg()
+			assert_eq(bot.bomb_dmg, INITIAL_BOMB_DMG + i)
 
 	func test_notImmortal():
 		bot = _bot.instance()
-		assert_eq(bot.isImmortal, INITIAL_IMMORTALITY)
-		bot.notImmortal()
-		assert_false(bot.isImmortal)
+		assert_eq(bot.is_immortal, INITIAL_IMMORTALITY)
+		bot.not_immortal()
+		assert_false(bot.is_immortal)
 
 	func test_check_colour():
 		bot = _bot.instance()
-		bot.colour = Color(0, 0, 0, 1)
+		bot.color = Color(0, 0, 0, 1)
 		bot._check_colour()
 		assert_ne(bot.modulate, Color(0, 0, 0, 1))
-		bot.colour = Color(0, 0, 1, 0)
+		bot.color = Color(0, 0, 1, 0)
 		bot._check_colour()
 		assert_eq(bot.modulate, Color(0, 0, 1, 0))
 
