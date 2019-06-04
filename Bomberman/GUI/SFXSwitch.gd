@@ -2,8 +2,8 @@ extends CheckButton
 
 
 func _ready():
-	if (ConfigurationNode._get_value("Sounds", "sfxSwitch") != null):
-		pressed = ConfigurationNode._get_value("Sounds", "sfxSwitch")
+	if (ConfigurationNode.get_value("Sounds", "sfxSwitch") != null):
+		pressed = ConfigurationNode.get_value("Sounds", "sfxSwitch")
 		Sounds.get_tree().call_group("SFX", "set_stream_paused", !pressed)
 
 
@@ -14,4 +14,4 @@ func _on_SFXSwitch_toggled(button_pressed):
 		get_parent().get_node("SFXSlider").value = -10
 	else:
 		get_parent().get_node("SFXSlider").value =-2.5		
-	ConfigurationNode._change_and_commit("Sounds", "sfxSwitch", button_pressed)
+	ConfigurationNode.change_and_commit("Sounds", "sfxSwitch", button_pressed)

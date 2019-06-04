@@ -26,7 +26,7 @@ func die():
 			powerup.position = position
 			get_parent().add_child(powerup)
 		elif type == 2:
-			var powerup = preload("res://Player//speed_up.tscn").instance()
+			var powerup = preload("res://Player//SpeedUP.tscn").instance()
 			powerup.position = position
 			get_parent().add_child(powerup)
 	queue_free()

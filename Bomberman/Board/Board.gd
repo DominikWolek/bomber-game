@@ -41,6 +41,9 @@ func spawnPowerUP(pos):
 			powerup.position = pos
 			get_parent().add_child(powerup)
 
+func cellv_from_position(position):
+	return get_cellv(world_to_map(position))
+
 func bumv(initialPos, player):
 	var sparks
 	var leng
@@ -60,8 +63,6 @@ func bumv(initialPos, player):
 	add_child(sparks) 
 	sparks.set_one_shot(true)
 	sparks.set_emitting(true)
-	
-	
 	
 	for i in range(4):
 		leng = damageList[player]
@@ -117,27 +118,25 @@ func shuffleList(list):
 		shuffledList.append(list[indexList[x]])
 		indexList.remove(x)
 	return shuffledList
-	
-	
-func _ready():
 
+func _ready():
 	
 	
 	Sounds.get_node("MainMenu").stop()
-	if (ConfigurationNode._get_value("Sounds", "soundSwitch")):
+	if (ConfigurationNode.get_value("Sounds", "soundSwitch")):
 		Sounds.get_node("GamePlay").play()
 	
-	var _gameInfo = get_node("/root/ConfigurationNode").gameInfo
+	var game_info = get_node("/root/ConfigurationNode").game_info
 	
-	if(_gameInfo["map"]["map_type"] == 1):
+	if(game_info["map"]["map_type"] == 1):
 		set_tileset(load("res://Assets/TileSets/Dirt.tres"))
-	elif(_gameInfo["map"]["map_type"] == 2):
+	elif(game_info["map"]["map_type"] == 2):
 		set_tileset(load("res://Assets/TileSets/Wood.tres"))
-	elif(_gameInfo["map"]["map_type"] == 3):
+	elif(game_info["map"]["map_type"] == 3):
 		set_tileset(load("res://Assets/TileSets/Water.tres"))
-	elif(_gameInfo["map"]["map_type"] == 4):
+	elif(game_info["map"]["map_type"] == 4):
 		set_tileset(load("res://Assets/TileSets/Desert.tres"))
-	elif(_gameInfo["map"]["map_type"] == 5):
+	elif(game_info["map"]["map_type"] == 5):
 		set_tileset(load("res://Assets/TileSets/Grass.tres"))
 	else: set_tileset(load("res://Assets/TileSets/Dirt.tres"))
 	
@@ -159,20 +158,20 @@ func _ready():
 	
 	_p1 = load("res://Player/Player.tscn").instance()
 	
-	if _gameInfo["P2"]["is_playing"] :
-		if _gameInfo["P2"]["is_bot"] :
+	if game_info["P2"]["is_playing"] :
+		if game_info["P2"]["is_bot"] :
 			_p2 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p2 = load("res://Player/Player.tscn").instance()
 	
-	if _gameInfo["P3"]["is_playing"] :
-		if _gameInfo["P3"]["is_bot"] :
+	if game_info["P3"]["is_playing"] :
+		if game_info["P3"]["is_bot"] :
 			_p3 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p3 = load("res://Player/Player.tscn").instance()
 			
-	if _gameInfo["P4"]["is_playing"] :
-		if _gameInfo["P4"]["is_bot"] :
+	if game_info["P4"]["is_playing"] :
+		if game_info["P4"]["is_bot"] :
 			_p4 = load("res://Bot/Bot.tscn").instance()
 		else:
 			_p4 = load("res://Player/Player.tscn").instance()
@@ -188,10 +187,10 @@ func _ready():
 			add_child(i)
 			i.player_id = "P"+str(j+1)
 			scores[i.player_id] = 0
-			i.name = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"name")
+			i.name = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"name")
 			playerNames[i.player_id] = i.name
 			i.position=_positions[j]
-			var color = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"color")
+			var color = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"color")
 			if color == 0:
 				i.color = Color(0,0,0,1)
 			elif color == 1:
@@ -226,9 +225,6 @@ func winnerWinnerChickenDinner():
 		ScorePair.nickname = i
 		ScorePair.score = scores[i]
 		scoresArr.append(ScorePair)
-	
-	
-
 	var endMessage : String
 	if(scoresArr[0].score != scoresArr[1].score): #if two players have the same score
 	#we don't save it

@@ -80,6 +80,22 @@ func _ready():
 	score = 0
 	get_parent().connect("explosion", self, "_on_bomb_explosion", danger_list, player)
 	get_parent().connect("winnerWinnerChickenDinner", self, "winner")
+	random_planting()
+
+func random_plant():
+	randomize()
+	var random_number = randi() % 10
+	if random_number <= 4:
+		plant_bomb()
+	random_planting()
+
+func random_planting():
+	var timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(1.5)
+	timer.connect("timeout", self, "random_plant")
+	add_child(timer)
+	timer.start()
 
 func winner():
 	if(!dead):
@@ -90,158 +106,159 @@ func _on_bomb_explosion(danger_list, player):
 		if ( i == get_parent().world_to_map(position)):
 			exploded(player)
 
+var right_vector = Vector2(64,0)
+var left_vector = Vector2(-64,0)
+var up_vector = Vector2(0,-64)
+var down_vector = Vector2(0,64)
 
+var position_to_achieve = position # pozycja którą będzie musiał osiągnąć bot
+var moving = false # na poczatku bot sie nie porusza
+var direction = "none"
+var stop = false
 
-
-# do zmiany
-
-
-
-var position_to_achieve = position
-var moving = false
-var direction = -1
-var stop = true
+func check_movement(position,prev_dir):
+	var array = [0,0,0,0]
+	var index = 0
+	var tile_index = get_parent().cellv_from_position(position+right_vector)
+	if (tile_index!=2 and tile_index!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (po prawej)
+		if (prev_dir == "left"):
+			array[index] = 2
+		else: array[index] = 15
+	index += 1
+	tile_index = get_parent().cellv_from_position(position+left_vector)
+	if (tile_index!=2 and tile_index!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (po lewej)
+		if (prev_dir == "right"):
+			array[index] = 2
+		else: array[index] = 15
+	array[index] += array[index-1]
+	index += 1
+	tile_index = get_parent().cellv_from_position(position+up_vector)
+	if (tile_index!=2 and tile_index!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (powyzej)
+		if (prev_dir == "down"):
+			array[index] = 2
+		else: array[index] = 15
+	array[index] += array[index-1]
+	index += 1
+	tile_index = get_parent().cellv_from_position(position+down_vector)
+	if (tile_index!=2 and tile_index!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (ponizej)
+		if (prev_dir == "up"):
+			array[index] = 2
+		else: array[index] = 15
+	array[index] += array[index-1]
+	return array
 
 func _direction(position, prev_dir):
-	var num = 0
-	var array = [false,false,false,false]
-	var right = 0
-	var left = 0
-	var up = 0
-	var down = 0
-	if (get_parent().get_cellv(get_parent().world_to_map(position+Vector2(64,0)))!=2 and get_parent().get_cellv(get_parent().world_to_map(position+Vector2(64,0)))!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (po prawej)
-		array[num] = true
-		if (prev_dir == 1):
-			right = 2
-		else: right = 10
-	num += 1
-	if (get_parent().get_cellv(get_parent().world_to_map(position+Vector2(-64,0)))!=2 and get_parent().get_cellv(get_parent().world_to_map(position+Vector2(-64,0)))!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (po lewej)
-		array[num] = true
-		if (prev_dir == 0):
-			left = 2
-		else: left = 10
-	left += right
-	num += 1
-	if (get_parent().get_cellv(get_parent().world_to_map(position+Vector2(0,-64)))!=2 and get_parent().get_cellv(get_parent().world_to_map(position+Vector2(0,-64)))!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (powyzej)
-		array[num] = true
-		if (prev_dir == 3):
-			up = 2
-		else: up = 10
-	up += left
-	num += 1
-	if (get_parent().get_cellv(get_parent().world_to_map(position+Vector2(0,64)))!=2 and get_parent().get_cellv(get_parent().world_to_map(position+Vector2(0,64)))!=0): #jesli nie jest to skrzynka ani niezniszczalny obiekt (ponizej)
-		array[num] = true
-		if (prev_dir == 2):
-			down = 2
-		else: down = 10
-	down += up
-	randomize()
-	var random_number = randi()% down
-	if (random_number < right):
-		return 0
-	elif (random_number < left):
-		return 1
-	elif (random_number < up):
-		return 2
-	else:
-		return 3
+	var array = check_movement(position,prev_dir)
+	if array[3] == 0:
+		stop = true
+		return "none"
+	else: 
+		stop = false
+		randomize()
+		var random_number = randi() % array[3]
+		if (random_number < array[0]):
+			return "right"
+		elif (random_number < array[1]):
+			return "left"
+		elif (random_number < array[2]):
+			return "up"
+		else:
+			return "down"
 
-func possiblePlant(position):
-	if can_plant>0:
-		var index
-		for i in range(bomb_dmg):
-			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(64,0)))
-			if (index == 2):
-				return true
-			elif (index == 0):
-				break
-		for i in range(bomb_dmg):
-			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(-64,0)))
-			if (index == 2):
-				return true
-			elif (index == 0):
-				break
-		for i in range(bomb_dmg):
-			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(0,-64)))
-			if (index == 2):
-				return true
-			elif (index == 0):
-				break
-		for i in range(bomb_dmg):
-			index = get_parent().get_cellv(get_parent().world_to_map(position+(i+1)*Vector2(0,64)))
-			if (index == 2):
-				return true
-			elif (index == 0):
-				break
+
+
+func can_destroy(position, vector):
+	for i in range(bomb_dmg):
+		var tile_index = get_parent().cellv_from_position(position+(i+1)*vector)
+		if (tile_index == 2):
+			return true
+		elif (tile_index == 0):
+			return false
 	return false
+
+func possible_plant(position):
+	if can_plant > 0:
+		if (can_destroy(position, right_vector)):
+			return true
+		if (can_destroy(position, left_vector)):
+			return true
+		if (can_destroy(position, up_vector)):
+			return true
+		if (can_destroy(position, down_vector)):
+			return true
+	return false
+
+func play_animation():
+	var temp = ""	
+	if (is_immortal):
+		temp = "_IMMORTAL"
+	if direction == "right":
+		$Sprite.flip_h = false
+		$Sprite.play("run"+temp)
+	elif direction == "left":
+		$Sprite.flip_h = true
+		$Sprite.play("run"+temp)
+	elif direction == "up":
+		$Sprite.play("runUP"+temp)
+	elif direction == "down":
+		$Sprite.play("runDOWN"+temp)
+	else: $Sprite.play("idle"+temp)
+
+func opposite_direction(current_direction):
+	if (direction == "right"):
+		return "left"
+	elif (direction == "left"):
+		return "right"
+	elif (direction == "up"):
+		return "down"
+	elif (direction == "down"): 
+		return "up"
+	else: return _direction(position, direction) # jeśli nie zdefiniowane
 
 func get_input():
 	if moving == false:
-		if (possiblePlant(position)):
+		if (possible_plant(position)):
 			plant_bomb()
-			if (direction == 0):
-				direction = 1
-			elif (direction == 1):
-				direction = 0
-			elif (direction == 2):
-				direction = 3
-			elif (direction == 3): 
-				direction = 2
-			else: direction = _direction(position, direction)
+			direction = opposite_direction(direction)
 		else: 
 			direction = _direction(position, direction)
-		moving = true
-		if (direction == 0):
-			velocity.x += 1
-			position_to_achieve = position + Vector2(64,0)
-		elif (direction == 1):
-			velocity.x -= 1
-			position_to_achieve = position + Vector2(-64,0)
-		elif (direction == 2):
-			velocity.y -= 1
-			position_to_achieve = position + Vector2(0,-64)
-		else: 
-			velocity.y += 1
-			position_to_achieve = position + Vector2(0,64)
+		if !stop:
+			moving = true
+			if (direction == "right"):
+				velocity.x += 1
+				position_to_achieve = position + right_vector
+			elif (direction == "left"):
+				velocity.x -= 1
+				position_to_achieve = position + left_vector
+			elif (direction == "up"):
+				velocity.y -= 1
+				position_to_achieve = position + up_vector
+			else: 
+				velocity.y += 1
+				position_to_achieve = position + down_vector
 		velocity = velocity.normalized() * speed
-		
-		var temp = ""	
-		if (is_immortal):
-			temp = "_IMMORTAL"
-		if direction == 0:
-			$Sprite.flip_h = false
-			$Sprite.play("run"+temp)
-		elif direction == 1:
-			$Sprite.flip_h = true
-			$Sprite.play("run"+temp)
-		#elif Input.is_action_pressed('ui_down') and Input.is_action_pressed('ui_up'):
-		#	$Sprite.play("idle"+temp)
-		elif direction == 3:
-			$Sprite.play("runDOWN"+temp)
-		elif direction == 2:
-			$Sprite.play("runUP"+temp)
-		else: $Sprite.play("idle"+temp)
+		play_animation()
 
 func _physics_process(delta):
 	get_parent().damageList[player_id] = bomb_dmg
 	get_input()
 	move_and_slide(velocity)
-	if (direction == 0):
+	if (direction == "right"):
 		if (position.x > position_to_achieve.x):
 			position.x = position_to_achieve.x
 			moving = false
 			velocity = Vector2()
-	if (direction == 1):
+	if (direction == "left"):
 		if (position.x < position_to_achieve.x):
 			position.x = position_to_achieve.x
 			moving = false
 			velocity = Vector2()
-	if (direction == 2):
+	if (direction == "up"):
 		if (position.y < position_to_achieve.y):
 			position.y = position_to_achieve.y
 			moving = false
 			velocity = Vector2()
-	if (direction == 3):
+	if (direction == "down"):
 		if (position.y > position_to_achieve.y):
 			position.y = position_to_achieve.y
 			moving = false

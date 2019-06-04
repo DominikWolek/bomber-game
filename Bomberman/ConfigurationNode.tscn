@@ -3,33 +3,32 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-var gameInfo={}
-var _config_file
+var game_info={}
+var config_file
 
-func _load_configuration():
-	_config_file.load(\"res://config.cfg\")
-	for section in gameInfo.keys():
-		for key in gameInfo[section]:
-			gameInfo[section][key] = _config_file.get_value(section,key,null)
+func load_configuration():
+	config_file.load(\"res://config.cfg\")
+	for section in game_info.keys():
+		for key in game_info[section]:
+			game_info[section][key] = config_file.get_value(section,key,null)
 
-func _change_settings(section,key,value):
-	gameInfo[section][key] = value
+func change_and_commit(section,key,value):
+	game_info[section][key] = value
+	config_file.set_value(section,key,game_info[section][key])
+	config_file.save(\"res://config.cfg\")
 
-func _change_and_commit(section,key,value):
-	gameInfo[section][key] = value
-	_config_file.set_value(section,key,gameInfo[section][key])
-	_config_file.save(\"res://config.cfg\")
-
+\"\"\"
 func _commit_changes():
-	for section in gameInfo.keys():
-		for key in gameInfo[section]:
-			_config_file.set_value(section,key,gameInfo[section][key])
-	_config_file.save(\"res://config.cfg\")
+	for section in game_info.keys():
+		for key in game_info[section]:
+			config_file.set_value(section,key,game_info[section][key])
+	config_file.save(\"res://config.cfg\")
+\"\"\"
 
-func _get_value(section,key):
-	return gameInfo[section][key]
+func get_value(section,key):
+	return game_info[section][key]
 
-func _ready():
+func add_actions():
 	InputMap.add_action(\"P1_ui_up\")
 	InputMap.add_action(\"P2_ui_up\")
 	InputMap.add_action(\"P3_ui_up\")
@@ -50,9 +49,11 @@ func _ready():
 	InputMap.add_action(\"P2_ui_select\")
 	InputMap.add_action(\"P3_ui_select\")
 	InputMap.add_action(\"P4_ui_select\")
-	
-	_config_file = ConfigFile.new()
-	gameInfo = {
+
+func _ready():
+	add_actions()
+	config_file = ConfigFile.new()
+	game_info = {
 		\"map\": {
 			\"map_type\": null
 		},
@@ -107,89 +108,37 @@ func _ready():
 			\"sfxSwitch\": false
 		},
 	}
-	
-	_load_configuration()
-	
-	UpdateMoveSet(\"P1\")
-	UpdateMoveSet(\"P2\")
-	UpdateMoveSet(\"P3\")
-	UpdateMoveSet(\"P4\")
+	load_configuration()
+	update_move_set(\"P1\")
+	update_move_set(\"P2\")
+	update_move_set(\"P3\")
+	update_move_set(\"P4\")
 
-func UpdateMoveSet(PlayerID):
+func update_move_set(PlayerID):
 	var UPevent = InputEventKey.new()
-	UPevent.set_scancode( gameInfo[PlayerID][\"up\"] )
+	UPevent.set_scancode( game_info[PlayerID][\"up\"] )
 	InputMap.action_erase_events(PlayerID+'_ui_up') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_up',UPevent)
 	
 	var DOWNevent = InputEventKey.new()
-	DOWNevent.set_scancode( gameInfo[PlayerID][\"down\"] )
+	DOWNevent.set_scancode( game_info[PlayerID][\"down\"] )
 	InputMap.action_erase_events(PlayerID+'_ui_down') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_down',DOWNevent)
 	
 	var LEFTevent = InputEventKey.new()
-	LEFTevent.set_scancode( gameInfo[PlayerID][\"left\"] )
+	LEFTevent.set_scancode( game_info[PlayerID][\"left\"] )
 	InputMap.action_erase_events(PlayerID+'_ui_left') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_left',LEFTevent)
 	
 	var RIGHTevent = InputEventKey.new()
-	RIGHTevent.set_scancode( gameInfo[PlayerID][\"right\"] )
+	RIGHTevent.set_scancode( game_info[PlayerID][\"right\"] )
 	InputMap.action_erase_events(PlayerID+'_ui_right') # dac do kazdego klawisza.
 	InputMap.action_add_event( PlayerID+'_ui_right',RIGHTevent)
 	
 	var BOMBevent = InputEventKey.new()
-	BOMBevent.set_scancode( gameInfo[PlayerID][\"bomb\"] )
+	BOMBevent.set_scancode( game_info[PlayerID][\"bomb\"] )
 	InputMap.action_erase_events(PlayerID+'_ui_select') # dac do kazdego klawisza.
-	InputMap.action_add_event( PlayerID+'_ui_select',BOMBevent)
-	
-	#gameInfo.map = 0
-	#gameInfo.P1 = {Name = \"P1\" , isBot=false, color = 0,isPlaying = true}
-	#gameInfo.P2 = {Name = \"P2\" , isBot=true,  color = 0,isPlaying = true}
-	#gameInfo.P3 = {Name = \"P3\" , isBot=false, color = 0,isPlaying = false}
-	#gameInfo.P4 = {Name = \"P4\" , isBot=false, color = 0,isPlaying = false}
-	#UpdateMoveSet()
-	
-	
-	
-# player movement settings [playerID, up , down, left, right, placebomb ]
-
-#var P1 = ['P1',KEY_W,KEY_S,KEY_A,KEY_D,KEY_SPACE]
-#var P2 = ['P2',KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_ENTER]
-#var P3 = ['P3',KEY_T,KEY_G,KEY_F,KEY_H,KEY_Y]
-#var P4 = ['P4',KEY_I,KEY_K,KEY_J,KEY_L,KEY_O]
-#var PList = [P1,P2,P3,P4]
-
-#func setNewMoveSet( plist ):
-#	PList = plist
-#	UpdateMoveSet()
-
-
-
-
-#func UpdateMoveSet( ):
-#	
-#	for x in PList:
-#		var UPevent = InputEventKey.new()
-#		UPevent.set_scancode( x[1] )
-#		InputMap.action_add_event( x[0]+'_ui_up',UPevent)
-#		
-#		var DOWNevent = InputEventKey.new()
-#		DOWNevent.set_scancode( x[2] )
-#		InputMap.action_add_event( x[0]+'_ui_down',DOWNevent)
-#		
-#		var LEFTevent = InputEventKey.new()
-#		LEFTevent.set_scancode( x[3] )
-#		InputMap.action_add_event( x[0]+'_ui_left',LEFTevent)
-#		
-#		var RIGHTevent = InputEventKey.new()
-#		RIGHTevent.set_scancode( x[4] )
-#		InputMap.action_add_event( x[0]+'_ui_right',RIGHTevent)
-#		
-#		var BOMBevent = InputEventKey.new()
-#		BOMBevent.set_scancode( x[5] )
-#		InputMap.action_add_event( x[0]+'_ui_select',BOMBevent)
-		
-		
-"
+	InputMap.action_add_event( PlayerID+'_ui_select',BOMBevent)"
 
 [node name="Node2D" type="Node2D"]
 script = SubResource( 1 )

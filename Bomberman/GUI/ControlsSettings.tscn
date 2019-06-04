@@ -11,44 +11,44 @@
 script/source = "extends VBoxContainer
 
 var player_id = 'P1'
-var gameInfo
+var game_info
 
 func _ready():
-	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 
 func _process(delta):
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 	"
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends VBoxContainer
 
 var player_id = 'P2'
-var gameInfo
+var game_info
 
 func _ready():
-	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 
 func _process(delta):
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 	
 "
 
@@ -56,44 +56,44 @@ func _process(delta):
 script/source = "extends VBoxContainer
 
 var player_id = 'P3'
-var gameInfo
+var game_info
 
 func _ready():
-	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 
 func _process(delta):
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 	"
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends VBoxContainer
 
 var player_id = 'P4'
-var gameInfo
+var game_info
 
 func _ready():
-	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 
 func _process(delta):
-	get_child(1).text = str(gameInfo[player_id][\"up\"])
-	get_child(2).text = str(gameInfo[player_id][\"down\"])
-	get_child(3).text = str(gameInfo[player_id][\"left\"])
-	get_child(4).text = str(gameInfo[player_id][\"right\"])
-	get_child(5).text = str(gameInfo[player_id][\"bomb\"])
+	get_child(1).text = str(game_info[player_id][\"up\"])
+	get_child(2).text = str(game_info[player_id][\"down\"])
+	get_child(3).text = str(game_info[player_id][\"left\"])
+	get_child(4).text = str(game_info[player_id][\"right\"])
+	get_child(5).text = str(game_info[player_id][\"bomb\"])
 	"
 
 [node name="Node2D" type="Node2D"]
@@ -233,7 +233,6 @@ margin_bottom = 134.0
 script = ExtResource( 5 )
 
 [node name="P4Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
-editor/display_folded = true
 margin_left = 538.0
 margin_right = 589.0
 margin_bottom = 559.0

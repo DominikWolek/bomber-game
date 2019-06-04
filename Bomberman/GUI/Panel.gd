@@ -1,41 +1,41 @@
 extends Panel
 
-var gameInfo = {}
+var game_info = {}
 var colors = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	gameInfo = get_node("/root/ConfigurationNode").gameInfo
+	game_info = get_node("/root/ConfigurationNode").game_info
 	colors = ["Basic","Red","Blue","Green","Yellow","Grey","Pink"]
-	_PlayerChanged("P1")
-	_PlayerChanged("P2")
-	_PlayerChanged("P3")
-	_PlayerChanged("P4")
+	player_changed("P1")
+	player_changed("P2")
+	player_changed("P3")
+	player_changed("P4")
 
-func _PlayerChanged(player):
+func player_changed(player):
 	var play = get_node(player+"Settings")
-	play.get_node("Name").text = gameInfo[player]["name"]
-	play.get_node("Color").text = colors[gameInfo[player]["color"]]
-	play.get_node("isBot").pressed = gameInfo[player]["is_bot"]
+	play.get_node("Name").text = game_info[player]["name"]
+	play.get_node("Color").text = colors[game_info[player]["color"]]
+	play.get_node("isBot").pressed = game_info[player]["is_bot"]
 	if play.has_node("isPlaying"):
-		play.get_node("isPlaying").pressed = gameInfo[player]["is_playing"]
+		play.get_node("isPlaying").pressed = game_info[player]["is_playing"]
 
-func setBot(player,info):
-	get_node("/root/ConfigurationNode")._change_and_commit(player,"is_bot",info)
+func set_bot(player,info):
+	get_node("/root/ConfigurationNode").change_and_commit(player,"is_bot",info)
 
-func setPlaying(player,info):
-	get_node("/root/ConfigurationNode")._change_and_commit(player,"is_playing",info)
+func set_playing(player,info):
+	get_node("/root/ConfigurationNode").change_and_commit(player,"is_playing",info)
 
-func setNextColor(player):
-	changePlayerColor(player,gameInfo[player]["color"])
+func set_next_color(player):
+	change_player_color(player,game_info[player]["color"])
 
-func changePlayerName(player,name):
-	get_node("/root/ConfigurationNode")._change_and_commit(player,"name", name)
-	_PlayerChanged(player)
+func change_player_name(player,name):
+	get_node("/root/ConfigurationNode").change_and_commit(player,"name", name)
+	player_changed(player)
 
-func changePlayerColor(player,color):
-	get_node("/root/ConfigurationNode")._change_and_commit(player,"color",(color+1) % 7)
-	_PlayerChanged(player)
+func change_player_color(player,color):
+	get_node("/root/ConfigurationNode").change_and_commit(player,"color",(color+1) % 7)
+	player_changed(player)
 
 func _process(delta):
 	pass
