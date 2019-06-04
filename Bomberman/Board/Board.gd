@@ -256,7 +256,7 @@ func winnerWinnerChickenDinner():
 		score_pair.score = scores[i]
 		scores_arr.append(score_pair)
 	
-	
+	scores_arr.sort_custom(score_pair, "sort")
 
 	var end_message : String
 	if(scores_arr[0].score != scores_arr[1].score): #if two players have the same score
