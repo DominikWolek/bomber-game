@@ -22,6 +22,8 @@ var player_names: Dictionary
 signal explosion( danger_list, Player)
 signal winnerWinnerChickenDinner()
 
+#pos - position. I dont think that argument position on a function
+#that's named spawn_something needs an explination
 func spawn_powerup(pos):
 	randomize()
 	if (randi() % 100) < 50: #50% szans ze wypadnie powerup
@@ -274,7 +276,6 @@ func winnerWinnerChickenDinner():
 	add_child(end_label)
 	
 	#Sounds.get_node("GamePlay").stop()
-	#maybe some other things
 	
 func _on_resize_time_timeout():
 	resize()

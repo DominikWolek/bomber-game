@@ -18,11 +18,13 @@ func _ready():
 	change_time.connect("timeout", self, "_on_change_time_timeout")
 	
 func _on_change_time_timeout():
+	#the bomb goes red and normal
 	if(modulate == colour):
 		modulate = Color(1, 0, 0)
 	else:
 		modulate = colour
 
 func _on_Timer_timeout():
+	#on timer timeout, the bomb calls board and explode
 	get_parent().explodev(position, placed_by)
 	queue_free()

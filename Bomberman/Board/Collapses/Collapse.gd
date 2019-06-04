@@ -3,6 +3,7 @@ var time
 var change_time
 
 func _ready():
+	#we add two timers. really, nothing worth commenting
 	time = Timer.new()
 	time.start(4)
 	add_child(time)
@@ -18,6 +19,10 @@ func _ready():
 
 
 func _on_Timer_timeout():
+	#so, basically
+	#when the timer ends, every collapse object have an Area2D node
+	#and everything on this area is thrown into /dev/null
+	#also it changes the tiles to those indestructible ones
 	for i in get_overlapping_bodies():
 		if(i.has_method("immediateDeath")):
 			i.immediateDeath()
@@ -34,6 +39,7 @@ func _on_Timer_timeout():
 
 
 func _on_TimerChange_timeout():
+	#here the red line makes BLING BLING
 	if(get_node("Line2D2").visible):
 		get_node("Line2D2").visible = false
 	else:

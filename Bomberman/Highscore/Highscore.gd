@@ -9,8 +9,10 @@ func get_list():
 	var high_score_file = File.new()
 	high_score_file.open(file_name, File.READ)
 	var score_pair
-	#table = []
-
+	#the file looks like this
+	#number_of_records
+	#nickname - score
+	#and repeat that pair times number_of_records
 	if(high_score_file.get_len() > 0):
 		var size = int(high_score_file.get_line())
 		for i in size:
@@ -25,11 +27,16 @@ func get_list():
 func try_to_add(nickname, score):
 	var high_score_file = File.new()
 	var table = get_list()
+	#score pair is just a pair of nickname and score
+	#cause no std::pair<std::string, int> in GDScript
 	var score_pair = _score_pair.new()
 	score_pair.nickname = nickname
 	score_pair.score = score
 	if(table.size() == 0):
+		#that happens if the highscore is empty
 		table.push_back(score_pair)
+		#we open the file, we write our only score to that
+		#and then we close it. EZ
 		high_score_file.open(file_name, File.WRITE)
 		high_score_file.store_line(str(table.size()) + "\r")
 		high_score_file.store_line(table[0].nickname + "\r")
@@ -46,9 +53,12 @@ func try_to_add(nickname, score):
 			#there can by only a certain number of scores
 			table.pop_back()
 		table.push_back(score_pair)
+		#here we sort th highscore list, so it's nice and ordered
 		table.sort_custom(score_pair, "sort")
-
-		
+	
+		#same as above, we just save the highscore content to file
+		#also, i rewrite file all the time instead of editing
+		#it's way easier. faster also
 		high_score_file.open(file_name, File.WRITE)
 		high_score_file.store_line(str(table.size()) + "\r")
 		for i in table:
@@ -60,12 +70,8 @@ func try_to_add(nickname, score):
 	return false
 
 func reset():
+	#here i just clear the file (opening in WRITE mode
+	#clears the insides)
 	var high_score_file = File.new()
 	high_score_file.open(file_name, File.WRITE)
 	high_score_file.close()
-
-func _ready():
-	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
