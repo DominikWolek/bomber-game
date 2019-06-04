@@ -34,4 +34,4 @@ margin_bottom = 648.805
 script = ExtResource( 3 )
 
 [connection signal="pressed" from="Panel/ResetButton" to="Panel/ResetButton" method="_on_ResetButton_pressed"]
-[connection signal="pressed" from="Panel/SoundsBackButton" to="Panel/SoundsBackButton" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Panel/SoundsBackButton" to="Panel/SoundsBackButton" method="_on_SoundsBackButton_pressed"]
