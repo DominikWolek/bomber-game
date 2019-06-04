@@ -4,8 +4,8 @@ extends RichTextLabel
 # var a = 2
 # var b = "text"
 func reload():
-	clear()
-	var scores = Highscore.GetList()
+	text = ""
+	var scores = Highscore.get_list()
 	for i in scores:
 		add_text(i.nickname + " - " + str(i.score) )
 		newline()

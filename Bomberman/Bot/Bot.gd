@@ -89,7 +89,7 @@ func _ready():
 
 func winner():
 	if(!dead):
-		Highscore.tryToAdd(Name, score)
+		Highscore.try_to_add(Name, score)
 
 func _on_Bomb_explosion(danger_list, player):
 	for i in danger_list:

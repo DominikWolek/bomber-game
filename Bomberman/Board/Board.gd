@@ -262,7 +262,7 @@ func winnerWinnerChickenDinner():
 	if(scores_arr[0].score != scores_arr[1].score): #if two players have the same score
 	#we don't save it
 		end_message = "Congratulations " + player_names[scores_arr[0].nickname] + "!\r\nYou've scored "+str(scores_arr[0].score) + " points, " 
-		if(Highscore.tryToAdd(player_names[scores_arr[0].nickname], scores_arr[0].score)):
+		if(Highscore.try_to_add(player_names[scores_arr[0].nickname], scores_arr[0].score)):
 			end_message += "and you've managed to get into the highscore list!"
 		else:
 			end_message += "but you didn't make it into the highscore list!"
