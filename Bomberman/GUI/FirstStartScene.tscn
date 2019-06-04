@@ -7,29 +7,29 @@
 script/source = "extends VBoxContainer
 
 func _on_Name_text_entered(new_text):
-	get_parent().changePlayerName(\"P1\",new_text)
+	get_parent().change_player_name(\"P1\",new_text)
 
 func _on_isBot_toggled(button_pressed):
-	get_parent().setBot(\"P1\",button_pressed)
+	get_parent().set_bot(\"P1\",button_pressed)
 
 func _on_Color_focus_entered():
-	get_parent().setNextColor(\"P1\")
+	get_parent().set_next_color(\"P1\")
 
 func _on_NextColor_pressed():
-	get_parent().setNextColor(\"P1\")
+	get_parent().set_next_color(\"P1\")
 "
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends VBoxContainer
 
 func _on_Name_text_entered(new_text):
-	get_parent().changePlayerName(\"P2\",new_text)
+	get_parent().change_player_name(\"P2\",new_text)
 
 func _on_isBot_toggled(button_pressed):
-	get_parent().setBot(\"P2\",button_pressed)
+	get_parent().set_bot(\"P2\",button_pressed)
 
 func _on_NextColor_pressed():
-	get_parent().setNextColor(\"P2\")
+	get_parent().set_next_color(\"P2\")
 "
 
 [sub_resource type="GDScript" id=3]
@@ -37,17 +37,16 @@ script/source = "extends VBoxContainer
 
 
 func _on_Name_text_entered(new_text):
-	get_parent().changePlayerName(\"P3\",new_text)
+	get_parent().change_player_name(\"P3\",new_text)
 
 func _on_isBot_toggled(button_pressed):
-	get_parent().setBot(\"P3\",button_pressed)
+	get_parent().set_bot(\"P3\",button_pressed)
 
 func _on_NextColor_pressed():
-	get_parent().setNextColor(\"P3\")
-
+	get_parent().set_next_color(\"P3\")
 
 func _on_isPlaying_toggled(button_pressed):
-	get_parent().setPlaying(\"P3\",button_pressed)
+	get_parent().set_playing(\"P3\",button_pressed)
 "
 
 [sub_resource type="GDScript" id=4]
@@ -55,17 +54,17 @@ script/source = "extends VBoxContainer
 
 
 func _on_Name_text_entered(new_text):
-	get_parent().changePlayerName(\"P4\",new_text)
+	get_parent().change_player_name(\"P4\",new_text)
 
 func _on_isBot_toggled(button_pressed):
-	get_parent().setBot(\"P4\",button_pressed)
+	get_parent().set_bot(\"P4\",button_pressed)
 
 func _on_NextColor_pressed():
-	get_parent().setNextColor(\"P4\")
+	get_parent().set_next_color(\"P4\")
 
 
 func _on_isPlaying_toggled(button_pressed):
-	get_parent().setPlaying(\"P4\",button_pressed)"
+	get_parent().set_playing(\"P4\",button_pressed)"
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Button

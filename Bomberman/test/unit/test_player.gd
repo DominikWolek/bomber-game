@@ -30,30 +30,30 @@ class TestBot:
 		player = _player.instance()
 		var names = ['A', 1, 'bbbxcb', '23123', 'ASkdj123][FFFFFFF;/aFSDsd']
 		for name in names:
-			player.setNickname(name)
-			assert_eq(player.Name, name)
+			player.set_nickname(name)
+			assert_eq(player.name, name)
 
 	func test_addBomb():
 		player = _player.instance()
 		for i in range(LIMIT):
 			player = _player.instance()
 			for j in range(i):
-				player.addBomb()
-			assert_eq(player.canPlant, INITIAL_NUMBER_OF_BOMBS + i)
+				player.add_bomb()
+			assert_eq(player.can_plant, INITIAL_NUMBER_OF_BOMBS + i)
 	
 	func test_speedUP_add_limit_times():
 		player = _player.instance()
 		for i in range(LIMIT):
 			player = _player.instance()
 			for j in range(i):
-				player.speedUP()
+				player.speed_up()
 			assert_eq(player.speed, INITIAL_SPEED + i * SPEED_CHANGE)
 	
 	
 	func test_speedUP_add_one_time():
 		player = _player.instance()
 		player = _player.instance()
-		player.speedUP()
+		player.speed_up()
 		assert_eq(player.speed, INITIAL_SPEED + SPEED_CHANGE)
 	
 	
@@ -61,10 +61,10 @@ class TestBot:
 		for i in range(LIMIT):
 			player = _player.instance()
 			for j in range(i):
-				player.increaseDMG()
-			assert_eq(player.bombDMG, INITIAL_BOMB_DMG + i)
+				player.increase_dmg()
+			assert_eq(player.bomb_dmg, INITIAL_BOMB_DMG + i)
 
 	func test_increaseDMG_one_time():
 		player = _player.instance()
-		player.increaseDMG()
-		assert_eq(player.bombDMG, INITIAL_BOMB_DMG + 1)
+		player.increase_dmg()
+		assert_eq(player.bomb_dmg, INITIAL_BOMB_DMG + 1)

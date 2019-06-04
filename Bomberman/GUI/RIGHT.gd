@@ -1,13 +1,11 @@
 extends Button
 
-var playerID
+var player_id
 var code
 
 func _ready():
-	playerID = get_parent().playerID
-	
-	
 #funkcja blokuje sygnal i obsluguje zmiane przycisku
+	player_id = get_parent().player_id
 func _on_RIGHT_pressed():
 	#sprawdzenie czy inny przycisk nie jest obslugiwany	
 	if ( get_parent().get_parent().getSignal() == true ):
@@ -18,10 +16,12 @@ func _on_RIGHT_pressed():
 	set_process_input(true)
 	add_user_signal("AnyKeyClicked")
 	yield(self,"AnyKeyClicked")
-	get_node("/root/ConfigurationNode")._change_and_commit(playerID,"right",code)
-	get_node("/root/ConfigurationNode").UpdateMoveSet(playerID)
 	get_parent().get_parent().setSignalOff()
 #funkcja nadpisujaca standardowa obsluge wejscia	
+	get_node("/root/ConfigurationNode").change_and_commit(player_id,"right",code)
+	get_node("/root/ConfigurationNode").update_move_set(player_id)
+	
+	
 func _input(event):
 	if event is InputEventKey:
 			 code = event.get_scancode()

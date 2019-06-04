@@ -38,4 +38,4 @@ func _physics_process(delta):
 		var bodies = get_overlapping_bodies()
 		for body in bodies:
 			died = true
-			exploded(body.Name)
+			exploded(body.name)

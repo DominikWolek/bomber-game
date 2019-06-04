@@ -24,8 +24,8 @@ func _on_Timer_timeout():
 	#and everything on this area is thrown into /dev/null
 	#also it changes the tiles to those indestructible ones
 	for i in get_overlapping_bodies():
-		if(i.has_method("immediateDeath")):
-			i.immediateDeath()
+		if(i.has_method("immediate_death")):
+			i.immediate_death()
 		elif(i.name != "Board"):
 			i.queue_free()
 	

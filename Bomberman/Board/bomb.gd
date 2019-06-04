@@ -1,6 +1,6 @@
 extends RigidBody2D
 var time
-var colour = get_modulate()
+var color = get_modulate()
 var change_time
 var placed_by
 
@@ -19,10 +19,10 @@ func _ready():
 	
 func _on_change_time_timeout():
 	#the bomb goes red and normal
-	if(modulate == colour):
+	if(modulate == color):
 		modulate = Color(1, 0, 0)
 	else:
-		modulate = colour
+		modulate = color
 
 func _on_Timer_timeout():
 	#on timer timeout, the bomb calls board and explode

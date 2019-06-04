@@ -3,7 +3,7 @@ extends Area2D
 func _physics_process(delta):
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
-		if (body.has_method("increaseDMG")):
-			body.increaseDMG()
+		if (body.has_method("increase_dmg")):
+			body.increase_dmg()
 			queue_free()
 			return

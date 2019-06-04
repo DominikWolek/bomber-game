@@ -41,6 +41,7 @@ func spawn_powerup(pos):
 			powerup.position = pos
 			get_parent().add_child(powerup)
 
+<<<<<<< HEAD
 
 #function explode is used to literally make an explosion on the board
 #it is responsible for the particle effects and lighs effects
@@ -48,7 +49,10 @@ func spawn_powerup(pos):
 #and informing him about it
 #v at the end is a naming convention in Godot
 #it means that the funcion accepts Vector as it's argument
-func explodev(initial_pos, player):
+func cellv_from_position(position):
+	return get_cellv(world_to_map(position))
+
+func explodev(initialPos, player):
 	var sparks
 	var leng
 	var pos
@@ -69,8 +73,6 @@ func explodev(initial_pos, player):
 	add_child(sparks) 
 	sparks.set_one_shot(true)
 	sparks.set_emitting(true)
-	
-	
 	#we treat explosions as a 4 "row" explosions
 	for i in range(4):
 		leng = damage_list[player]
@@ -106,7 +108,6 @@ func explodev(initial_pos, player):
 			sparks.set_emitting(true)
 			leng -= 1
 			pos += step
-	
 	#that's self explanatory
 	emit_signal("explosion", danger_list, player)
 
@@ -147,12 +148,11 @@ func _ready():
 	#here we prepare the boards for our players
 	#we play sounds, if they didn't turn it off
 	Sounds.get_node("MainMenu").stop()
-	if (ConfigurationNode._get_value("Sounds", "soundSwitch")):
+	if (ConfigurationNode.get_value("Sounds", "soundSwitch")):
 		Sounds.get_node("GamePlay").play()
 	
-	var game_info = get_node("/root/ConfigurationNode").gameInfo
-	
 	#we load the chosen map
+	var game_info = get_node("/root/ConfigurationNode").game_info
 	if(game_info["map"]["map_type"] == 1):
 		set_tileset(load("res://Assets/TileSets/Dirt.tres"))
 	elif(game_info["map"]["map_type"] == 2):
@@ -201,6 +201,7 @@ func _ready():
 	if game_info["P4"]["is_playing"] :
 		if game_info["P4"]["is_bot"] :
 			p4 = load("res://Bot/Bot.tscn").instance()
+
 		else:
 			p4 = load("res://Player/Player.tscn").instance()
 	
@@ -214,27 +215,27 @@ func _ready():
 		if i:
 			player_count  += 1
 			add_child(i)
-			i.playerID = "P"+str(j+1)
-			scores[i.playerID] = 0
-			i.Name = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"name")
-			player_names[i.playerID] = i.Name
-			i.position=positions[j]
-			var colour = get_node("/root/ConfigurationNode")._get_value("P"+str(j+1),"colour")
-			if colour == 0:
-				i.colour = Color(0,0,0,1)
-			elif colour == 1:
-				i.colour = Color( 0.8, 0.36, 0.36, 1 )
-			elif colour == 2:
-				i.colour = Color( 0.69, 0.88, 0.9, 1 )
-			elif colour == 3:
-				i.colour = Color( 0.6, 0.98, 0.6, 1 )
-			elif colour == 4:
-				i.colour = Color( 1, 1, 0, 1 )
-			elif colour == 5:
-				i.colour = Color( 0.55, 0.55, 0.55, 1 )
-			elif colour == 6:
-				i.colour = Color( 1, 0.41, 0.71, 1 )
-			i._check_colour()
+			i.player_id = "P"+str(j+1)
+			scores[i.player_id] = 0
+			i.name = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"name")
+			playerNames[i.player_id] = i.name
+			i.position=_positions[j]
+			var color = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"color")
+			if color == 0:
+				i.color = Color(0,0,0,1)
+			elif color == 1:
+				i.color = Color( 0.8, 0.36, 0.36, 1 )
+			elif color == 2:
+				i.color = Color( 0.69, 0.88, 0.9, 1 )
+			elif color == 3:
+				i.color = Color( 0.6, 0.98, 0.6, 1 )
+			elif color == 4:
+				i.color = Color( 1, 1, 0, 1 )
+			elif color == 5:
+				i.color = Color( 0.55, 0.55, 0.55, 1 )
+			elif color == 6:
+				i.color = Color( 1, 0.41, 0.71, 1 )
+			i._check_color()
 			i.score = 0
 		j+=1
 	
