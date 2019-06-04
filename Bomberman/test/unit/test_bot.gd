@@ -84,7 +84,7 @@ class TestBot:
 		bot.score = 100000000
 		Highscore.reset()
 		bot.winner()
-		var scorepairs = Highscore.GetList()
+		var scorepairs = Highscore.get_list()
 		var scores = []
 		for sp in scorepairs:
 			scores.append(sp.score)

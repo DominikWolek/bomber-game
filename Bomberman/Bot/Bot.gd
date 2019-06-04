@@ -12,7 +12,7 @@ export var colour = Color(0, 0, 0)
 var playerID = "P5"
 var dead
 
-var dangerList = Array()
+var danger_list = Array()
 var player = int()
 
 export (int) var speed = 200
@@ -47,8 +47,8 @@ func immediateDeath(): # przy zmniejszaniu sie mapy
 	dead = true
 	Sounds.get_node("Death").position = position
 	Sounds.get_node("Death").play()
-	get_parent().activePlayers -= 1
-	if(get_parent().activePlayers == 1):
+	get_parent().active_players -= 1
+	if(get_parent().active_players == 1):
 		get_parent().winnerWinnerChickenDinner()
 	queue_free()
 
@@ -82,17 +82,17 @@ func _check_colour():
 func _ready():
 	dead = false
 	score  = 0
-	get_parent().connect("explosion", self, "_on_Bomb_explosion", dangerList, player)
+	get_parent().connect("explosion", self, "_on_Bomb_explosion", danger_list, player)
 	randomize()
 	get_parent().connect("winnerWinnerChickenDinner", self, "winner")
 
 
 func winner():
 	if(!dead):
-		Highscore.tryToAdd(Name, score)
+		Highscore.try_to_add(Name, score)
 
-func _on_Bomb_explosion(dangerList, player):
-	for i in dangerList:
+func _on_Bomb_explosion(danger_list, player):
+	for i in danger_list:
 		if ( i == get_parent().world_to_map(position)):
 			exploded(player)
 
@@ -222,7 +222,7 @@ func get_input():
 		else: $Sprite.play("idle"+temp)
 
 func _physics_process(delta):
-	get_parent().damageList[playerID] = bombDMG
+	get_parent().damage_list[playerID] = bombDMG
 	get_input()
 	move_and_slide(velocity)
 	if (direction == 0):

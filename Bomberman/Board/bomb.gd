@@ -2,7 +2,7 @@ extends RigidBody2D
 var time
 var colour = get_modulate()
 var change_time
-var placedBy
+var placed_by
 
 func _ready():
 	Sounds.get_node("BombSet").position = position
@@ -18,11 +18,13 @@ func _ready():
 	change_time.connect("timeout", self, "_on_change_time_timeout")
 	
 func _on_change_time_timeout():
+	#the bomb goes red and normal
 	if(modulate == colour):
 		modulate = Color(1, 0, 0)
 	else:
 		modulate = colour
 
 func _on_Timer_timeout():
-	get_parent().bumv(position, placedBy)
+	#on timer timeout, the bomb calls board and explode
+	get_parent().explodev(position, placed_by)
 	queue_free()

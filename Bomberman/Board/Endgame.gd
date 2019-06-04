@@ -3,6 +3,7 @@ extends Panel
 var time
 
 func add(text):
+	#that just add text to the endgame screen
 	get_node("canvcas/text").add_text(text)
 
 
