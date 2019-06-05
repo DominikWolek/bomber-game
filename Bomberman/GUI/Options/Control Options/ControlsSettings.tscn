@@ -38,18 +38,18 @@ var keys
 func _ready():
 	keys = get_node(\"/root/keys\").keys
 	game_info = get_node(\"/root/ConfigurationNode\").game_info
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 
 func _process(delta):
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 	"
 
 [sub_resource type="GDScript" id=3]
@@ -64,18 +64,18 @@ var keys
 func _ready():
 	keys = get_node(\"/root/keys\").keys
 	game_info = get_node(\"/root/ConfigurationNode\").game_info
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 
 func _process(delta):
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 	
 "
 
@@ -91,18 +91,18 @@ var keys
 func _ready():
 	keys = get_node(\"/root/keys\").keys
 	game_info = get_node(\"/root/ConfigurationNode\").game_info
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 
 func _process(delta):
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 	"
 
 [sub_resource type="GDScript" id=5]
@@ -117,18 +117,18 @@ var keys
 func _ready():
 	keys = get_node(\"/root/keys\").keys
 	game_info = get_node(\"/root/ConfigurationNode\").game_info
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 
 func _process(delta):
-	get_child(1).text = str(game_info[player_id][\"up\"])
-	get_child(2).text = str(game_info[player_id][\"down\"])
-	get_child(3).text = str(game_info[player_id][\"left\"])
-	get_child(4).text = str(game_info[player_id][\"right\"])
-	get_child(5).text = str(game_info[player_id][\"bomb\"])
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
 	"
 
 [node name="Node2D" type="Node2D"]
@@ -302,6 +302,7 @@ enabled_focus_mode = 0
 script = ExtResource( 5 )
 
 [node name="P4Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
+editor/display_folded = true
 margin_left = 538.0
 margin_right = 589.0
 margin_bottom = 559.0
