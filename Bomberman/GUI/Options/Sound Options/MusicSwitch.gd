@@ -9,6 +9,9 @@ func _ready():
 
 
 func _on_MusicSwitch_toggled(button_pressed):
+	if((Sounds.get_node("MainMenu").is_playing() == false ) 
+		and button_pressed) :
+		Sounds.get_node("MainMenu").play()
 	Sounds.get_tree().call_group("Sounds", "set_stream_paused", !button_pressed)		
 	if(button_pressed == false):
 		get_parent().get_node("MusicSlider").value = -10

@@ -80,14 +80,14 @@ func step(var i):
 		3:
 			step = Vector2(0, -64)
 	return step
+
+
 #function explode is used to literally make an explosion on the board
 #it is responsible for the particle effects and lighs effects
 #and also for calculating which player was in bomb radius,
 #and informing him about it
 #v at the end is a naming convention in Godot
 #it means that the funcion accepts Vector as it's argument
-
-
 func explodev(initial_pos, player):
 	var sparks
 	var leng
