@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://GUI/MusicSwitch.gd" type="Script" id=1]
-[ext_resource path="res://GUI/HSlider.gd" type="Script" id=2]
-[ext_resource path="res://GUI/SFXSwitch.gd" type="Script" id=3]
-[ext_resource path="res://GUI/SFXSlider.gd" type="Script" id=4]
-[ext_resource path="res://GUI/Button.gd" type="Script" id=5]
+[ext_resource path="res://GUI/Options/Sound Options/MusicSwitch.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Options/Sound Options/HSlider.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Options/Sound Options/SFXSwitch.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Options/Sound Options/SFXSlider.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Options/Sound Options/Button.gd" type="Script" id=5]
 
 [node name="Node2D" type="Node2D"]
 

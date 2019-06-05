@@ -14,7 +14,7 @@ func _ready():
 
 
 func _on_BackButton_pressed():
-	var error = get_tree().change_scene( "res://GUI/SettingsScene.tscn");
+	var error = get_tree().change_scene( "res://GUI/Options/SettingsScene.tscn");
 	if error == OK:
 		pass
 	else:

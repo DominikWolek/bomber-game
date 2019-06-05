@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://GUI/Panel.gd" type="Script" id=1]
-[ext_resource path="res://GUI/StartingScript.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Character Selection/Panel.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Character Selection/StartingScript.gd" type="Script" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends VBoxContainer
@@ -73,7 +73,7 @@ func _ready():
 	pass
 
 func _on_BackButton_pressed():
-	var error = get_tree().change_scene( \"res://GUI/MapScene.tscn\");
+	var error = get_tree().change_scene( \"res://GUI/Map Selection/MapScene.tscn\");
 	if error == OK:
 		pass
 	else:

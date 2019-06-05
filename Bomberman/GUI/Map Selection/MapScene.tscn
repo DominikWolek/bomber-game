@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Button.gd" type="Script" id=1]
-[ext_resource path="res://GUI/Button2.gd" type="Script" id=2]
-[ext_resource path="res://GUI/TextureRect.gd" type="Script" id=3]
-[ext_resource path="res://GUI/Button3.gd" type="Script" id=4]
-[ext_resource path="res://GUI/Button4.gd" type="Script" id=5]
+[ext_resource path="res://GUI/Map Selection/Button2.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Map Selection/TextureRect.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Map Selection/Button3.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Map Selection/Button4.gd" type="Script" id=5]
 
 [sub_resource type="ImageTexture" id=1]
 

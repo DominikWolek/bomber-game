@@ -17,4 +17,4 @@ func _ready():
 	
 func _on_Timer_timeout():
 	Sounds.get_node("GamePlay").stop()
-	get_tree().change_scene( "res://GUI/MainMenuScene.tscn");
+	get_tree().change_scene( "res://GUI/Main Scene/MainMenuScene.tscn");

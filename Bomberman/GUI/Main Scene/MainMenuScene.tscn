@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://GUI/MainScenePanel.gd" type="Script" id=1]
-[ext_resource path="res://GUI/StartButton.gd" type="Script" id=2]
-[ext_resource path="res://GUI/SettingsButton.gd" type="Script" id=3]
-[ext_resource path="res://GUI/HighscoreButton.gd" type="Script" id=4]
-[ext_resource path="res://GUI/ExitButton.gd" type="Script" id=5]
+[ext_resource path="res://GUI/Main Scene/MainScenePanel.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Main Scene/StartButton.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Main Scene/SettingsButton.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Main Scene/HighscoreButton.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Main Scene/ExitButton.gd" type="Script" id=5]
 
 [node name="Node2D" type="Node2D"]
 
