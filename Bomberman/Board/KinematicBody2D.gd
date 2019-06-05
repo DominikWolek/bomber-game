@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (int) var speed = 200
 
 var velocity = Vector2()
-func get_input():
+func character_behaviour():
     velocity = Vector2()
     if Input.is_action_pressed("ui_right"):
         velocity.x += 1
@@ -25,7 +25,7 @@ func _on_Bomb_explosion(danger_list):
 		print(i)
 	
 func _physics_process(delta):
-	get_input()
+	character_behaviour()
 	move_and_slide(velocity)
 	if(Input.is_action_just_pressed("ui_select")):
 		get_parent().place_bomb(position, "test",2)

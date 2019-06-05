@@ -17,14 +17,6 @@ func change_and_commit(section,key,value):
 	config_file.set_value(section,key,game_info[section][key])
 	config_file.save(\"res://config.cfg\")
 
-\"\"\"
-func _commit_changes():
-	for section in game_info.keys():
-		for key in game_info[section]:
-			config_file.set_value(section,key,game_info[section][key])
-	config_file.save(\"res://config.cfg\")
-\"\"\"
-
 func get_value(section,key):
 	return game_info[section][key]
 
