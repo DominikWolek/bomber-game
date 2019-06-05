@@ -41,7 +41,6 @@ func spawn_powerup(pos):
 			powerup.position = pos
 			get_parent().add_child(powerup)
 
-<<<<<<< HEAD
 
 #function explode is used to literally make an explosion on the board
 #it is responsible for the particle effects and lighs effects
@@ -52,7 +51,7 @@ func spawn_powerup(pos):
 func cellv_from_position(position):
 	return get_cellv(world_to_map(position))
 
-func explodev(initialPos, player):
+func explodev(initial_pos, player):
 	var sparks
 	var leng
 	var pos
@@ -218,8 +217,8 @@ func _ready():
 			i.player_id = "P"+str(j+1)
 			scores[i.player_id] = 0
 			i.name = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"name")
-			playerNames[i.player_id] = i.name
-			i.position=_positions[j]
+			player_names[i.player_id] = i.name
+			i.position=positions[j]
 			var color = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"color")
 			if color == 0:
 				i.color = Color(0,0,0,1)

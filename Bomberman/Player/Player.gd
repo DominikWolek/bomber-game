@@ -1,31 +1,6 @@
 extends KinematicBody2D
 
-<<<<<<< HEAD
-var Name = "nickname"
-var hp = 3
-var canPlant = 1
-var isImmortal = false
-var bombDMG = 1
-var playerID = "P1"
-var danger_list = Array()
-var player = int()
 
-var score
-var dead
-export var colour = Color(0, 0, 0)
-
-export (int) var speed = 200
-
-var velocity = Vector2()
-
-func setNickname(nickname):
-	Name = nickname
-func addBomb():
-	canPlant += 1
-func increaseDMG():
-	bombDMG += 1
-func speedUP():
-=======
 var hp = 3 # ilość punktów życia gracza, zakładamy że każdy gracz posiada 3 punkty życia na początku rozgrywki
 var can_plant = 1 # ilość bomb jakie może postawić gracz
 var is_immortal = false # true jeśli gracz jest przez krótki czas nieśmiertelny
@@ -73,7 +48,6 @@ Argumenty: brak
 Funkcja zwiększa prędkość postaci o 70 jednostek.
 """
 func speed_up():
->>>>>>> zmiany_brozek
 	speed += 70
 
 """
@@ -110,19 +84,11 @@ oraz zmianę ilości aktywnych graczy na mapie
 func immediate_death(): # przy zmniejszaniu sie mapy
 	hp = 0
 	dead = true
-<<<<<<< HEAD
 	Sounds.get_node("Death").position = position
 	Sounds.get_node("Death").play()
 	get_parent().active_players -= 1
 	if(get_parent().active_players == 1):
 		get_parent().winnerWinnerChickenDinner()
-=======
-	Sounds.get_node("Death").position = position 
-	Sounds.get_node("Death").play() # ustalenie pozycji dźwięku (jest on 2 wymiarowy) i odtworzenie go
-	get_parent().activePlayers -= 1 # zmniejszenie ilości aktywnych graczy
-	if(get_parent().activePlayers == 1):
-		get_parent().winnerWinnerChickenDinner() # jeśli został tylko 1 żywy gracz, to należy ogłosić go zwycięzcą
->>>>>>> zmiany_brozek
 	queue_free()
 
 """
@@ -208,7 +174,7 @@ odpowiednich graczy oraz poruszanie i wykrywanie podkładania bomby (ogołnie
 rzeczy związane z inputem)
 """
 func _physics_process(delta):
-	get_parent().damageList[player_id] = bomb_dmg
+	get_parent().damage_list[player_id] = bomb_dmg
 	get_input()
 	move_and_slide(velocity) # funkcja odpowiedzialna za płynne poruszanie się postaci, tzw. sliding
 
@@ -253,42 +219,6 @@ func play_animation():
 	elif !Input.is_action_pressed(player_id+'_ui_down') and Input.is_action_pressed(player_id+'_ui_up'):
 		$Sprite.play("runUP"+temp)
 	else: $Sprite.play("idle"+temp)
-<<<<<<< HEAD
-	
-	
-	
-	velocity = velocity.normalized() * speed
-	if Input.is_action_just_pressed(playerID+'_ui_select'): # spacja (bomba)
-		plant_bomb()
-
-
-func _check_colour():
-	if(colour != Color(0, 0, 0, 1)):
-		modulate = colour
-
-func _ready():
-	dead = false
-	score = 0
-	get_parent().connect("explosion", self, "_on_Bomb_explosion", danger_list, player)
-	get_parent().connect("winnerWinnerChickenDinner", self, "winner")
-
-
-func winner():
-	if(!dead):
-		Highscore.try_to_add(name, score)
-
-func _on_Bomb_explosion(danger_list, player):
-	for i in danger_list:
-		if ( i == get_parent().world_to_map(position)):
-			exploded(player)
-
-func _physics_process(delta):
-	get_parent().damage_list[playerID] = bombDMG
-	get_input()
-	move_and_slide(velocity)
-	# animacje gracza
-	# print(canPlant)
-=======
 
 """
 Nazwa metody: get_input
@@ -301,4 +231,3 @@ func get_input():
 	velocity = velocity.normalized() * speed # znormalizowany kierunek ruchu pomnożony przez prędkość poruszania się gracza
 	if Input.is_action_just_pressed(player_id+'_ui_select'):
 		plant_bomb() # jeśli gracz wcisnął przycisk spacji, to wywoływana jest odpowiednia metoda.
->>>>>>> zmiany_brozek

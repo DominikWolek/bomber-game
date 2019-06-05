@@ -100,7 +100,7 @@ func random_planting():
 
 func winner():
 	if(!dead):
-		Highscore.try_to_add(Name, score)
+		Highscore.try_to_add(name, score)
 
 func _on_bomb_explosion(danger_list, player):
 	for i in danger_list:
@@ -241,7 +241,7 @@ func get_input():
 		play_animation()
 
 func _physics_process(delta):
-	get_parent().damageList[player_id] = bomb_dmg
+	get_parent().damage_list[player_id] = bomb_dmg
 	get_input()
 	move_and_slide(velocity)
 	if (direction == "right"):

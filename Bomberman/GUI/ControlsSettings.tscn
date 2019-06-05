@@ -36,24 +36,7 @@ var keys
 
 #Funkcja odswieza tekst na przyciskach
 func _ready():
-<<<<<<< HEAD
 	keys = get_node(\"/root/keys\").keys
-	gameInfo = get_node(\"/root/ConfigurationNode\").gameInfo
-	get_child(1).text = str(keys[gameInfo[playerID][\"up\"]])
-	get_child(2).text = str(keys[gameInfo[playerID][\"down\"]])
-	get_child(3).text = str(keys[gameInfo[playerID][\"left\"]])
-	get_child(4).text = str(keys[gameInfo[playerID][\"right\"]])
-	get_child(5).text = str(keys[gameInfo[playerID][\"bomb\"]])
-
-func _process(delta):
-	get_child(1).text = str(keys[gameInfo[playerID][\"up\"]])
-	get_child(2).text = str(keys[gameInfo[playerID][\"down\"]])
-	get_child(3).text = str(keys[gameInfo[playerID][\"left\"]])
-	get_child(4).text = str(keys[gameInfo[playerID][\"right\"]])
-	get_child(5).text = str(keys[gameInfo[playerID][\"bomb\"]])
-	
-"
-=======
 	game_info = get_node(\"/root/ConfigurationNode\").game_info
 	get_child(1).text = str(game_info[player_id][\"up\"])
 	get_child(2).text = str(game_info[player_id][\"down\"])
@@ -68,7 +51,6 @@ func _process(delta):
 	get_child(4).text = str(game_info[player_id][\"right\"])
 	get_child(5).text = str(game_info[player_id][\"bomb\"])
 	"
->>>>>>> zmiany_brozek
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends VBoxContainer
