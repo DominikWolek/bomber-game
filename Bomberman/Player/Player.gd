@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-
 var hp = 3 # ilość punktów życia gracza, zakładamy że każdy gracz posiada 3 punkty życia na początku rozgrywki
 var can_plant = 1 # ilość bomb jakie może postawić gracz
 var is_immortal = false # true jeśli gracz jest przez krótki czas nieśmiertelny
@@ -14,7 +13,7 @@ var score # zmienna przechowująca punkty gracza
 var dead # zmienna wskazująca na to, czy postać gracza żyje
 export var color = Color(0, 0, 0) # kolor dzięki któremu będziemy modulować wygląd postaci
 
-export (int) var speed = 200 # początkowa prędkość gracza
+var speed = 200 # początkowa prędkość gracza
 
 var velocity = Vector2() # wektor, za pomocą którego ustalamy kierunek ruchu gracza
 
@@ -49,6 +48,7 @@ Funkcja zwiększa prędkość postaci o 70 jednostek.
 """
 func speed_up():
 	speed += 70
+	pass
 
 """
 Nazwa metody: plant_bomb
@@ -163,7 +163,10 @@ func _on_bomb_explosion(danger_list, player):
 		if ( i == get_parent().world_to_map(position)):
 			exploded(player)
 
-
+func _physics_process(delta):
+	get_parent().damage_list[player_id] = bomb_dmg
+	get_input()
+	move_and_slide(velocity) # funkcja odpowiedzialna za płynne poruszanie się postaci, tzw. sliding
 
 
 """
@@ -173,10 +176,8 @@ Funkcja wykonywana ~60 razy na sekundę. Obejmuje aktualizacje siły wybuchy bom
 odpowiednich graczy oraz poruszanie i wykrywanie podkładania bomby (ogołnie
 rzeczy związane z inputem)
 """
-func _physics_process(delta):
-	get_parent().damage_list[player_id] = bomb_dmg
-	get_input()
-	move_and_slide(velocity) # funkcja odpowiedzialna za płynne poruszanie się postaci, tzw. sliding
+
+
 
 """
 Nazwa metody: movement_direction
