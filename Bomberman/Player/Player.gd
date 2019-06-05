@@ -165,8 +165,7 @@ func _on_bomb_explosion(danger_list, player):
 
 func _physics_process(delta):
 	get_parent().damage_list[player_id] = bomb_dmg
-	get_input()
-	move_and_slide(velocity) # funkcja odpowiedzialna za płynne poruszanie się postaci, tzw. sliding
+	character_behaviour()
 
 
 """
@@ -222,13 +221,14 @@ func play_animation():
 	else: $Sprite.play("idle"+temp)
 
 """
-Nazwa metody: get_input
+Nazwa metody: character_behaviour
 Argumenty: brak
-Funkcja która jest odpowiedzialna za działania związane z inputem (sterowaniem). 
+Funkcja która jest odpowiedzialna za działania związane z zachowaniem gracza (m.in. input). 
 """
-func get_input():
+func character_behaviour():
 	velocity = movement_direction()
 	play_animation()
 	velocity = velocity.normalized() * speed # znormalizowany kierunek ruchu pomnożony przez prędkość poruszania się gracza
+	move_and_slide(velocity) # funkcja odpowiedzialna za płynne poruszanie się postaci, tzw. sliding
 	if Input.is_action_just_pressed(player_id+'_ui_select'):
 		plant_bomb() # jeśli gracz wcisnął przycisk spacji, to wywoływana jest odpowiednia metoda.

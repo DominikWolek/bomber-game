@@ -8,7 +8,7 @@ const down_vector = Vector2(0,64)
 var position_to_achieve = position # pozycja którą będzie musiał osiągnąć bot
 var moving = false # na poczatku bot sie nie porusza
 var direction = "none"
-var stop = false
+var stop = false # w przypadku gdyby bot się zablokował, to musi przestać się ruszać
 
 
 func check_movement(position,prev_dir):
@@ -42,7 +42,7 @@ func check_movement(position,prev_dir):
 	array[index] += array[index-1]
 	return array
 
-func _direction(position, prev_dir):
+func new_direction(position, prev_dir):
 	var array = check_movement(position,prev_dir)
 	if array[3] == 0:
 		stop = true
@@ -106,15 +106,18 @@ func opposite_direction(current_direction):
 		return "down"
 	elif (direction == "down"): 
 		return "up"
-	else: return _direction(position, direction) # jeśli nie zdefiniowane
+	else: return new_direction(position, direction) # jeśli nie zdefiniowane
 
-func get_input():
+func character_behaviour(): 
 	if moving == false:
 		if (possible_plant(position)):
-			plant_bomb()
-			direction = opposite_direction(direction)
+			randomize()
+			if (randi() % 2) == 0:
+				plant_bomb()
+				direction = opposite_direction(direction)
+			else: direction = new_direction(position, direction)
 		else: 
-			direction = _direction(position, direction)
+			direction = new_direction(position, direction)
 		if !stop:
 			moving = true
 			if (direction == "right"):
@@ -131,11 +134,11 @@ func get_input():
 				position_to_achieve = position + down_vector
 		velocity *= speed
 		play_animation()
+	move_and_slide(velocity) # funkcja odpowiedzialna za płynne poruszanie się postaci, tzw. sliding
 
 func random_plant():
 	randomize()
-	var random_number = randi() % 10
-	if random_number <= 4:
+	if (randi() % 2) == 0:
 		plant_bomb()
 	random_planting()
 
@@ -147,29 +150,30 @@ func random_planting():
 	add_child(timer)
 	timer.start()
 
-
 func _ready():
 	random_planting()
+# tu wykona się _ready z Playera
 
 
 func _physics_process(delta):
 	if (direction == "right"):
-		if (position.x > position_to_achieve.x):
+		if (position.x >= position_to_achieve.x):
 			position.x = position_to_achieve.x
 			moving = false
 			velocity = Vector2()
 	if (direction == "left"):
-		if (position.x < position_to_achieve.x):
+		if (position.x <= position_to_achieve.x):
 			position.x = position_to_achieve.x
 			moving = false
 			velocity = Vector2()
 	if (direction == "up"):
-		if (position.y < position_to_achieve.y):
+		if (position.y <= position_to_achieve.y):
 			position.y = position_to_achieve.y
 			moving = false
 			velocity = Vector2()
 	if (direction == "down"):
-		if (position.y > position_to_achieve.y):
+		if (position.y >= position_to_achieve.y):
 			position.y = position_to_achieve.y
 			moving = false
 			velocity = Vector2()
+#tu wykonuje sie _physic_process z Playera
