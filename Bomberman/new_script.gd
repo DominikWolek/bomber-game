@@ -41,8 +41,10 @@ func spawn_powerup(pos):
 			get_parent().add_child(powerup)
 
 
+
 func cellv_from_position(position):
 	return get_cellv(world_to_map(position))
+
 
 #that function spawns particles in given position
 func spawn_sparks(pos):
@@ -80,22 +82,21 @@ func step(var i):
 		3:
 			step = Vector2(0, -64)
 	return step
+
 #function explode is used to literally make an explosion on the board
 #it is responsible for the particle effects and lighs effects
 #and also for calculating which player was in bomb radius,
 #and informing him about it
 #v at the end is a naming convention in Godot
 #it means that the funcion accepts Vector as it's argument
-
-
 func explodev(initial_pos, player):
 	var sparks
 	var leng
 	var pos
-	danger_list = Array()
 	
+	#here we set up the center of explosion
+	#and the sound of it
 	center_explosion(initial_pos)
-	danger_list.append(world_to_map(initial_pos))
 	
 	#we treat explosions as a 4 "row" explosions
 	for i in range(4):
@@ -115,7 +116,6 @@ func explodev(initial_pos, player):
 				#also, the explosion int this direction ends
 				leng = 1
 				spawn_powerup(pos)
-			#more particle effects
 			spawn_sparks(pos)
 			danger_list.append(world_to_map(pos))
 			leng -= 1
@@ -123,7 +123,7 @@ func explodev(initial_pos, player):
 	#that's self explanatory
 	emit_signal("explosion", danger_list, player)
 
-#I tried to write a self commentating code
+#I tried to write a delf commentating code
 #and i really think i succeeded here
 func place_bomb(initial_pos, player):
 	bomb = _bomb.instance()
@@ -141,7 +141,6 @@ func resize():
 		var collapse = _collapse.instance()
 		add_child(collapse)
 		resize_count += 1
-		
 
 
 func load_map(map_number):
@@ -195,7 +194,7 @@ func get_color():
 	collor_array.append(Color( 1, 0.41, 0.71, 1 ))
 	return collor_array
 
-	
+
 func _ready():
 
 	#here we prepare the boards for our players
@@ -204,31 +203,31 @@ func _ready():
 	if (ConfigurationNode.get_value("Sounds", "soundSwitch")):
 		Sounds.get_node("GamePlay").play()
 	
+	#we load the chosen map
 	var game_info = get_node("/root/ConfigurationNode").game_info
 	
-	#we load the chosen map
 	load_map(game_info["map"]["map_type"])
 	var positions = starting_positions()
-	var players= get_player_data(game_info)
+	var players = get_player_data(game_info)
 	
-	var color_map = get_color()
-	var j = 0
+	
 	var player_count = 0
+	var j =1
 	for i in players :
+		
 		#here we shuffle the positions,
 		#modulate the colours, assigns names
-		if i:
+		if(i!=null):
 			player_count  += 1
 			add_child(i)
-			i.player_id = "P"+str(j+1)
+			i.player_id = "P"+str(j)
 			scores[i.player_id] = 0
-			i.name = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"name")
+			i.name = get_node("/root/ConfigurationNode").get_value("P"+str(j),"name")
 			player_names[i.player_id] = i.name
-			i.position=positions[j]
-			var color = get_node("/root/ConfigurationNode").get_value("P"+str(j+1),"color")
-			i.color = color_map[color]
+			i.position=positions[j -1]
+			var color = get_node("/root/ConfigurationNode").get_value("P"+str(j),"color")
+			i.color = get_color()[color]
 			i._check_color()
-			i.score = 0
 		j+=1
 	
 	active_players = player_count
@@ -246,6 +245,7 @@ func game_winner():
 	var score_pair
 	var scores_arr: Array
 	for i in scores.keys():
+		print(scores[i])
 		score_pair = _score_pair.new()
 		score_pair.nickname = i
 		score_pair.score = scores[i]
