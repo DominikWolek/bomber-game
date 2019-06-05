@@ -14,7 +14,7 @@ func _ready():
 
 
 func _on_NextButton_pressed():
-	var error = get_tree().change_scene( "res://GUI/FirstStartScene.tscn");
+	var error = get_tree().change_scene( "res://GUI/Character Selection/FirstStartScene.tscn");
 	if error == OK:
 		pass
 	else:

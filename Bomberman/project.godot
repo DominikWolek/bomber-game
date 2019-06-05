@@ -16,14 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Bomberman"
-run/main_scene="res://GUI/MainMenuScene.tscn"
+run/main_scene="res://GUI/Main Scene/MainMenuScene.tscn"
 
 [autoload]
 
 ConfigurationNode="*res://ConfigurationNode.tscn"
 Sounds="*res://Sounds/Sounds.tscn"
 Highscore="*res://Highscore/Highscore.tscn"
-SoundSettings="*res://GUI/SoundSettings.tscn"
+SoundSettings="*res://GUI/Options/Sound Options/SoundSettings.tscn"
 keys="*res://keys.gd"
 
 [display]

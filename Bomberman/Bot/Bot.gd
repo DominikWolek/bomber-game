@@ -1,9 +1,12 @@
 extends "res://Player/Player.gd"
 
+
+
 const right_vector = Vector2(64,0)
 const left_vector = Vector2(-64,0)
 const up_vector = Vector2(0,-64)
 const down_vector = Vector2(0,64)
+
 
 var position_to_achieve = position # pozycja którą będzie musiał osiągnąć bot
 var moving = false # na poczatku bot sie nie porusza

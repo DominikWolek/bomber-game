@@ -5,7 +5,7 @@ func _ready():
 
 
 func _on_StartButton_pressed():
-	var error = get_tree().change_scene( "res://GUI/MapScene.tscn");
+	var error = get_tree().change_scene( "res://GUI/Map Selection/MapScene.tscn");
 	if error == OK:
 		pass
 	else:
