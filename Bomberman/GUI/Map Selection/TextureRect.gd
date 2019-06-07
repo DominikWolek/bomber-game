@@ -7,30 +7,18 @@ func _ready():
 	if (map < 1 or map > 5):
 		map = 1
 		get_node("/root/ConfigurationNode").change_and_commit("map","map_type",map)
-	image = Image.new()
-	image.load("res://Assets/"+String(map)+".PNG")
-	tex = ImageTexture.new()
-	tex.create_from_image(image)
-	texture = tex
+	self.texture = load("res://Assets/"+String(map)+".PNG")
 
 func next_map():
 	map = (map+1) % 5
 	if (map == 0):
 		map = 5
-	image = Image.new()
-	image.load("res://Assets/"+String(map)+".PNG")
-	tex = ImageTexture.new()
-	tex.create_from_image(image)
-	texture = tex
+	self.texture = load("res://Assets/"+String(map)+".PNG")
 	get_node("/root/ConfigurationNode").change_and_commit("map","map_type",map)
 
 func prev_map():
 	map = (map-1) % 5
 	if (map == 0):
 		map = 5
-	image = Image.new()
-	image.load("res://Assets/"+String(map)+".PNG")
-	tex = ImageTexture.new()
-	tex.create_from_image(image)
-	texture = tex
+	self.texture = load("res://Assets/"+String(map)+".PNG")
 	get_node("/root/ConfigurationNode").change_and_commit("map","map_type",map)
