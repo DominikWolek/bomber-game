@@ -4,6 +4,7 @@ var _sparks = load("res://Board/explosionParticle.tscn")
 var _bomb = load("res://Board/bomb.tscn")
 var _light = load("res://Board/Light2D.tscn")
 
+const bot_can_win = false
 
 var bomb
 var light
@@ -241,13 +242,19 @@ func _ready():
 #that function is called when somebody wins the game
 func game_winner():
 	#here we rank our players
+	var game_info = get_node("/root/ConfigurationNode").game_info
+	
 	var _score_pair = load("res://Highscore/ScorePair.gd")
 	var score_pair
 	var scores_arr: Array
 	for i in scores.keys():
 		score_pair = _score_pair.new()
-		score_pair.nickname = i
-		score_pair.score = scores[i]
+		if((bot_can_win == false) and (game_info[str(i)]["is_bot"] )):
+			score_pair.nickname = "BOT"
+			score_pair.score = -1
+		else:
+			score_pair.nickname = i
+			score_pair.score = scores[i]
 		scores_arr.append(score_pair)
 	
 	scores_arr.sort_custom(score_pair, "sort")
