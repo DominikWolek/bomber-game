@@ -141,7 +141,6 @@ func resize():
 		var collapse = _collapse.instance()
 		add_child(collapse)
 		resize_count += 1
-		
 
 
 func load_map(map_number):
