@@ -150,7 +150,7 @@ Funkcja, która jeśli postać gracza żyje to wywołuje funkcję tryToAdd w sin
 """
 func winner():
 	if(!dead):
-		Highscore.tryToAdd(name, score)
+		Highscore.try_to_add(name, score)
 
 """
 Nazwa metody: 
