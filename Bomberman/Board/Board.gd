@@ -274,7 +274,6 @@ func game_winner():
 	end_label.add(end_message)
 	add_child(end_label)
 	
-	#Sounds.get_node("GamePlay").stop()
 	
 func _on_resize_time_timeout():
 	resize()
