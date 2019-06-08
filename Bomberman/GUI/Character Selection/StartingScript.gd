@@ -1,21 +1,13 @@
 extends Button
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func _on_NextButton_pressed():
-	var error = get_tree().change_scene( "res://Board/Board.tscn");
-	if error == OK:
-		pass
+	if(get_parent().check_all_names()):
+		var error = get_tree().change_scene( "res://Board/Board.tscn");
+		if error == OK:
+			pass
+		else:
+			print(error);
 	else:
-		print(error);
+		var message = "[center]Wrong nicknames"
+		get_parent().get_node("ErrorMessage").bbcode_text = message
