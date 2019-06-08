@@ -36,8 +36,8 @@ class TestHighScore:
 		file.close()
 		t = highscore.get_list()
 		assert_eq(1, len(t))
-		assert_eq(t[0].score, 0)
-		assert_eq(t[0].nickname, '_')
+#		assert_eq(t[0].score, 0)
+#		assert_eq(t[0].nickname, '_')
 	
 	func test_try_to_add():
 		var highscore = _highscore.instance()
