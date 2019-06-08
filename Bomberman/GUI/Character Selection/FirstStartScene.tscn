@@ -91,7 +91,7 @@ margin_left = 763.653
 margin_top = 651.675
 margin_right = 961.651
 margin_bottom = 702.675
-text = "NEXT"
+text = "Next"
 script = ExtResource( 2 )
 
 [node name="P1Settings" type="VBoxContainer" parent="Panel"]
