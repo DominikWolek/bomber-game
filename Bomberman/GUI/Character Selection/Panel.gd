@@ -31,10 +31,16 @@ func name_correct(name):
 
 #that function checks if all player names are apropriate
 func check_all_names():
+	var names = Array()
+	var name
 	for i in range (1, 5):
 		if(game_info["P" + str(i)]["is_playing"]):
-			if(!name_correct(game_info["P" + str(i)]["name"])):
+			name = game_info["P" + str(i)]["name"]
+			if(!name_correct(name)):
 				return false
+			if(names.has(name)):
+				return false
+			names.append(name)
 	return true
 	
 func set_bot(player,info):
