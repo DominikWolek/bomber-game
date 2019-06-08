@@ -202,7 +202,7 @@ func _ready():
 	#we play sounds, if they didn't turn it off
 	Sounds.get_node("MainMenu").stop()
 	if (ConfigurationNode.get_value("Sounds", "soundSwitch")):
-		Sounds.get_node("GamePlay").play()
+		Sounds.get_node("La Calahorra").play()
 	
 	var game_info = get_node("/root/ConfigurationNode").game_info
 	
