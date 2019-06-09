@@ -10,7 +10,7 @@ class TestHighScore:
 	var _ScorePair = load("res://Highscore/ScorePair.gd")
 	var highscore
 	
-	var nicknames = ['nick1', '2', 'ASDASVASFFADF', 'ASDHFJHck4*&^%$##$DSAJKJ', '4355fbcvnąąąąććźźź', 'blabla6', 'spnko7', 'kiermasz8', 'winner9', 'chicken10', 'dinner11']
+	var nicknames = ['nick1', 'nick2', 'ASDASVASFFADF', 'ASDHFJHc', '4355fbcv', 'blabla6', 'spnko7', 'kiermasz8', 'winner9', 'chicken10', 'dinner11']
 	var results = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 	
 	func test_get_list():
@@ -37,6 +37,28 @@ class TestHighScore:
 		t = highscore.get_list()
 		assert_eq(0, len(t))
 	
+	func test_get_list_no_file():
+		Directory.new().remove(file_name)
+		var highscore = _highscore.instance()
+		assert_eq(len(highscore.get_list()), 0)
+		highscore.reset()
+	
+	func test_try_to_add_no_file_bad_nickname():
+		Directory.new().remove(file_name)
+		assert_file_does_not_exist(file_name)
+		var highscore = _highscore.instance()
+		var result = highscore.try_to_add('1234567898765412312312312313213123', 123)
+		assert_false(result)
+		highscore.reset()
+		
+	func test_try_to_add_no_file_good_nickname():
+		Directory.new().remove(file_name)
+		assert_file_does_not_exist(file_name)
+		var highscore = _highscore.instance()
+		var result = highscore.try_to_add('asbsad', 123)
+		assert_true(result)
+		highscore.reset()
+		
 	func test_try_to_add():
 		var highscore = _highscore.instance()
 		assert_file_exists(file_name)
