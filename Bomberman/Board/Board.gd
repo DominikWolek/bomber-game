@@ -26,7 +26,7 @@ signal game_winner()
 #that's named spawn_something needs an explination
 func spawn_powerup(pos):
 	randomize()
-	if (randi() % 100) < 50: #50% szans ze wypadnie powerup
+	if (randi() % 100) < 50: # 50% chance that powerup will fall out
 		var type = randi() % 3
 		if type == 0:
 			var powerup = preload("res://Player//MoreBombs.tscn").instance()
@@ -41,7 +41,11 @@ func spawn_powerup(pos):
 			powerup.position = pos
 			get_parent().add_child(powerup)
 
-
+""" 
+Method name: cellv_from_position
+Arguments: position - position from which we want to get tile index
+The function returns the tile index from the position given as an argument.
+"""
 func cellv_from_position(position):
 	return get_cellv(world_to_map(position))
 
