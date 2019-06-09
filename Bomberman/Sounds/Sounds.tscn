@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sounds/The Pirate And The Dancer.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/La calahorra.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Explosion.wav" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/MUSIC Game Over.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Damage.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/MUSIC Game Over.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/BombSet.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/GameEnds.wav" type="AudioStream" id=7]
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,13 +33,25 @@ stream = ExtResource( 3 )
 [node name="Damage" type="AudioStreamPlayer2D" parent="." groups=[
 "SFX",
 ]]
+stream = ExtResource( 4 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="." groups=[
 "SFX",
 ]]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 
 [node name="BombSet" type="AudioStreamPlayer2D" parent="." groups=[
 "SFX",
 ]]
+stream = ExtResource( 6 )
+
+[node name="MenuButton" type="AudioStreamPlayer" parent="." groups=[
+"SFX",
+]]
+stream = ExtResource( 3 )
+
+[node name="GameEnds" type="AudioStreamPlayer" parent="." groups=[
+"SFX",
+]]
+stream = ExtResource( 7 )
 
