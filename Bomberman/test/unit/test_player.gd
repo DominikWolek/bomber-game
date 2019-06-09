@@ -6,25 +6,22 @@ class TestPlayer:
 	var player
 	
 	var INITIAL_NUMBER_OF_BOMBS = 1
-	var INITIAL_HP = 3
 	var INITIAL_IMMORTALITY = false
 	var INITIAL_BOMB_DMG = 1
-	var INITIAL_COLOR = Color(0, 0, 0)
-	var INITIAL_PLAYER_ID = "P5"
-	var INITIAL_DANGER_LIST = Array()
 	var INITIAL_SPEED = 200
-	var INITIAL_VELOCITY = Vector2()
-	var INITIAL_NAME = "nickname"
 	var SPEED_CHANGE = 70
-	var BOMB_DELAY = 3
 	var LIMIT = 10    
 
 	func test_set_couple_nicknames():
 		player = _player.instance()
-		var names = ['A', 'bbbxcb', '23123', 'ASkdj123][FFFFFFF;/aFSDsd']
-		for name in names:
+		var valid = ['bbbxcb', '23123']
+		var unvalid = ['ASkdj123][FFFFFFF;/aFSDsd', ';;;[][][][][SsdfghJGHFl;ljbfGUlk/,jmHGy']
+		for name in valid:
 			player.set_nickname(name)
 			assert_eq(player.name, name)
+		for name in unvalid:
+			player.set_nickname(name)
+			assert_ne(player.name, name)
 
 	func test_addBomb():
 		player = _player.instance()
@@ -76,7 +73,6 @@ class TestPlayer:
 		assert_eq(player.modulate, Color(0, 0, 1, 0))
 		
 	func test_winner():
-		pending()
 		player = _player.instance()
 		player.dead = false
 		player.score = 100000000
