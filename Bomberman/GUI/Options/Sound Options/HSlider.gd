@@ -8,6 +8,8 @@ func _ready():
 
 
 
+#Arguments: value
+#Function change Music volume
 func _on_MusicSlider_value_changed(value):
 	Sounds.get_tree().call_group("Sounds", "set_volume_db", value)
 	if(value == -10):

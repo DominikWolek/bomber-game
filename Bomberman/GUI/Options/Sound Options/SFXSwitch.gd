@@ -8,6 +8,8 @@ func _ready():
 
 
 
+#Arguments: button_pressed
+#Function set SFX ON/OFF
 func _on_SFXSwitch_toggled(button_pressed):
 	Sounds.get_tree().call_group("SFX", "set_stream_paused", !button_pressed)		
 	if(button_pressed == false):

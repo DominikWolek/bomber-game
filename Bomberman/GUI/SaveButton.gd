@@ -3,6 +3,9 @@ extends Button
 func _ready():
 	pass 
 
+#Method name: _on_SaveButton_pressed();
+#Arguments: N/A
+#Function save controls settings
 
 func _on_SaveButton_pressed():
 	var P1 = get_node("../HBoxContainer/P1Container").Controls

@@ -8,6 +8,8 @@ func _ready():
 
 
 
+#Arguments: button_pressed
+#Function set music ON/OFF
 func _on_MusicSwitch_toggled(button_pressed):
 	if((Sounds.get_node("MainMenu").is_playing() == false ) 
 		and button_pressed) :
