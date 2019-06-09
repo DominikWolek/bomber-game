@@ -6,7 +6,8 @@ var is_immortal = false # true if the player is immortal for a short time
 var bomb_dmg = 1 # the bigger the dmg bombs, the bigger the bomb's arms
 var player_id # unique player's ID
 
-var danger_list = Array() # ???
+var danger_list = Array() # the definition of danger_list can
+#be found in res://Board/Board.gd
 var player = int() # ???
 
 var score # variable that stores player points
@@ -138,8 +139,9 @@ func _check_color():
 """
 Method name: _ready
 Arguments: none
-The function is called when a nodeis created.
-???
+The function is called when a node is created. It is used to
+connect to signals (that's an internal part of Godot, explaining it here
+doesn't make sense)
 """
 func _ready():
 	dead = false
@@ -159,9 +161,8 @@ func winner():
 
 """
 Method name: _on_bomb_explosion
-Arguments: danger_list - ???, player
-Function ...
-???
+Arguments: danger_list , player
+Function is called when a dingla from the bomb is sent
 """
 func _on_bomb_explosion(danger_list, player):
 	for i in danger_list:

@@ -1,5 +1,6 @@
 extends Node
-
+#it's a pair that consists of two fields, a nickname
+#and a score
 var nickname
 var score
 

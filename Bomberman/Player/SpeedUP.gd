@@ -1,9 +1,10 @@
 extends Area2D
 """
-Nazwa metody: _physic_process
-Argumenty: delta - czas jaki minął od poprzedniego wykonania _physic_process
-Celem funkcji jest sprawdzenie, czy jakiś gracz wszedł na pole powerupa. Jeśli tak, to powerup znika
-a odpowiedni gracz zyskuje bonus (w tym wypadku do prędkości poruszania się)
+Method name: _physic_process
+Arguments: delta - time elapsed since previous execution of _physic_process
+The purpose of the function is to check if any player has entered the 
+powerup's field. If so, the powerup disappears and the corresponding player 
+gains a bonus (in this case, higher speed of the character)
 """
 func _physics_process(delta):
 	var bodies = get_overlapping_bodies()

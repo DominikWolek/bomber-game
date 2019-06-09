@@ -3,7 +3,13 @@ extends Node2D
 var file_name = "res://high.score"
 export var max_size = 10
 var _score_pair = load("res://Highscore/ScorePair.gd")
-
+"""
+Method name: get_list
+Arguments: none
+That function is used to get a highscore list, which
+consists of scorePair objects
+That function returns a highscore list, Array type
+"""
 func get_list():
 	var table = []
 	var high_score_file = File.new()
@@ -23,6 +29,15 @@ func get_list():
 	
 	high_score_file.close()
 	return table
+
+"""
+Method name: try_to_add
+Arguments: nickname, score
+That function is used to trying to add a playte with a certain score
+to the highscore list
+That function returns true if the operation of adding succeded
+and a false otherwise
+"""
 	
 func try_to_add(nickname, score):
 	var high_score_file = File.new()
@@ -68,6 +83,13 @@ func try_to_add(nickname, score):
 
 		return true
 	return false
+
+"""
+Method name: reset
+Arguments: none
+That function is used to reset a highscore file
+That function returns nothing
+"""
 
 func reset():
 	#here i just clear the file (opening in WRITE mode
