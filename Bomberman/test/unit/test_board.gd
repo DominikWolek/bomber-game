@@ -12,13 +12,13 @@ class TestBoard:
 
 	var MAX_RESIZE_COUNT = 5
 
-	# more cases
 	func test_place_bomb():
 		board = _board.instance().get_node("Board")
 		var player = _player.instance()
-		var pos = Vector2(96,96)
-		var bomb = board.place_bomb(pos, player)
-		assert_eq(bomb.placed_by, player)
+		var positions = [Vector2(96, 96),Vector2(0, 32), Vector2(32, 0), Vector2(0, 0), Vector2(-32, -32), Vector2(-32, 32), Vector2(-32, 0)] 
+		for pos in positions:
+			var bomb = board.place_bomb(pos, player)
+			assert_eq(bomb.placed_by, player)
 
 	func test_step():
 		board = _board.instance().get_node("Board")

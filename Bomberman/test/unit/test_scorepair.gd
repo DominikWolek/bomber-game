@@ -7,7 +7,6 @@ class TestScorePair:
 	var score
 
 	var _scorepair = load("res://Highscore/ScorePair.gd")
-	# more cases
 	func test_sort():
 		var scorepair = _scorepair.new()
 		var a = _scorepair.new()
@@ -20,3 +19,16 @@ class TestScorePair:
 		
 		b.score = a.score
 		assert_true(scorepair.sort(a, b))
+		
+		a.score = -12
+		b.score = -1
+		
+		assert_false(scorepair.sort(a, b))
+		assert_true(scorepair.sort(b, a))
+		
+		a.score = -12
+		b.score = 1
+		
+		assert_false(scorepair.sort(a, b))
+		assert_true(scorepair.sort(b, a))
+		

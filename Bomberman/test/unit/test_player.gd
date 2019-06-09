@@ -65,15 +65,16 @@ class TestPlayer:
 		assert_false(player.is_immortal)
 		
 # test for private function
-# add more cases
 	func test_check_color():
 		player = _player.instance()
 		player.color = Color(0, 0, 0, 1)
 		player._check_color()
 		assert_ne(player.modulate, Color(0, 0, 0, 1))
-		player.color = Color(0, 0, 1, 0)
-		player._check_color()
-		assert_eq(player.modulate, Color(0, 0, 1, 0))
+		var colors = [Color(0, 0, 1, 0), Color(0, 1, 1, 0), Color(0, 0, 1, 1), Color(1, 0, 1, 0), Color(0, 1, 0, 0), Color(1, 1, 1, 1)]
+		for color in colors:
+			player.color = color
+			player._check_color()
+			assert_eq(player.modulate, color)
 		
 	# integration test
 	func test_winner():
