@@ -7,9 +7,9 @@ func add(text):
 	get_node("canvcas/text").add_text(text)
 
 
-	
-
 func _ready():
+	#it starts the timer. when the timer ends, function
+	#on_timer_timeout is called. Music playes, scene changes
 	time = Timer.new()
 	time.start(6)
 	add_child(time)
