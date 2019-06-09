@@ -17,7 +17,13 @@ func _ready():
 
 
 
-
+"""
+Method name: _on_Timer_timeout
+Arguments: none
+That function is called when the time timer will 
+send out a timeout signal
+That function returns noting
+"""
 func _on_Timer_timeout():
 	#so, basically
 	#when the timer ends, every collapse object have an Area2D node
@@ -34,9 +40,17 @@ func _on_Timer_timeout():
 	
 	for i in get_child(1).points:
 		get_parent().set_cellv(get_parent().world_to_map(i), 0)
+	#that is used in order to enable correct autotileing
 	get_parent().update_bitmask_region()
 	queue_free()
 
+"""
+Method name: _on_TimerChange_timeout
+Arguments: none
+That function is called when the change_time timer will 
+send out a timeout signal. It is used do blink the red line
+That function returns noting
+"""
 
 func _on_TimerChange_timeout():
 	#here the red line makes BLING BLING
@@ -44,7 +58,3 @@ func _on_TimerChange_timeout():
 		get_node("Line2D2").visible = false
 	else:
 		get_node("Line2D2").visible = true
-	
-	
-func _process(delta):
-	pass
