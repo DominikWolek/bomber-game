@@ -8,6 +8,12 @@ const bot_can_win = false
 
 var bomb
 var light
+"""
+danger list is an array of positions, that are \"in danger\"
+if given position is in danger, it means, that the bomb explosion
+affected that position, so the player at that position
+should lose one life, or be killed if he has only one left
+"""
 var danger_list : Array
 
 var resize_count
@@ -22,8 +28,15 @@ var player_names: Dictionary
 signal explosion( danger_list, Player)
 signal game_winner()
 
-#pos - position. I dont think that argument position on a function
-#that's named spawn_something needs an explination
+"""
+Method name: spawn_powerup
+Arguments: pos - the position in which the powerup can spawns
+That function spawn (with a 50% chance) on of 3 availble powerups
+on a given position. Spawned powerups are alos random, every one
+of them has a 1/3 chance to spawns
+That function returns nothing.
+"""
+
 func spawn_powerup(pos):
 	randomize()
 	if (randi() % 100) < 50: # 50% chance that powerup will fall out
@@ -49,7 +62,14 @@ The function returns the tile index from the position given as an argument.
 func cellv_from_position(position):
 	return get_cellv(world_to_map(position))
 
-#that function spawns particles in given position
+
+"""
+Method name: spawn_sparks 
+Arguments: pos - position
+That function spawns particles in given position
+That function returns nothing
+"""
+
 func spawn_sparks(pos):
 	var sparks = _sparks.instance()
 	sparks.position = map_to_world(world_to_map(pos)) + Vector2(32, 32)
@@ -57,8 +77,15 @@ func spawn_sparks(pos):
 	sparks.set_one_shot(true)
 	sparks.set_emitting(true)
 
-#that's a function to set a central explosion spot
-#light, sounds, and initial sparks
+
+"""
+Method name: center_explosion 
+Arguments: initial_pos - position
+That function sets central explosion spot, which include
+light, sounds, and initial sparks
+That function returns nothing
+"""
+
 func center_explosion(initial_pos):
 	#here we place the lights effects
 	light = _light.instance()
@@ -72,8 +99,14 @@ func center_explosion(initial_pos):
 	#here are the particle effects
 	spawn_sparks(initial_pos)
 
+"""
+Method name: step
+Arguments: i
+That function is used to get the direction of explosion
+That function returns Vector2, which is the direction
+"""
 
-func step(var i):
+func step(i):
 	var step	
 	match i:
 		0:
@@ -87,12 +120,19 @@ func step(var i):
 	return step
 
 
-#function explode is used to literally make an explosion on the board
-#it is responsible for the particle effects and lighs effects
-#and also for calculating which player was in bomb radius,
-#and informing him about it
-#v at the end is a naming convention in Godot
-#it means that the funcion accepts Vector as it's argument
+"""
+Method name: explodev
+Arguments: initial_pos, player
+That function is used to make an explosion on the board
+it is responsible for the particle effects and lighs effects
+and also for calculating which player was in bomb radius,
+and informing him about it (sending him a danger list)
+danger list definition is placed at the top
+v at the end is a naming convention in Godot
+it means that the funcion accepts Vector as it's argument
+That function returns nothing
+"""
+
 func explodev(initial_pos, player):
 	var sparks
 	var leng
@@ -128,15 +168,26 @@ func explodev(initial_pos, player):
 	#that's self explanatory
 	emit_signal("explosion", danger_list, player)
 
-#I tried to write a self commentating code
-#and i really think i succeeded here
+"""
+Method name: place_bomb
+Arguments: initial_pos, player
+That function is used to place a bomb on the board
+That function returns nothing
+"""
 func place_bomb(initial_pos, player):
 	bomb = _bomb.instance()
 	bomb.placed_by = player
 	bomb.position = map_to_world(world_to_map(initial_pos)) + Vector2(32, 32)
 	add_child(bomb)
-		
-		
+
+"""
+Method name: resize
+Arguments: none
+That function is used to resize a board, by calling a
+collapse object (to know how the collapse object works, go to 
+res://Board/Collapses/Collapse.gd, and res://Board/Collapses/Collapse1.tscn
+That function returns nothing
+"""
 func resize():
 	if(resize_count <=5):
 		#we only resize the board 5 times
@@ -147,6 +198,12 @@ func resize():
 		add_child(collapse)
 		resize_count += 1
 
+"""
+Method name: load_map
+Arguments: map_number - int
+That function is used to load a tileSet to our Board (which is a tileMap)
+That function returns nothing
+"""
 
 func load_map(map_number):
 	match map_number :
@@ -163,6 +220,15 @@ func load_map(map_number):
 		_: 
 			set_tileset(load("res://Assets/TileSets/Dirt.tres"))
 
+"""
+Method name: get_player_data
+Arguments: game_info - global object that stores game info
+That function is used construct an array of playing players
+every player in array is loaded as a player or a bot, depending
+on the choices made in the previous scene
+That function returns an Array of players
+"""
+
 func get_player_data(game_info):
 	var players = Array()
 	players.append(load("res://Player/Player.tscn").instance())
@@ -176,6 +242,12 @@ func get_player_data(game_info):
 				players.append(load("res://Player/Player.tscn").instance())
 	return players
 
+"""
+Method name: starting_positions
+Arguments: none
+That function returns shuffled array of 4 starting positions,
+which are the exact coordinates of the map corners
+"""
 
 func starting_positions():
 	var positions = Array()
@@ -188,6 +260,12 @@ func starting_positions():
 	positions.shuffle()
 	return positions
 
+"""
+Method name: get_color
+Arguments: none
+That function returns an array of 7 different Color objects,
+every object contains different color, as specified int the requirements
+"""
 func get_color():
 	var collor_array = Array()
 	collor_array.append(Color(0,0,0,1))
@@ -199,7 +277,16 @@ func get_color():
 	collor_array.append(Color( 1, 0.41, 0.71, 1 ))
 	return collor_array
 
-	
+"""
+Method name: _ready
+Arguments: none
+That function is derived from the Node2D, it is present in every node
+is called once (when the object is created) and it is used to setup
+our object properly. Here, it purpose is to set up a map, spawn players
+and play music
+that's the only comment I'll do on the _ready function in all files
+That function returns noting
+"""
 func _ready():
 
 	#here we prepare the boards for our players
@@ -243,7 +330,16 @@ func _ready():
 	resize_time.connect("timeout", self, "_on_resize_time_timeout")
 
 
-#that function is called when somebody wins the game
+"""
+Method name: game_winner
+Arguments: none
+That function is used to end the game. it figures out which player
+(or bot, if that option is active) is supposed to win, or if there was 
+a tie. It also tries to write the player into the highscore list
+It also spawns an EndGame object
+That function returns noting
+"""
+
 func game_winner():
 	#here we rank our players
 	var game_info = get_node("/root/ConfigurationNode").game_info
@@ -279,9 +375,13 @@ func game_winner():
 	add_child(end_label)
 	
 	
+"""
+Method name: _on_resize_time_timeout
+Arguments: none
+That function is called when the resizeTimer will send out a 
+timeout signal
+That function returns noting
+"""
+
 func _on_resize_time_timeout():
 	resize()
-	
-func _process(delta):
-	pass
-		

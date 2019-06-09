@@ -1,4 +1,4 @@
-extends CPUParticles2D
+extends Particles2D
 
 func _process(delta):
 	#we throw the particle pbject out
