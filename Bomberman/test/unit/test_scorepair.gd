@@ -19,3 +19,16 @@ class TestScorePair:
 		
 		b.score = a.score
 		assert_true(scorepair.sort(a, b))
+		
+		a.score = -12
+		b.score = -1
+		
+		assert_false(scorepair.sort(a, b))
+		assert_true(scorepair.sort(b, a))
+		
+		a.score = -12
+		b.score = 1
+		
+		assert_false(scorepair.sort(a, b))
+		assert_true(scorepair.sort(b, a))
+		

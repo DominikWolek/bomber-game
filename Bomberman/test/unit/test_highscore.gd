@@ -10,7 +10,7 @@ class TestHighScore:
 	var _ScorePair = load("res://Highscore/ScorePair.gd")
 	var highscore
 	
-	var nicknames = ['nick1', '2', 'ASDASVASFFADF', 'ASDHFJHck4*&^%$##$DSAJKJ', '4355fbcvnąąąąććźźź', 'blabla6', 'spnko7', 'kiermasz8', 'winner9', 'chicken10', 'dinner11']
+	var nicknames = ['nick1', 'nick2', 'ASDASVASFFADF', 'ASDHFJHc', '4355fbcv', 'blabla6', 'spnko7', 'kiermasz8', 'winner9', 'chicken10', 'dinner11']
 	var results = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 	
 	func test_get_list():

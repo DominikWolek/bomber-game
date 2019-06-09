@@ -172,13 +172,14 @@ func explodev(initial_pos, player):
 Method name: place_bomb
 Arguments: initial_pos, player
 That function is used to place a bomb on the board
-That function returns nothing
+That function returns a reference to a bomb it created
 """
 func place_bomb(initial_pos, player):
 	bomb = _bomb.instance()
 	bomb.placed_by = player
 	bomb.position = map_to_world(world_to_map(initial_pos)) + Vector2(32, 32)
 	add_child(bomb)
+  return bomb
 
 """
 Method name: resize
@@ -188,6 +189,7 @@ collapse object (to know how the collapse object works, go to
 res://Board/Collapses/Collapse.gd, and res://Board/Collapses/Collapse1.tscn
 That function returns nothing
 """
+
 func resize():
 	if(resize_count <=5):
 		#we only resize the board 5 times
