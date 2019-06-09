@@ -42,14 +42,6 @@ class TestHighScore:
 		var highscore = _highscore.instance()
 		assert_eq(len(highscore.get_list()), 0)
 		highscore.reset()
-	
-	func test_try_to_add_no_file_bad_nickname():
-		Directory.new().remove(file_name)
-		assert_file_does_not_exist(file_name)
-		var highscore = _highscore.instance()
-		var result = highscore.try_to_add('1234567898765412312312312313213123', 123)
-		assert_false(result)
-		highscore.reset()
 		
 	func test_try_to_add_no_file_good_nickname():
 		Directory.new().remove(file_name)
