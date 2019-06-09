@@ -19,6 +19,7 @@ class TestBot:
 			bot.direction = expected[i]
 			assert_eq(directions[i], bot.opposite_direction(expected[i]))
 
+# test for private function
 	func test_physics_process():
 		bot = _bot.instance()
 		var delta = [[2, 0], [-2, 0], [0, 2], [0, -2]]

@@ -63,6 +63,7 @@ class TestPlayer:
 		player.not_immortal()
 		assert_false(player.is_immortal)
 		
+# test for private function
 	func test_check_color():
 		player = _player.instance()
 		player.color = Color(0, 0, 0, 1)
