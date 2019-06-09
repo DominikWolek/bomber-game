@@ -7,6 +7,7 @@ class TestScorePair:
 	var score
 
 	var _scorepair = load("res://Highscore/ScorePair.gd")
+	# more cases
 	func test_sort():
 		var scorepair = _scorepair.new()
 		var a = _scorepair.new()

@@ -12,6 +12,7 @@ class TestPlayer:
 	var SPEED_CHANGE = 70
 	var LIMIT = 10    
 
+
 	func test_set_couple_nicknames():
 		player = _player.instance()
 		var valid = ['bbbxcb', '23123']
@@ -64,6 +65,7 @@ class TestPlayer:
 		assert_false(player.is_immortal)
 		
 # test for private function
+# add more cases
 	func test_check_color():
 		player = _player.instance()
 		player.color = Color(0, 0, 0, 1)
@@ -73,6 +75,7 @@ class TestPlayer:
 		player._check_color()
 		assert_eq(player.modulate, Color(0, 0, 1, 0))
 		
+	# integration test
 	func test_winner():
 		player = _player.instance()
 		player.dead = false

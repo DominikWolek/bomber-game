@@ -12,6 +12,7 @@ class TestBoard:
 
 	var MAX_RESIZE_COUNT = 5
 
+	# more cases
 	func test_place_bomb():
 		board = _board.instance().get_node("Board")
 		var player = _player.instance()
