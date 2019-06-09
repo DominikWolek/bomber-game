@@ -1,87 +1,89 @@
 extends KinematicBody2D
 
-var hp = 3 # ilość punktów życia gracza, zakładamy że każdy gracz posiada 3 punkty życia na początku rozgrywki
-var can_plant = 1 # ilość bomb jakie może postawić gracz
-var is_immortal = false # true jeśli gracz jest przez krótki czas nieśmiertelny
-var bomb_dmg = 1 # im większy bomb dmg tym większe ramiona wybuchu bomby
-var player_id # unikalne ID gracza
+var hp = 3 # the number of player's health points, we assume that each player has 3 life points at the beginning of the game
+var can_plant = 1 # the amount of bombs a player can set up
+var is_immortal = false # true if the player is immortal for a short time
+var bomb_dmg = 1 # the bigger the dmg bombs, the bigger the bomb's arms
+var player_id # unique player's ID
 
 var danger_list = Array() # ???
 var player = int() # ???
 
-var score # zmienna przechowująca punkty gracza
-var dead # zmienna wskazująca na to, czy postać gracza żyje
-export var color = Color(0, 0, 0) # kolor dzięki któremu będziemy modulować wygląd postaci
+var score # variable that stores player points
+var dead # variable indicating whether the player's character is alive
+export var color = Color(0, 0, 0) # the color thanks to which we will modulate the appearance of the character
 
-var speed = 200 # początkowa prędkość gracza
+var speed = 200 # player's initial speed
 
-var velocity = Vector2() # wektor, za pomocą którego ustalamy kierunek ruchu gracza
+var velocity = Vector2() # vector, by which we can determine the direction of the player's movement
 
 """ 
-Nazwa metody: set_nickname
-Argumenty: nickname - nazwa postaci
-Funkcja przypisuje postaci nazwę podaną jako argument nickname.
+Method name: set_nickname
+Arguments: nickname - name of the character
+The function gives a nickname to the character
 """
 func set_nickname(nickname):
 	name = nickname
 
 """
-Nazwa metody: add_bomb
-Argumenty: brak
-Funkcja zwiększa liczbę bomb gracza o 1.
+Method name: add_bomb
+Arguments: brak
+Function increases the number of bombs by 1
 """
 func add_bomb():
 	can_plant += 1
 
 """
-Nazwa metody: increase_dmg
-Argumenty: brak
-Funkcja zwiększa ramiona wymuchu o 1 (1 w tym wypadku oznacza kwadrat o wymiarach 64x64).
+Method name: increase_dmg
+Arguments: none
+The function increases the explosion arms by 1 (1 in this case means 64x64 square).
 """
 func increase_dmg():
 	bomb_dmg += 1
 
 """
-Nazwa metody: speed_up
-Argumenty: brak
-Funkcja zwiększa prędkość postaci o 70 jednostek.
+Method name: speed_up
+Arguments: none
+The function increases the speed of the character by 70 units.
 """
 func speed_up():
 	speed += 70
 	pass
 
 """
-Nazwa metody: plant_bomb
-Argumenty: brak
-Funkcja sprawdza, czy gracz może podłożyć bombę, jeśli tak to wywoływana jest odpowiednia funkcja 
-w węźle-rodzicu oraz dodawany jest timer, po którego upływie ilość bomb gracza zwiększy się o 1.
+
+Method name: plant_bomb
+Arguments: none
+The function checks if the player can place a bomb, if so, 
+the corresponding function in the parent node is called and 
+a timer is added, after which the number of player's bombs will increase by 1.
 """
 func plant_bomb():
-	if can_plant > 0: # jeśli jest jakas bomba do podłożenia
+	if can_plant > 0: # if there is a bomb to plant
 		can_plant -= 1
-		get_parent().place_bomb(position, player_id) # wywołujemy funkcje odpowiedzialną za postawienie bomby
+		get_parent().place_bomb(position, player_id) # we call the functions responsible for placing the bomb
 		var timer = Timer.new()
 		timer.set_one_shot(true)
 		timer.set_wait_time(3)
-		timer.connect("timeout",self,"add_bomb") # po 3 sekundach wywołana zostanie funkcja add_bomb dla gracza
+		timer.connect("timeout",self,"add_bomb") # after 3 seconds the add_bomb function for the player will be called
 		add_child(timer) 
-		timer.start() #dodanie timera jako dziecka gracza i jego start
+		timer.start() # adding a timer as a player's child and its start
 
 """
-Nazwa metody: not_immortal
-Argumenty: brak
-Funkcja zdejmuje nieśmiertelność z gracza.
+Method name: not_immortal
+Arguments: none
+The function removes immortality from the player.
 """
 func not_immortal():
 	is_immortal = false
 
 """
-Nazwa metody: immediate_death
-Argumenty: brak
-Funkcja odpowiedzialna jest za śmierć postaci, odtworzenie odpowiedniego dźwięku
-oraz zmianę ilości aktywnych graczy na mapie
+Method name: immediate_death
+Arguments: none
+The function is responsible for the death of the character, playing the right sound
+and changing the number of active players on the map
 """
-func immediate_death(): # przy zmniejszaniu sie mapy
+func immediate_death(): # while the map is decreasing
 	hp = 0
 	dead = true
 	Sounds.get_node("Death").position = position
@@ -92,49 +94,51 @@ func immediate_death(): # przy zmniejszaniu sie mapy
 	queue_free()
 
 """
-Nazwa metody: expoded
-Argumenty: by_who - przeciwnik, który zadał postaci obrażenia
-Funkcja wywoływana, gdy gracz stanie w miejscu wybuchu bomby. Jeśli gracz jest nieśmiertelny,
-to nic się nie dzieje. W przeciwnym wypadku odtwarzany jest odpowiedni dźwięk, i zapisywane są
-punkty graczowi, który postawił bombę (jeśli nie jest nim gracz, który otrzymał obrażenia).
-Jeśli postać nie umarła, to staje się nieśmiertelna na 2 sekundy. W przeciwnym wypadku na postaci 
-wywoływana jest metoda immediate_death(), a gracz który postawił bombę otrzymuje dodatkowe punkty.
+Method name: exploded
+Arguments: by_who - an opponent who dealt a form of damage
+The function is called when the player stands in the place where the bomb 
+explodes. If the player is immortal, nothing happens. Otherwise, the corresponding 
+sound is played, and points are saved to the player who placed the bomb (if it is not 
+the player who has received the damage).
+If the character has not died, it becomes immortal for 2 seconds. Otherwise, the 
+immediate_death () method is called on the character and the player who placed the 
+bomb receives extra points.
 """
 func exploded(by_who):
 	if is_immortal:
 		return
 	else:
-		Sounds.get_node("Damage").position = position
+		Sounds.get_node("Damage").position = position # setting the sound position
 		Sounds.get_node("Damage").play()
-		if(by_who != player_id):
+		if(by_who != player_id): # if the player did not deal damage with the bomb to himself
 			get_parent().scores[by_who] += 10
 		hp -= 1
 		if hp == 0:
 			if(by_who != player_id):
-				get_parent().scores[by_who] += 10 # dodatkowe punkty
+				get_parent().scores[by_who] += 10 # extra points for the person who killed the player's character
 			immediate_death()
 		else:
-			is_immortal = true
+			is_immortal = true # setting the immortality of the character
 			var timer = Timer.new()
 			timer.set_one_shot(true)
-			timer.set_wait_time(2) # 2 sekundowa nieśmiertelność
+			timer.set_wait_time(2) # 2 seconds of immortality
 			timer.connect("timeout",self,"not_immortal")
 			add_child(timer)
 			timer.start()
 
 """
-Nazwa metody: _check_color
-Argumenty: brak
-Funkcja, która moduluje wygląd gracza.
+Method name: _check_color
+Arguments: none
+A function that modulates the player's appearance.
 """
 func _check_color():
 	if(color != Color(0, 0, 0, 1)):
 		modulate = color
 
 """
-Nazwa metody: _ready
-Argumenty: brak
-Funkcja wywoływana jest, gry powstaje obiekt danej klasy. 
+Method name: _ready
+Arguments: none
+The function is called when a nodeis created.
 ???
 """
 func _ready():
@@ -144,18 +148,19 @@ func _ready():
 	get_parent().connect("game_winner", self, "winner")
 
 """
-Nazwa metody: winner
-Argumenty: brak
-Funkcja, która jeśli postać gracza żyje to wywołuje funkcję tryToAdd w singletonie Highscore.
+Method name: winner
+Arguments: none
+A function that if the player's character lives it calls 
+the tryToAdd function in the Highscore singleton.
 """
 func winner():
 	if(!dead):
 		Highscore.try_to_add(name, score)
 
 """
-Nazwa metody: 
-Argumenty: brak
-Funkcja 
+Method name: _on_bomb_explosion
+Arguments: danger_list - ???, player
+Function ...
 ???
 """
 func _on_bomb_explosion(danger_list, player):
@@ -163,26 +168,25 @@ func _on_bomb_explosion(danger_list, player):
 		if ( i == get_parent().world_to_map(position)):
 			exploded(player)
 
+
+"""
+
+Method name: _physics_process
+Arguments: delta - time since the previous _physics_process function call
+Function performed ~ 60 times per second. Includes updates of the bombs' 
+explosion force of the respective players and moving and detecting the bomb 
+placement (generally things related to the input)
+"""
 func _physics_process(delta):
-	get_parent().damage_list[player_id] = bomb_dmg
+	get_parent().damage_list[player_id] = bomb_dmg 
 	character_behaviour()
 
-
 """
-Nazwa metody: _physics_process
-Argumenty: delta - czas od poprzedniego wywołania funkcji _physics_process
-Funkcja wykonywana ~60 razy na sekundę. Obejmuje aktualizacje siły wybuchy bomby
-odpowiednich graczy oraz poruszanie i wykrywanie podkładania bomby (ogołnie
-rzeczy związane z inputem)
-"""
-
-
-
-"""
-Nazwa metody: movement_direction
-Argumenty: brak
-Funkcja odpowiedzialna za ustalenie wektora, który wyznacza kierunek ruchu gracza.
-Wektor wyznaczany jest zgodnie z inputem.
+Method name: movement_direction
+Arguments: none
+The function responsible for determining the vector that determines 
+the direction of the player's movement.
+The vector is determined according to the input.
 """
 func movement_direction():
 	velocity = Vector2()
@@ -197,10 +201,10 @@ func movement_direction():
 	return velocity
 
 """
-Nazwa metody: play_animation
-Argumenty: brak
-Funkcja odpowiedzialna jest za ładowanie odpowiedniej animacji w zależności od
-ruchu gracza oraz tego czy jest on nieśmiertelny, czy też nie.
+Method namme: play_animation
+Arguments: none
+The function is responsible for loading the appropriate animation depending on
+player's movement and whether he is immortal or not.
 """
 func play_animation():
 	var temp = ""	
@@ -210,7 +214,7 @@ func play_animation():
 		$Sprite.flip_h = false
 		$Sprite.play("run"+temp)
 	elif !Input.is_action_pressed(player_id+'_ui_right') and Input.is_action_pressed(player_id+'_ui_left'):
-		$Sprite.flip_h = true
+		$Sprite.flip_h = true # mirror reflection of animation
 		$Sprite.play("run"+temp)
 	elif Input.is_action_pressed(player_id+'_ui_down') and Input.is_action_pressed(player_id+'_ui_up'):
 		$Sprite.play("idle"+temp)
@@ -221,14 +225,14 @@ func play_animation():
 	else: $Sprite.play("idle"+temp)
 
 """
-Nazwa metody: character_behaviour
-Argumenty: brak
-Funkcja która jest odpowiedzialna za działania związane z zachowaniem gracza (m.in. input). 
+Method name: character_behaviour
+Arguments: none
+A function that is responsible for activities related to the player's behavior (including input).
 """
 func character_behaviour():
 	velocity = movement_direction()
 	play_animation()
-	velocity = velocity.normalized() * speed # znormalizowany kierunek ruchu pomnożony przez prędkość poruszania się gracza
-	move_and_slide(velocity) # funkcja odpowiedzialna za płynne poruszanie się postaci, tzw. sliding
+	velocity = velocity.normalized() * speed # normalized direction of movement multiplied by the speed of movement of the player
+	move_and_slide(velocity) # the function responsible for the smooth movement of the characters, the so-called sliding
 	if Input.is_action_just_pressed(player_id+'_ui_select'):
-		plant_bomb() # jeśli gracz wcisnął przycisk spacji, to wywoływana jest odpowiednia metoda.
+		plant_bomb() # if the player has pressed the space button, the corresponding method is called.
