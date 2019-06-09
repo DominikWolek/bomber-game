@@ -17,7 +17,7 @@ class TestBot:
 		assert_eq(len(directions), len(expected))
 		for i in range(len(directions)):
 			bot.direction = expected[i]
-			assert_eq(directions[i], bot.opposite_direction(expected[i]))
+			assert_eq(directions[i], bot.opposite_direction())
 
 # test for private function
 	func test_physics_process():
