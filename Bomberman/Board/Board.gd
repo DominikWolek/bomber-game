@@ -179,7 +179,7 @@ func place_bomb(initial_pos, player):
 	bomb.placed_by = player
 	bomb.position = map_to_world(world_to_map(initial_pos)) + Vector2(32, 32)
 	add_child(bomb)
-  return bomb
+	return bomb
 
 """
 Method name: resize
