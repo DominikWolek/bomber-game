@@ -14,6 +14,7 @@ func _ready():
 
 
 func _on_NextButton_pressed():
+	Sounds.get_node("MenuButton").play()
 	var error = get_tree().change_scene( "res://GUI/Character Selection/FirstStartScene.tscn");
 	if error == OK:
 		pass

@@ -14,5 +14,6 @@ func _ready():
 
 
 func _on_ResetButton_pressed():
+	Sounds.get_node("MenuButton").play()
 	Highscore.reset()
 	get_parent().get_node("Scores").reload()

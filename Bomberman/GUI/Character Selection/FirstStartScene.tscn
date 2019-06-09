@@ -73,6 +73,7 @@ func _ready():
 	pass
 
 func _on_BackButton_pressed():
+	Sounds.get_node(\"MenuButton\").play()
 	var error = get_tree().change_scene( \"res://GUI/Map Selection/MapScene.tscn\");
 	if error == OK:
 		pass
@@ -91,7 +92,7 @@ margin_left = 763.653
 margin_top = 651.675
 margin_right = 961.651
 margin_bottom = 702.675
-text = "NEXT"
+text = "Next"
 script = ExtResource( 2 )
 
 [node name="P1Settings" type="VBoxContainer" parent="Panel"]
@@ -228,6 +229,22 @@ margin_right = 680.0
 margin_bottom = 660.0
 bbcode_enabled = true
 bbcode_text = "[center]"
+
+[node name="BotInfo" type="Label" parent="Panel"]
+margin_left = 593.067
+margin_top = 240.0
+margin_right = 633.067
+margin_bottom = 254.0
+text = "Bot"
+align = 1
+
+[node name="BotInfo2" type="Label" parent="Panel"]
+margin_left = 591.26
+margin_top = 323.698
+margin_right = 641.26
+margin_bottom = 342.698
+text = "Active"
+align = 1
 
 [connection signal="pressed" from="Panel/NextButton" to="Panel/NextButton" method="_on_NextButton_pressed"]
 [connection signal="text_entered" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_text_entered"]
