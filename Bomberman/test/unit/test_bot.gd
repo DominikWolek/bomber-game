@@ -22,7 +22,7 @@ class TestBot:
 # test for private function
 	func test_physics_process():
 		bot = _bot.instance()
-		var delta = [[2, 0], [-2, 0], [0, 2], [0, -2]]
+		var delta = [[2, 0], [0, 2]]
 		assert_eq(len(delta), len(directions))
 		
 		for i in range(len(directions)):
@@ -31,16 +31,16 @@ class TestBot:
 			bot.position.y = bot.position_to_achieve.y + delta[i][1]
 			bot._physics_process(1)
 			assert_false(bot.moving)
-			if delta[i][0] == 1:
+			if delta[i][0] != 0:
 				assert_eq(bot.position.x, bot.position_to_achieve.x)
-			if delta[i][1] == 1:
+			if delta[i][1] != 0:
 				assert_eq(bot.position.y, bot.position_to_achieve.y)
 				
 			bot.position.x = bot.position_to_achieve.x - delta[i][0]
 			bot.position.y = bot.position_to_achieve.y - delta[i][1]
 			bot._physics_process(1)
 			assert_false(bot.moving)
-			if delta[i][0] == 1:
+			if delta[i][0] == 0:
 				assert_ne(bot.position.x, bot.position_to_achieve.x)
-			if delta[i][1] == 1:
+			if delta[i][1] == 0:
 				assert_ne(bot.position.y, bot.position_to_achieve.y)
