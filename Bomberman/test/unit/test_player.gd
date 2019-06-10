@@ -76,19 +76,5 @@ class TestPlayer:
 			player._check_color()
 			assert_eq(player.modulate, color)
 		
-	# integration test
-	func test_winner():
-		player = _player.instance()
-		player.dead = false
-		player.score = 100000000
-		Highscore.reset()
-		player.winner()
-		var scorepairs = Highscore.get_list()
-		var scores = []
-		for sp in scorepairs:
-			scores.append(sp.score)
-		assert_has(scores, player.score)
-		Highscore.reset()
-		
 		
 		
