@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/BetterBomb.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Bomb/BetterBombs.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 25.0
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -30.0625, -25.8571, 32.2373, -25.8571, 32.2373, 28.0804, -30.8988, 28.0804 )
+
+[node name="BetterBombs" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
+
