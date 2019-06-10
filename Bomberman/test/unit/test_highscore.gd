@@ -26,6 +26,7 @@ class TestHighScore:
 			file.store_line(str(results[i]))
 		file.close()
 		var t = highscore.get_list()
+		assert_ne(t, [])
 		assert_eq(len(t), len(nicknames))
 		for i in range(len(t)):
 			assert_eq(t[i].nickname, nicknames[i])
