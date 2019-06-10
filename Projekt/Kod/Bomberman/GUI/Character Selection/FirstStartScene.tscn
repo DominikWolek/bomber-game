@@ -1,0 +1,283 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://GUI/Character Selection/Panel.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Character Selection/StartingScript.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends VBoxContainer
+
+func _on_Name_text_entered(new_text):
+	get_parent().change_player_name(\"P1\",new_text)
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().set_bot(\"P1\",button_pressed)
+
+func _on_Color_focus_entered():
+	get_parent().set_next_color(\"P1\")
+
+func _on_NextColor_pressed():
+	get_parent().set_next_color(\"P1\")
+
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P1\", self.get_node(\"Name\").text)
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends VBoxContainer
+
+func _on_Name_text_entered(new_text):
+	get_parent().change_player_name(\"P2\",new_text)
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().set_bot(\"P2\",button_pressed)
+
+func _on_NextColor_pressed():
+	get_parent().set_next_color(\"P2\")
+
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P2\", self.get_node(\"Name\").text)
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends VBoxContainer
+
+
+func _on_Name_text_entered(new_text):
+	get_parent().change_player_name(\"P3\",new_text)
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().set_bot(\"P3\",button_pressed)
+
+func _on_NextColor_pressed():
+	get_parent().set_next_color(\"P3\")
+
+func _on_isPlaying_toggled(button_pressed):
+	get_parent().set_playing(\"P3\",button_pressed)
+
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P3\", self.get_node(\"Name\").text)
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends VBoxContainer
+
+
+func _on_Name_text_entered(new_text):
+	get_parent().change_player_name(\"P4\",new_text)
+
+func _on_isBot_toggled(button_pressed):
+	get_parent().set_bot(\"P4\",button_pressed)
+
+func _on_NextColor_pressed():
+	get_parent().set_next_color(\"P4\")
+
+
+func _on_isPlaying_toggled(button_pressed):
+	get_parent().set_playing(\"P4\",button_pressed)
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P4\", self.get_node(\"Name\").text)
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+func _ready():
+	pass
+
+func _on_BackButton_pressed():
+	Sounds.get_node(\"MenuButton\").play()
+	var error = get_tree().change_scene( \"res://GUI/Map Selection/MapScene.tscn\");
+	if error == OK:
+		pass
+	else:
+		print(error);"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 960.0
+margin_bottom = 703.0
+script = ExtResource( 1 )
+
+[node name="NextButton" type="Button" parent="Panel"]
+margin_left = 763.653
+margin_top = 651.675
+margin_right = 961.651
+margin_bottom = 702.675
+text = "Next"
+script = ExtResource( 2 )
+
+[node name="P1Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 200.0
+margin_bottom = 200.0
+script = SubResource( 1 )
+
+[node name="Name" type="LineEdit" parent="Panel/P1Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P1Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+disabled = true
+
+[node name="Color" type="Label" parent="Panel/P1Settings"]
+margin_top = 72.0
+margin_right = 76.0
+margin_bottom = 86.0
+
+[node name="NextColor" type="Button" parent="Panel/P1Settings"]
+margin_top = 90.0
+margin_right = 76.0
+margin_bottom = 110.0
+text = "NextColor"
+
+[node name="P2Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 295.407
+margin_top = 200.628
+margin_right = 371.407
+margin_bottom = 268.628
+script = SubResource( 2 )
+
+[node name="Name" type="LineEdit" parent="Panel/P2Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P2Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+pressed = true
+
+[node name="Color" type="Label" parent="Panel/P2Settings"]
+margin_top = 72.0
+margin_right = 76.0
+margin_bottom = 86.0
+
+[node name="NextColor" type="Button" parent="Panel/P2Settings"]
+margin_top = 90.0
+margin_right = 76.0
+margin_bottom = 110.0
+text = "NextColor"
+
+[node name="P3Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 393.626
+margin_top = 200.718
+margin_right = 469.626
+margin_bottom = 268.718
+script = SubResource( 3 )
+
+[node name="Name" type="LineEdit" parent="Panel/P3Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P3Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+
+[node name="Color" type="Label" parent="Panel/P3Settings"]
+margin_top = 72.0
+margin_right = 76.0
+margin_bottom = 86.0
+
+[node name="NextColor" type="Button" parent="Panel/P3Settings"]
+margin_top = 90.0
+margin_right = 76.0
+margin_bottom = 110.0
+text = "NextColor"
+
+[node name="isPlaying" type="CheckButton" parent="Panel/P3Settings"]
+margin_top = 114.0
+margin_right = 76.0
+margin_bottom = 154.0
+
+[node name="P4Settings" type="VBoxContainer" parent="Panel"]
+margin_left = 486.483
+margin_top = 200.149
+margin_right = 562.483
+margin_bottom = 268.149
+script = SubResource( 4 )
+
+[node name="Name" type="LineEdit" parent="Panel/P4Settings"]
+margin_right = 76.0
+margin_bottom = 24.0
+
+[node name="isBot" type="CheckButton" parent="Panel/P4Settings"]
+margin_top = 28.0
+margin_right = 76.0
+margin_bottom = 68.0
+
+[node name="Color" type="Label" parent="Panel/P4Settings"]
+margin_top = 72.0
+margin_right = 76.0
+margin_bottom = 86.0
+
+[node name="NextColor" type="Button" parent="Panel/P4Settings"]
+margin_top = 90.0
+margin_right = 76.0
+margin_bottom = 110.0
+text = "NextColor"
+
+[node name="isPlaying" type="CheckButton" parent="Panel/P4Settings"]
+margin_top = 114.0
+margin_right = 76.0
+margin_bottom = 154.0
+
+[node name="Button" type="Button" parent="Panel"]
+margin_top = 652.0
+margin_right = 224.0
+margin_bottom = 704.0
+text = "Back"
+script = SubResource( 5 )
+
+[node name="ErrorMessage" type="RichTextLabel" parent="Panel"]
+margin_left = 320.0
+margin_top = 600.0
+margin_right = 680.0
+margin_bottom = 660.0
+bbcode_enabled = true
+bbcode_text = "[center]"
+
+[node name="BotInfo" type="Label" parent="Panel"]
+margin_left = 593.067
+margin_top = 240.0
+margin_right = 633.067
+margin_bottom = 254.0
+text = "Bot"
+align = 1
+
+[node name="BotInfo2" type="Label" parent="Panel"]
+margin_left = 591.26
+margin_top = 323.698
+margin_right = 641.26
+margin_bottom = 342.698
+text = "Active"
+align = 1
+[connection signal="pressed" from="Panel/NextButton" to="Panel/NextButton" method="_on_NextButton_pressed"]
+[connection signal="focus_exited" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_focus_exited"]
+[connection signal="text_entered" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_text_entered"]
+[connection signal="toggled" from="Panel/P1Settings/isBot" to="Panel/P1Settings" method="_on_isBot_toggled"]
+[connection signal="pressed" from="Panel/P1Settings/NextColor" to="Panel/P1Settings" method="_on_NextColor_pressed"]
+[connection signal="focus_exited" from="Panel/P2Settings/Name" to="Panel/P2Settings" method="_on_Name_focus_exited"]
+[connection signal="text_entered" from="Panel/P2Settings/Name" to="Panel/P2Settings" method="_on_Name_text_entered"]
+[connection signal="toggled" from="Panel/P2Settings/isBot" to="Panel/P2Settings" method="_on_isBot_toggled"]
+[connection signal="pressed" from="Panel/P2Settings/NextColor" to="Panel/P2Settings" method="_on_NextColor_pressed"]
+[connection signal="focus_exited" from="Panel/P3Settings/Name" to="Panel/P3Settings" method="_on_Name_focus_exited"]
+[connection signal="text_entered" from="Panel/P3Settings/Name" to="Panel/P3Settings" method="_on_Name_text_entered"]
+[connection signal="toggled" from="Panel/P3Settings/isBot" to="Panel/P3Settings" method="_on_isBot_toggled"]
+[connection signal="pressed" from="Panel/P3Settings/NextColor" to="Panel/P3Settings" method="_on_NextColor_pressed"]
+[connection signal="toggled" from="Panel/P3Settings/isPlaying" to="Panel/P3Settings" method="_on_isPlaying_toggled"]
+[connection signal="focus_exited" from="Panel/P4Settings/Name" to="Panel/P4Settings" method="_on_Name_focus_exited"]
+[connection signal="text_entered" from="Panel/P4Settings/Name" to="Panel/P4Settings" method="_on_Name_text_entered"]
+[connection signal="toggled" from="Panel/P4Settings/isBot" to="Panel/P4Settings" method="_on_isBot_toggled"]
+[connection signal="pressed" from="Panel/P4Settings/NextColor" to="Panel/P4Settings" method="_on_NextColor_pressed"]
+[connection signal="toggled" from="Panel/P4Settings/isPlaying" to="Panel/P4Settings" method="_on_isPlaying_toggled"]
+[connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_BackButton_pressed"]
