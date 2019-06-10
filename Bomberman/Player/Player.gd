@@ -8,7 +8,7 @@ var player_id # unique player's ID
 
 var danger_list = Array() # the definition of danger_list can
 #be found in res://Board/Board.gd
-var player = int() # ???
+var bomb_owner = int() # used in a bomb signal
 
 var score # variable that stores player points
 var dead # variable indicating whether the player's character is alive
@@ -51,24 +51,6 @@ func speed_up():
 	speed += 70
 	pass
 
-"""
-
-Method name: plant_bomb
-Arguments: none
-The function checks if the player can place a bomb, if so, 
-the corresponding function in the parent node is called and 
-a timer is added, after which the number of player's bombs will increase by 1.
-"""
-func plant_bomb():
-	if can_plant > 0: # if there is a bomb to plant
-		can_plant -= 1
-		get_parent().place_bomb(position, player_id) # we call the functions responsible for placing the bomb
-		var timer = Timer.new()
-		timer.set_one_shot(true)
-		timer.set_wait_time(3)
-		timer.connect("timeout",self,"add_bomb") # after 3 seconds the add_bomb function for the player will be called
-		add_child(timer) 
-		timer.start() # adding a timer as a player's child and its start
 
 """
 Method name: not_immortal
@@ -146,7 +128,7 @@ doesn't make sense)
 func _ready():
 	dead = false
 	score = 0
-	get_parent().connect("explosion", self, "_on_bomb_explosion", danger_list, player)
+	get_parent().connect("explosion", self, "_on_bomb_explosion", danger_list, bomb_owner)
 	get_parent().connect("game_winner", self, "winner")
 
 """
@@ -164,42 +146,30 @@ Method name: _on_bomb_explosion
 Arguments: danger_list , player
 Function is called when a dingla from the bomb is sent
 """
-func _on_bomb_explosion(danger_list, player):
+func _on_bomb_explosion(danger_list, bomb_owner):
 	for i in danger_list:
 		if ( i == get_parent().world_to_map(position)):
-			exploded(player)
-
-
-"""
-
-Method name: _physics_process
-Arguments: delta - time since the previous _physics_process function call
-Function performed ~ 60 times per second. Includes updates of the bombs' 
-explosion force of the respective players and moving and detecting the bomb 
-placement (generally things related to the input)
-"""
-func _physics_process(delta):
-	get_parent().damage_list[player_id] = bomb_dmg 
-	character_behaviour()
+			exploded(bomb_owner)
 
 """
-Method name: movement_direction
+
+Method name: plant_bomb
 Arguments: none
-The function responsible for determining the vector that determines 
-the direction of the player's movement.
-The vector is determined according to the input.
+The function checks if the player can place a bomb, if so, 
+the corresponding function in the parent node is called and 
+a timer is added, after which the number of player's bombs will increase by 1.
 """
-func movement_direction():
-	velocity = Vector2()
-	if Input.is_action_pressed(player_id+'_ui_right'):
-		velocity.x += 1
-	if Input.is_action_pressed(player_id+'_ui_left'):
-		velocity.x -= 1
-	if Input.is_action_pressed(player_id+'_ui_down'):
-		velocity.y += 1
-	if Input.is_action_pressed(player_id+'_ui_up'):
-		velocity.y -= 1
-	return velocity
+func plant_bomb():
+	if can_plant > 0: # if there is a bomb to plant
+		can_plant -= 1
+		get_parent().place_bomb(position, player_id) # we call the functions responsible for placing the bomb
+		var timer = Timer.new()
+		timer.set_one_shot(true)
+		timer.set_wait_time(3)
+		timer.connect("timeout",self,"add_bomb") # after 3 seconds the add_bomb function for the player will be called
+		add_child(timer) 
+		timer.start() # adding a timer as a player's child and its start
+
 
 """
 Method namme: play_animation
@@ -225,6 +195,26 @@ func play_animation():
 		$Sprite.play("runUP"+temp)
 	else: $Sprite.play("idle"+temp)
 
+
+"""
+Method name: movement_direction
+Arguments: none
+The function responsible for determining the vector that determines 
+the direction of the player's movement.
+The vector is determined according to the input.
+"""
+func movement_direction():
+	velocity = Vector2()
+	if Input.is_action_pressed(player_id+'_ui_right'):
+		velocity.x += 1
+	if Input.is_action_pressed(player_id+'_ui_left'):
+		velocity.x -= 1
+	if Input.is_action_pressed(player_id+'_ui_down'):
+		velocity.y += 1
+	if Input.is_action_pressed(player_id+'_ui_up'):
+		velocity.y -= 1
+	return velocity
+
 """
 Method name: character_behaviour
 Arguments: none
@@ -237,3 +227,14 @@ func character_behaviour():
 	move_and_slide(velocity) # the function responsible for the smooth movement of the characters, the so-called sliding
 	if Input.is_action_just_pressed(player_id+'_ui_select'):
 		plant_bomb() # if the player has pressed the space button, the corresponding method is called.
+
+"""
+Method name: _physics_process
+Arguments: delta - time since the previous _physics_process function call
+Function performed ~ 60 times per second. Includes updates of the bombs' 
+explosion force of the respective players and moving and detecting the bomb 
+placement (generally things related to the input)
+"""
+func _physics_process(delta):
+	get_parent().damage_list[player_id] = bomb_dmg
+	character_behaviour()

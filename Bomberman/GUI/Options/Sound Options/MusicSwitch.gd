@@ -6,10 +6,11 @@ func _ready():
 		pressed = ConfigurationNode.get_value("Sounds", "soundSwitch")
 		Sounds.get_tree().call_group("Sounds", "set_stream_paused", !pressed)
 
-
-
-#Arguments: button_pressed
-#Function set music ON/OFF
+"""
+Method name:
+Arguments: button_pressed
+Function set music ON/OFF
+"""
 func _on_MusicSwitch_toggled(button_pressed):
 	if((Sounds.get_node("MainMenu").is_playing() == false ) 
 		and button_pressed) :

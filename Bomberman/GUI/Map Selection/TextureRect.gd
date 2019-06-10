@@ -1,7 +1,6 @@
 extends TextureRect
 var map = 0
-var image
-var tex
+
 func _ready():
 	map = get_node("/root/ConfigurationNode").get_value("map","map_type")
 	if (map < 1 or map > 5):

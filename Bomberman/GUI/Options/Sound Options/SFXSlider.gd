@@ -6,9 +6,11 @@ func _ready():
 		value = ConfigurationNode.get_value("Sounds", "sfx")
 		Sounds.get_tree().call_group("SFX", "set_volume_db", value)
 
-
-#Arguments: value
-#Function change SFX volume
+"""
+Method name: _on_SFXSlider_value_changed
+Arguments: value
+Function change SFX volume
+"""
 func _on_SFXSlider_value_changed(value):
 	Sounds.get_tree().call_group("SFX", "set_volume_db", value)
 	if(value == -10):

@@ -6,10 +6,11 @@ func _ready():
 		pressed = ConfigurationNode.get_value("Sounds", "sfxSwitch")
 		Sounds.get_tree().call_group("SFX", "set_stream_paused", !pressed)
 
-
-
-#Arguments: button_pressed
-#Function set SFX ON/OFF
+"""
+Method name: _on_SFXSwitch_toggled
+Arguments: button_pressed
+Function set SFX ON/OFF
+"""
 func _on_SFXSwitch_toggled(button_pressed):
 	Sounds.get_tree().call_group("SFX", "set_stream_paused", !button_pressed)		
 	if(button_pressed == false):

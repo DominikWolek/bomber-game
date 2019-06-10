@@ -2,12 +2,13 @@ extends Button
 
 
 func _ready():
-	pass # Replace with function body.
+	pass 
 
-
-#Method name: _on_NextButton_pressed();
-#Arguments: N/A
-#Function change scene back to main menu.
+"""
+Method name: _on_NextButton_pressed();
+Arguments: N/A
+Function change scene to character settings.
+"""
 func _on_NextButton_pressed():
 	Sounds.get_node("MenuButton").play()
 	var error = get_tree().change_scene( "res://GUI/Character Selection/FirstStartScene.tscn");

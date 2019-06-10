@@ -12,6 +12,66 @@ var direction = "none" # current direction of the bot's movement
 var stop = false # in case the bot is blocked, he must stop moving
 
 """
+
+Method name: random_plant
+Arguments: none
+After 1.5 seconds the bot has a 50% chance that he will set the bomb if he can.
+After the try of planting the bomb, the random_planting () function is called.
+"""
+func random_plant():
+	randomize()
+	if (randi() % 2) == 0: # 50% chance to set a bomb
+		plant_bomb()
+	random_planting()
+
+"""
+Method name: random_planting
+Arguments: none
+He is responsible for setting the timer for 1.5 seconds, after 
+this time the random_plant function will be executed (which is 
+in the bot, hence the self argument in the timer.connect call)
+"""
+func random_planting():
+	var timer = Timer.new()
+	timer.set_one_shot(true) # single timer call
+	timer.set_wait_time(1.5) 
+	timer.connect("timeout", self, "random_plant") # after the timeout has elapsed, the random_plant function will be called
+	add_child(timer)
+	timer.start() # start counting the time
+
+"""
+Method name: _ready
+Arguments: none
+The function is responsible for starting a random bomb placement by the bot
+and for things performed in the Player's _ready function
+"""
+func _ready():
+	random_planting()
+# here will be executed _ready from the Player
+
+"""
+Nazwa metody: play_animation
+Arguments: none
+The function responsible for loading the appropriate bot animation 
+(depending on the direction in which it moves and whether it is immortal).
+"""
+func play_animation():
+	var temp = ""	
+	if (is_immortal):
+		temp = "_IMMORTAL"
+	if direction == "right":
+		$Sprite.flip_h = false 
+		$Sprite.play("run"+temp)
+	elif direction == "left":
+		$Sprite.flip_h = true # mirror image of animation set to true (default animations apply to move right / up / down)
+		$Sprite.play("run"+temp)
+	elif direction == "up":
+		$Sprite.play("runUP"+temp)
+	elif direction == "down":
+		$Sprite.play("runDOWN"+temp)
+	else: $Sprite.play("idle"+temp) # if the direction == "none" bot loads animations of standing in place
+
+"""
 Method name: check_movement
 Arguments: position - the position in which the bot is located, 
 prev_dir - the previous direction of the bot's movement
@@ -79,6 +139,24 @@ func new_direction(position, prev_dir):
 			return "down"
 
 """
+Method name: opposite_direction
+Arguments: none
+The function returns the opposite direction to the current direction of the bot's movement.
+If direction is none, the direction must be set up again by calling new_direction.
+"""
+func opposite_direction():
+	if (direction == "right"):
+		return "left"
+	elif (direction == "left"):
+		return "right"
+	elif (direction == "up"):
+		return "down"
+	elif (direction == "down"): 
+		return "up"
+	else: return new_direction(position, direction) # if not defined
+
+
+"""
 Method name: can_destroy
 Arguments: position - the place where the bomb will be put
 vector - direction vector, defines in which direction we check the possibility of destroying a block.
@@ -112,45 +190,6 @@ func possible_plant(position):
 		if (can_destroy(position, down_vector)):
 			return true
 	return false
-
-"""
-Nazwa metody: play_animation
-Arguments: none
-The function responsible for loading the appropriate bot animation 
-(depending on the direction in which it moves and whether it is immortal).
-"""
-func play_animation():
-	var temp = ""	
-	if (is_immortal):
-		temp = "_IMMORTAL"
-	if direction == "right":
-		$Sprite.flip_h = false 
-		$Sprite.play("run"+temp)
-	elif direction == "left":
-		$Sprite.flip_h = true # mirror image of animation set to true (default animations apply to move right / up / down)
-		$Sprite.play("run"+temp)
-	elif direction == "up":
-		$Sprite.play("runUP"+temp)
-	elif direction == "down":
-		$Sprite.play("runDOWN"+temp)
-	else: $Sprite.play("idle"+temp) # if the direction == "none" bot loads animations of standing in place
-
-"""
-Method name: opposite_direction
-Arguments: none
-The function returns the opposite direction to the current direction of the bot's movement.
-If direction is none, the direction must be set up again by calling new_direction.
-"""
-func opposite_direction():
-	if (direction == "right"):
-		return "left"
-	elif (direction == "left"):
-		return "right"
-	elif (direction == "up"):
-		return "down"
-	elif (direction == "down"): 
-		return "up"
-	else: return new_direction(position, direction) # if not defined
 
 """
 Method name: character_behaviour
@@ -190,44 +229,6 @@ func character_behaviour():
 		velocity *= speed
 		play_animation()
 	move_and_slide(velocity) # the function responsible for the smooth movement of the characters, the so-called sliding
-
-"""
-
-Method name: random_plant
-Arguments: none
-After 1.5 seconds the bot has a 50% chance that he will set the bomb if he can.
-After the try of planting the bomb, the random_planting () function is called.
-"""
-func random_plant():
-	randomize()
-	if (randi() % 2) == 0: # 50% chance to set a bomb
-		plant_bomb()
-	random_planting()
-
-"""
-Method name: random_planting
-Arguments: none
-He is responsible for setting the timer for 1.5 seconds, after 
-this time the random_plant function will be executed (which is 
-in the bot, hence the self argument in the timer.connect call)
-"""
-func random_planting():
-	var timer = Timer.new()
-	timer.set_one_shot(true) # single timer call
-	timer.set_wait_time(1.5) 
-	timer.connect("timeout", self, "random_plant") # after the timeout has elapsed, the random_plant function will be called
-	add_child(timer)
-	timer.start() # start counting the time
-
-"""
-Method name: _ready
-Arguments: none
-The function is responsible for starting a random bomb placement by the bot
-and for things performed in the Player's _ready function
-"""
-func _ready():
-	random_planting()
-# here will be executed _ready from the Player
 
 """
 Method name: _physic_process
