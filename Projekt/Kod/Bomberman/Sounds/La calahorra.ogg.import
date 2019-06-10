@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/La calahorra.ogg-5b9a316a7d574d9f89fd0509b053fe9b.oggstr"
+
+[deps]
+
+source_file="res://Sounds/La calahorra.ogg"
+dest_files=[ "res://.import/La calahorra.ogg-5b9a316a7d574d9f89fd0509b053fe9b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

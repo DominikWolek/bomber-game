@@ -1,0 +1,419 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://GUI/Options/Control Options/UP.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Options/Control Options/DOWN.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Options/Control Options/LEFT.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Options/Control Options/RIGHT.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Options/Control Options/BOMB.gd" type="Script" id=5]
+[ext_resource path="res://GUI/Options/Control Options/BackButtonToSettings.gd" type="Script" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends HBoxContainer
+
+
+# Obsluga sygnalu, slyszy do zorientowania sie przyciskom, czy inny przycisk juz rzada obslugi
+var isSignalRunned = false;
+func getSignal():
+	return isSignalRunned
+func setSignalOn():
+	isSignalRunned = true
+func setSignalOff():
+	isSignalRunned = false
+	
+	
+	
+func _ready():
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends VBoxContainer
+
+var player_id = 'P1'
+var game_info
+
+var keys
+
+#Funkcja odswieza tekst na przyciskach
+func _ready():
+	keys = get_node(\"/root/keys\").keys
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+
+func _process(delta):
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+	"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends VBoxContainer
+
+var player_id = 'P2'
+var game_info
+
+var keys
+
+#Funkcja odswieza tekst na przyciskach
+func _ready():
+	keys = get_node(\"/root/keys\").keys
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+
+func _process(delta):
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+	
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends VBoxContainer
+
+var player_id = 'P3'
+var game_info
+
+var keys
+
+#Funkcja odswieza tekst na przyciskach
+func _ready():
+	keys = get_node(\"/root/keys\").keys
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+
+func _process(delta):
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+	"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends VBoxContainer
+
+var player_id = 'P4'
+var game_info
+
+var keys
+
+#Funkcja odswieza tekst na przyciskach
+func _ready():
+	keys = get_node(\"/root/keys\").keys
+	game_info = get_node(\"/root/ConfigurationNode\").game_info
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+
+func _process(delta):
+	get_child(1).text = keys[game_info[player_id][\"up\"]]
+	get_child(2).text = keys[game_info[player_id][\"down\"]]
+	get_child(3).text = keys[game_info[player_id][\"left\"]]
+	get_child(4).text = keys[game_info[player_id][\"right\"]]
+	get_child(5).text = keys[game_info[player_id][\"bomb\"]]
+	"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 962.0
+margin_bottom = 704.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+margin_left = -5.21606
+margin_top = 53.0
+margin_right = 956.784
+margin_bottom = 612.0
+alignment = 1
+script = SubResource( 1 )
+
+[node name="P1Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
+editor/display_folded = true
+margin_left = 373.0
+margin_right = 424.0
+margin_bottom = 559.0
+script = SubResource( 2 )
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P1Container"]
+margin_right = 51.0
+margin_bottom = 14.0
+text = "Player 1"
+
+[node name="UP" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 18.0
+margin_right = 51.0
+margin_bottom = 38.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 1 )
+
+[node name="DOWN" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 2 )
+
+[node name="LEFT" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 3 )
+
+[node name="RIGHT" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 4 )
+
+[node name="BOMB" type="Button" parent="Panel/HBoxContainer/P1Container"]
+margin_top = 114.0
+margin_right = 51.0
+margin_bottom = 134.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 5 )
+
+[node name="P2Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
+editor/display_folded = true
+margin_left = 428.0
+margin_right = 479.0
+margin_bottom = 559.0
+script = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P2Container"]
+margin_right = 51.0
+margin_bottom = 14.0
+text = "Player 2"
+
+[node name="UP" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 18.0
+margin_right = 51.0
+margin_bottom = 38.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 1 )
+
+[node name="DOWN" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 2 )
+
+[node name="LEFT" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 3 )
+
+[node name="RIGHT" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 4 )
+
+[node name="BOMB" type="Button" parent="Panel/HBoxContainer/P2Container"]
+margin_top = 114.0
+margin_right = 51.0
+margin_bottom = 134.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 5 )
+
+[node name="P3Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
+editor/display_folded = true
+margin_left = 483.0
+margin_right = 534.0
+margin_bottom = 559.0
+script = SubResource( 4 )
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P3Container"]
+margin_right = 51.0
+margin_bottom = 14.0
+text = "Player 3"
+
+[node name="UP" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 18.0
+margin_right = 51.0
+margin_bottom = 38.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 1 )
+
+[node name="DOWN" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 2 )
+
+[node name="LEFT" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 3 )
+
+[node name="RIGHT" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 4 )
+
+[node name="BOMB" type="Button" parent="Panel/HBoxContainer/P3Container"]
+margin_top = 114.0
+margin_right = 51.0
+margin_bottom = 134.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 5 )
+
+[node name="P4Container" type="VBoxContainer" parent="Panel/HBoxContainer"]
+editor/display_folded = true
+margin_left = 538.0
+margin_right = 589.0
+margin_bottom = 559.0
+script = SubResource( 5 )
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/P4Container"]
+margin_right = 51.0
+margin_bottom = 14.0
+text = "Player 4"
+
+[node name="UP" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 18.0
+margin_right = 51.0
+margin_bottom = 38.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 1 )
+
+[node name="DOWN" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 62.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 2 )
+
+[node name="LEFT" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 66.0
+margin_right = 51.0
+margin_bottom = 86.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 3 )
+
+[node name="RIGHT" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 90.0
+margin_right = 51.0
+margin_bottom = 110.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 4 )
+
+[node name="BOMB" type="Button" parent="Panel/HBoxContainer/P4Container"]
+margin_top = 114.0
+margin_right = 51.0
+margin_bottom = 134.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 5 )
+
+[node name="BackButton" type="Button" parent="Panel"]
+margin_left = 4.0911
+margin_top = 645.499
+margin_right = 198.091
+margin_bottom = 702.499
+text = "Back"
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 223.942
+margin_top = 147.105
+margin_right = 272.942
+margin_bottom = 161.105
+text = "RIGHT"
+
+[node name="Label2" type="Label" parent="Panel"]
+margin_left = 224.044
+margin_top = 121.884
+margin_right = 264.044
+margin_bottom = 135.884
+text = "LEFT"
+
+[node name="Label3" type="Label" parent="Panel"]
+margin_left = 223.047
+margin_top = 97.507
+margin_right = 263.047
+margin_bottom = 111.507
+text = "DOWN"
+
+[node name="Label4" type="Label" parent="Panel"]
+margin_left = 224.044
+margin_top = 71.0
+margin_right = 264.044
+margin_bottom = 85.0
+text = "UP"
+
+[node name="Label5" type="Label" parent="Panel"]
+margin_left = 223.989
+margin_top = 169.695
+margin_right = 273.989
+margin_bottom = 183.695
+text = "BOMB"
+
+[connection signal="pressed" from="Panel/HBoxContainer/P1Container/UP" to="Panel/HBoxContainer/P1Container/UP" method="_on_UP_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P1Container/DOWN" to="Panel/HBoxContainer/P1Container/DOWN" method="_on_DOWN_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P1Container/LEFT" to="Panel/HBoxContainer/P1Container/LEFT" method="_on_LEFT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P1Container/RIGHT" to="Panel/HBoxContainer/P1Container/RIGHT" method="_on_RIGHT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P1Container/BOMB" to="Panel/HBoxContainer/P1Container/BOMB" method="_on_BOMB_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P2Container/UP" to="Panel/HBoxContainer/P2Container/UP" method="_on_UP_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P2Container/DOWN" to="Panel/HBoxContainer/P2Container/DOWN" method="_on_DOWN_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P2Container/LEFT" to="Panel/HBoxContainer/P2Container/LEFT" method="_on_LEFT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P2Container/RIGHT" to="Panel/HBoxContainer/P2Container/RIGHT" method="_on_RIGHT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P2Container/BOMB" to="Panel/HBoxContainer/P2Container/BOMB" method="_on_BOMB_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P3Container/UP" to="Panel/HBoxContainer/P3Container/UP" method="_on_UP_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P3Container/DOWN" to="Panel/HBoxContainer/P3Container/DOWN" method="_on_DOWN_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P3Container/LEFT" to="Panel/HBoxContainer/P3Container/LEFT" method="_on_LEFT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P3Container/RIGHT" to="Panel/HBoxContainer/P3Container/RIGHT" method="_on_RIGHT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P3Container/BOMB" to="Panel/HBoxContainer/P3Container/BOMB" method="_on_BOMB_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P4Container/UP" to="Panel/HBoxContainer/P4Container/UP" method="_on_UP_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P4Container/DOWN" to="Panel/HBoxContainer/P4Container/DOWN" method="_on_DOWN_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P4Container/LEFT" to="Panel/HBoxContainer/P4Container/LEFT" method="_on_LEFT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P4Container/RIGHT" to="Panel/HBoxContainer/P4Container/RIGHT" method="_on_RIGHT_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/P4Container/BOMB" to="Panel/HBoxContainer/P4Container/BOMB" method="_on_BOMB_pressed"]
+[connection signal="pressed" from="Panel/BackButton" to="Panel/BackButton" method="_on_BackButton_pressed"]
