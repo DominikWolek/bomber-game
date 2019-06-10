@@ -1,0 +1,5 @@
+Usuniêcie Project Managera z harmonogramu dotycz¹cego programowania (by³ to b³¹d powsta³y w momencie tworzenia harmonogramu).
+
+Przesuniêcie programowania o miesi¹c do przodu z powodu koniecznoœci nauki obs³ugi nowego silnika i jêzyka dla tego silnika.
+
+Przesuniêcie testowania z powodu przesuniêcia programowania.
