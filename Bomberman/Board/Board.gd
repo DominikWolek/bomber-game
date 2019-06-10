@@ -26,7 +26,6 @@ var scores : Dictionary
 var player_names: Dictionary
 
 signal explosion( danger_list, Player)
-signal game_winner()
 
 """
 Method name: spawn_powerup
