@@ -17,6 +17,10 @@ func _on_Color_focus_entered():
 
 func _on_NextColor_pressed():
 	get_parent().set_next_color(\"P1\")
+
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P1\", self.get_node(\"Name\").text)
 "
 
 [sub_resource type="GDScript" id=2]
@@ -30,6 +34,10 @@ func _on_isBot_toggled(button_pressed):
 
 func _on_NextColor_pressed():
 	get_parent().set_next_color(\"P2\")
+
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P2\", self.get_node(\"Name\").text)
 "
 
 [sub_resource type="GDScript" id=3]
@@ -47,6 +55,10 @@ func _on_NextColor_pressed():
 
 func _on_isPlaying_toggled(button_pressed):
 	get_parent().set_playing(\"P3\",button_pressed)
+
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P3\", self.get_node(\"Name\").text)
 "
 
 [sub_resource type="GDScript" id=4]
@@ -64,7 +76,11 @@ func _on_NextColor_pressed():
 
 
 func _on_isPlaying_toggled(button_pressed):
-	get_parent().set_playing(\"P4\",button_pressed)"
+	get_parent().set_playing(\"P4\",button_pressed)
+
+func _on_Name_focus_exited():
+	get_parent().change_player_name(\"P4\", self.get_node(\"Name\").text)
+"
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Button
@@ -245,18 +261,21 @@ margin_right = 641.26
 margin_bottom = 342.698
 text = "Active"
 align = 1
-
 [connection signal="pressed" from="Panel/NextButton" to="Panel/NextButton" method="_on_NextButton_pressed"]
+[connection signal="focus_exited" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_focus_exited"]
 [connection signal="text_entered" from="Panel/P1Settings/Name" to="Panel/P1Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P1Settings/isBot" to="Panel/P1Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P1Settings/NextColor" to="Panel/P1Settings" method="_on_NextColor_pressed"]
+[connection signal="focus_exited" from="Panel/P2Settings/Name" to="Panel/P2Settings" method="_on_Name_focus_exited"]
 [connection signal="text_entered" from="Panel/P2Settings/Name" to="Panel/P2Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P2Settings/isBot" to="Panel/P2Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P2Settings/NextColor" to="Panel/P2Settings" method="_on_NextColor_pressed"]
+[connection signal="focus_exited" from="Panel/P3Settings/Name" to="Panel/P3Settings" method="_on_Name_focus_exited"]
 [connection signal="text_entered" from="Panel/P3Settings/Name" to="Panel/P3Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P3Settings/isBot" to="Panel/P3Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P3Settings/NextColor" to="Panel/P3Settings" method="_on_NextColor_pressed"]
 [connection signal="toggled" from="Panel/P3Settings/isPlaying" to="Panel/P3Settings" method="_on_isPlaying_toggled"]
+[connection signal="focus_exited" from="Panel/P4Settings/Name" to="Panel/P4Settings" method="_on_Name_focus_exited"]
 [connection signal="text_entered" from="Panel/P4Settings/Name" to="Panel/P4Settings" method="_on_Name_text_entered"]
 [connection signal="toggled" from="Panel/P4Settings/isBot" to="Panel/P4Settings" method="_on_isBot_toggled"]
 [connection signal="pressed" from="Panel/P4Settings/NextColor" to="Panel/P4Settings" method="_on_NextColor_pressed"]

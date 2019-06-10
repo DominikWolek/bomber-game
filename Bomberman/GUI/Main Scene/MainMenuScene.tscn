@@ -50,7 +50,6 @@ margin_right = 309.0
 margin_bottom = 430.0
 text = "EXIT"
 script = ExtResource( 5 )
-
 [connection signal="pressed" from="Panel/VBoxContainer/StartButton" to="Panel/VBoxContainer/StartButton" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="Panel/VBoxContainer/SettingsButton" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HighscoreButton" to="Panel/VBoxContainer/HighscoreButton" method="_on_HighscoreButton_pressed"]
