@@ -6,7 +6,7 @@ func _ready():
 	keys[16777218] = "Tab"
 	keys[16777219] = "Shift-Tab"
 	keys[16777220] = "Backspace"
-	keys[16777221] = "Return (On Main Keyboard)"
+	keys[16777221] = "Enter"
 	keys[16777222] = "Enter (On Numpad)"
 	keys[16777223] = "Insert"
 	keys[16777224] = "Delete"
