@@ -7,6 +7,19 @@ var game_info={} # structure from the configuration file, we use it for writing 
 var config_file
 
 \"\"\" 
+Method name: load_configuration
+Arguments: none
+The function is responsible for loading all of the fields from the 
+configuration file into the structure.
+\"\"\"
+func load_configuration(): 
+	config_file.load(\"res://config.cfg\")
+	for section in game_info.keys():
+		for key in game_info[section]:
+			game_info[section][key] = config_file.get_value(section,key,null)
+
+
+\"\"\" 
 Method name: change_and_commit
 Arguments: section - section in conf. file,
 key - key in conf. file,
@@ -27,50 +40,6 @@ The function returns the value in the section -> key of game_info structure
 \"\"\"
 func get_value(section,key):
 	return game_info[section][key]
-
-
-\"\"\" 
-Method name: update_move_set
-Arguments: PlayerID
-The function responsible for adding InputEvents to actions.
-\"\"\"
-func update_move_set(PlayerID):
-	var UPevent = InputEventKey.new()
-	UPevent.set_scancode( game_info[PlayerID][\"up\"] )
-	InputMap.action_erase_events(PlayerID+'_ui_up')
-	InputMap.action_add_event( PlayerID+'_ui_up',UPevent)
-	
-	var DOWNevent = InputEventKey.new()
-	DOWNevent.set_scancode( game_info[PlayerID][\"down\"] )
-	InputMap.action_erase_events(PlayerID+'_ui_down')
-	InputMap.action_add_event( PlayerID+'_ui_down',DOWNevent)
-	
-	var LEFTevent = InputEventKey.new()
-	LEFTevent.set_scancode( game_info[PlayerID][\"left\"] )
-	InputMap.action_erase_events(PlayerID+'_ui_left')
-	InputMap.action_add_event( PlayerID+'_ui_left',LEFTevent)
-	
-	var RIGHTevent = InputEventKey.new()
-	RIGHTevent.set_scancode( game_info[PlayerID][\"right\"] )
-	InputMap.action_erase_events(PlayerID+'_ui_right')
-	InputMap.action_add_event( PlayerID+'_ui_right',RIGHTevent)
-	
-	var BOMBevent = InputEventKey.new()
-	BOMBevent.set_scancode( game_info[PlayerID][\"bomb\"] )
-	InputMap.action_erase_events(PlayerID+'_ui_select')
-	InputMap.action_add_event( PlayerID+'_ui_select',BOMBevent)
-
-\"\"\" 
-Method name: load_configuration
-Arguments: none
-The function is responsible for loading all of the fields from the 
-configuration file into the structure.
-\"\"\"
-func load_configuration(): 
-	config_file.load(\"res://config.cfg\")
-	for section in game_info.keys():
-		for key in game_info[section]:
-			game_info[section][key] = config_file.get_value(section,key,null)
 
 \"\"\" 
 Method name: add_actions
@@ -169,7 +138,38 @@ func _ready():
 	update_move_set(\"P1\")
 	update_move_set(\"P2\")
 	update_move_set(\"P3\")
-	update_move_set(\"P4\")"
+	update_move_set(\"P4\")
+
+\"\"\" 
+Method name: update_move_set
+Arguments: PlayerID
+The function responsible for adding InputEvents to actions.
+\"\"\"
+func update_move_set(PlayerID):
+	var UPevent = InputEventKey.new()
+	UPevent.set_scancode( game_info[PlayerID][\"up\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_up')
+	InputMap.action_add_event( PlayerID+'_ui_up',UPevent)
+	
+	var DOWNevent = InputEventKey.new()
+	DOWNevent.set_scancode( game_info[PlayerID][\"down\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_down')
+	InputMap.action_add_event( PlayerID+'_ui_down',DOWNevent)
+	
+	var LEFTevent = InputEventKey.new()
+	LEFTevent.set_scancode( game_info[PlayerID][\"left\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_left')
+	InputMap.action_add_event( PlayerID+'_ui_left',LEFTevent)
+	
+	var RIGHTevent = InputEventKey.new()
+	RIGHTevent.set_scancode( game_info[PlayerID][\"right\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_right')
+	InputMap.action_add_event( PlayerID+'_ui_right',RIGHTevent)
+	
+	var BOMBevent = InputEventKey.new()
+	BOMBevent.set_scancode( game_info[PlayerID][\"bomb\"] )
+	InputMap.action_erase_events(PlayerID+'_ui_select')
+	InputMap.action_add_event( PlayerID+'_ui_select',BOMBevent)"
 
 [node name="Node2D" type="Node2D"]
 script = SubResource( 1 )

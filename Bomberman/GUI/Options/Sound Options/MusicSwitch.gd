@@ -7,7 +7,7 @@ func _ready():
 		Sounds.get_tree().call_group("Sounds", "set_stream_paused", !pressed)
 
 """
-Method name:
+Method name: _on_MusicSwitch_toggled
 Arguments: button_pressed
 Function set music ON/OFF
 """
