@@ -129,17 +129,6 @@ func _ready():
 	dead = false
 	score = 0
 	get_parent().connect("explosion", self, "_on_bomb_explosion", danger_list, bomb_owner)
-	get_parent().connect("game_winner", self, "winner")
-
-"""
-Method name: winner
-Arguments: none
-A function that if the player's character lives it calls 
-the tryToAdd function in the Highscore singleton.
-"""
-func winner():
-	if(!dead):
-		Highscore.try_to_add(name, score)
 
 """
 Method name: _on_bomb_explosion
