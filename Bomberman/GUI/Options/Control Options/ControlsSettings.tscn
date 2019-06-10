@@ -366,35 +366,35 @@ margin_left = 223.942
 margin_top = 147.105
 margin_right = 272.942
 margin_bottom = 161.105
-text = "PRAWO"
+text = "RIGHT"
 
 [node name="Label2" type="Label" parent="Panel"]
 margin_left = 224.044
 margin_top = 121.884
 margin_right = 264.044
 margin_bottom = 135.884
-text = "LEWO"
+text = "LEFT"
 
 [node name="Label3" type="Label" parent="Panel"]
 margin_left = 223.047
 margin_top = 97.507
 margin_right = 263.047
 margin_bottom = 111.507
-text = "DOL"
+text = "DOWN"
 
 [node name="Label4" type="Label" parent="Panel"]
-margin_left = 222.992
-margin_top = 78.4488
-margin_right = 262.992
-margin_bottom = 92.4488
-text = "GORA"
+margin_left = 224.044
+margin_top = 71.0
+margin_right = 264.044
+margin_bottom = 85.0
+text = "UP"
 
 [node name="Label5" type="Label" parent="Panel"]
 margin_left = 223.989
 margin_top = 169.695
 margin_right = 273.989
 margin_bottom = 183.695
-text = "BOMBA"
+text = "BOMB"
 
 [connection signal="pressed" from="Panel/HBoxContainer/P1Container/UP" to="Panel/HBoxContainer/P1Container/UP" method="_on_UP_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/P1Container/DOWN" to="Panel/HBoxContainer/P1Container/DOWN" method="_on_DOWN_pressed"]
